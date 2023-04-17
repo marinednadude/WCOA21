@@ -1,0 +1,249 @@
+---
+title: "WCOA 2021 Visulatization"
+output: html_document
+date: "2023-03-21"
+---
+
+```{r, echo=FALSE, hide=TRUE, warnings=FALSE,message=FALSE}
+library(tidyverse)
+library(here)
+library(sf)
+library(devtools)
+#devtools::install_github("katiejolly/nationalparkcolors")
+library(nationalparkcolors)
+library(knitr)
+library("rnaturalearth")
+library("rnaturalearthdata")
+library("readxl")
+
+world <- ne_countries(scale = "medium", returnclass = "sf")
+
+here()
+```
+
+```{r,echo=FALSE, hide=TRUE, warnings=FALSE,echo=FALSE}
+sample_data <- read_excel(here("data","WCOA21_eDNA_samples.xlsx"))
+env_data <- read_excel(here("data","WCOA2021_Data_forSDIS_2022_09-28.xlsx"))
+
+sample_data <- sample_data %>% 
+  rename(., Sample_ID="Field Sample Name")
+```
+
+```{r}
+sample_data %>% 
+  left_join(env_data) %>% 
+  filter(., !is.na(`Sampling method`)) %>% 
+  mutate(`Depth (m)`=as.numeric(`Depth`),
+         CTDTEMP_ITS90=as.numeric(CTDTEMP_ITS90),
+         CTDOXY=as.numeric(CTDOXY),
+         Longitude=as.numeric(Longitude),
+         Latitude=as.numeric(Latitude)) -> combined
+
+pal <- park_palette("ChannelIslands", 5)
+pal2 <- park_palette("Yellowstone", 5)
+
+pal3 <- park_palette("Arches", 5)
+pal4 <- park_palette("Hawaii", 5)
+
+combined %>% 
+  ggplot(aes(x=CTDTEMP_ITS90, y=CTDOXY, colour=`Line_ID`)) +geom_count() +scale_color_manual(values=c(pal,pal2,pal3,pal4))
+
+
+```
+
+
+```{r}
+
+combined %>% 
+  ggplot(aes(x=Longitude, colour=CTDOXY, y=-log(`Depth (m)`))) +geom_count()+facet_grid(Line_ID~.)
+
+
+```
+
+# General Statistics
+
+Unique Samples:
+```{r,echo=FALSE}
+combined$`FINAL Sample NAME` %>%  unique() %>% length() %>% paste()
+```
+
+Unique Samples by Depth:
+
+```{r,echo=FALSE}
+
+pal <- park_palette("ChannelIslands", 5)
+
+combined %>% 
+  mutate(., Depth    = cut_width(`Depth (m)`, width = 10)) %>% 
+  group_by(Depth) %>% 
+  dplyr::summarise(Count=n_distinct(`FINAL Sample NAME`)) %>% kable()
+```
+
+## Histogram of Depth
+```{r,echo=FALSE,warning=FALSE}
+my_binwidth <- 1
+
+combined %>%  
+  group_by(`Depth (m)`) %>% 
+  ggplot(., aes(x=`Depth (m)`))+
+  geom_histogram(binwidth = my_binwidth, colour= "black", fill = pal[3]) +
+  geom_density(aes(y = ..density.. * (nrow(sample_data) * my_binwidth)), fill=pal[5], alpha = .4) +theme_bw() + scale_x_sqrt(breaks=c(0,10,50,100,200,400,600)) +xlab("Depth (m)") + ylab("Count")
+```
+  
+Vast majority of WCOA samples are taken within the top 100m.
+
+# Maps
+
+## Cruise Map
+
+```{r,echo=FALSE,warning=FALSE}
+  
+combined %>% 
+  group_by(Longitude,Latitude,Line_ID) %>% 
+  count(Rosette_Position) %>% 
+  arrange(Line_ID) -> summed_station
+
+ggplot(data = world) +
+    geom_sf() +
+    geom_point(data = summed_station, aes(x = Longitude, y = Latitude,size=n, colour=Line_ID)) +
+    coord_sf(xlim = c(-127, -117), ylim = c(31, 50), expand = FALSE) +theme_bw() +xlab("Longitude") +ylab("Latitude") +scale_color_manual(values=c(pal,pal2,pal3,pal4)) +
+  geom_text(data = summed_station, aes(x = Longitude, y = Latitude, label=Line_ID)) 
+```
+  
+The biological stations are visible here as they are sampled far more frequently.
+
+
+```{r}
+
+combined %>% 
+  filter(., Line_ID %in% c("5","6","7","8","9","12","15")) %>% 
+  dplyr::summarise(n_distinct(`FINAL Sample NAME`), n_distinct(Sample_ID), n_distinct(`Sequential G3 Sample No.`))
+
+combined %>% 
+  filter(., Line_ID %in% c("5","6","7","8","9","12","15")) %>% 
+  group_by(Line_ID, Station_ID) %>% 
+  dplyr::summarise(n_distinct(Niskin_ID))
+
+combined %>% 
+  filter(., Line_ID %in% c("5","6","7","8","9","12","15")) %>% 
+  group_by(Line_ID, Station_ID) %>% 
+  dplyr::summarise(n_distinct(`Depth (m)`))
+
+combined %>% 
+  filter(., Line_ID %in% c("5","6","7","8","9","12","15")) %>% 
+  group_by(Line_ID) %>% 
+  dplyr::summarise(unique_stations = n_distinct(Station_ID)) %>% 
+  mutate(., tot_bottles=3*unique_stations) %>% 
+  dplyr::summarise(sum(tot_bottles))
+```
+
+
+## Lines
+
+```{r,echo=FALSE,warning=FALSE}
+
+combined %>%  
+  group_by(`Line_ID`,`Section_ID`) %>% 
+  count() -> sum_station2
+
+combined %>%  
+  group_by(`Line_ID`,`Section_ID`) %>% 
+  count() %>%  ungroup() %>% 
+  dplyr::summarise(mean (n))
+
+
+combined %>%  
+  group_by(Line_ID) %>% 
+  count() %>% 
+  ggplot(., aes(x=`n`))+
+  geom_histogram(binwidth = my_binwidth, colour= "black", fill = pal[3]) +theme_bw()
+
+combined %>%  
+  group_by(Line_ID) %>% 
+  count() %>% 
+  ungroup() %>% 
+  dplyr::summarise(mean (n))
+```
+
+```{r,echo=FALSE,warning=FALSE}
+
+combined %>%  
+  filter(., `Depth (m)` <200) %>% 
+  group_by(`Line_ID`,`Section_ID`) %>% 
+  count() -> sum_station3
+
+combined %>%  
+    filter(., `Depth (m)` <200) %>% 
+  group_by(`Line_ID`,`Section_ID`) %>% 
+  count() %>%  ungroup() %>% 
+  dplyr::summarise(mean (n))
+
+
+combined %>%  
+    filter(., `Depth (m)` <200) %>% 
+  group_by(Line_ID) %>% 
+  count() %>% 
+  ggplot(., aes(x=`n`))+
+  geom_histogram(binwidth = my_binwidth, colour= "black", fill = pal[3]) +theme_bw()
+
+combined %>%  
+    filter(., `Depth (m)` <200) %>% 
+  group_by(Line_ID) %>% 
+  count() %>% 
+  ungroup() %>% 
+  dplyr::summarise(mean (n))
+```
+  
+  The vast majority of stations south of Point. Conception have multiple depths and multiple cruises.
+  
+
+## "Deep" Bottle Map (>200m)
+```{r,echo=FALSE,warning=FALSE}
+
+ sample_data %>% 
+    filter(., Depthm > 200) %>% 
+    group_by(Sta_ID) %>% 
+    dplyr::summarise(mean_Lon_Dec=mean(Lon_Dec),mean_Lat_Dec=mean(Lat_Dec), Sample_count=n_distinct(Sample.Name
+))-> station_sample_deep
+  
+  
+ggplot(data = world) +
+    geom_sf() +
+    geom_point(data = station_sample_deep, aes(x = mean_Lon_Dec, y = mean_Lat_Dec,color = Sample_count,size = Sample_count)) +
+      scale_colour_viridis_c(alpha = .8) +
+    coord_sf(xlim = c(-126, -116), ylim = c(29, 38), expand = FALSE) +theme_bw() +xlab("Longitude") +ylab("Lattitude") +labs(size="Unique Samples",colour="Unique Samples") 
+
+```
+  
+Very few samples taken at depth.
+
+## Max Depth Map
+```{r,echo=FALSE,warning=FALSE}
+
+ sample_data %>% 
+    group_by(Sta_ID) %>% 
+    dplyr::summarise(mean_Lon_Dec=mean(Lon_Dec),mean_Lat_Dec=mean(Lat_Dec), Sample_count=n_distinct(Sample.Name),max_depth=max(Depthm)) -> station_sample_depth
+  
+  
+ggplot(data = world) +
+    geom_sf() +
+    geom_point(data = station_sample_depth, aes(x = mean_Lon_Dec, y = mean_Lat_Dec,color = max_depth,size = Sample_count)) +
+      scale_colour_viridis_c(alpha = .8,option = "plasma") +
+    coord_sf(xlim = c(-126, -116), ylim = c(29, 38), expand = FALSE) +theme_bw() +xlab("Longitude") +ylab("Lattitude") +labs(size="Unique Samples",colour="Mean Depth (m)") 
+
+```
+  
+Another way of visualizing the depth distributions of the samples. One of the sets of samples is taken at the Chla max which explains the nearshore-offshore depth distribution. Cardinal stations have deeper samples taken.
+
+# Tile Plot
+```{r, fig.height=12,echo=FALSE,warning=FALSE}
+sample_data %>% 
+  group_by(Cruise, Sta_ID) %>% 
+  mutate(., bottle_count = n_distinct(Bottle)) %>% 
+  mutate(., Cruise_name = as.character(Cruise)) %>% 
+  ggplot(., aes(x=Cruise_name, y=Sta_ID, fill=bottle_count)) +geom_tile() +theme_bw() +
+  ylab("Station ID") +xlab("Cruise Name") +theme(axis.text.x=element_text(angle = -45, hjust = 0.5)) +labs(fill="Unique Bottles") +xlab("Cruise") +ylab("Station")
+
+```
+  
+Only a handful of stations have been continously sampled on nearly every cruise since 2014. The vast majority of stations have been sampled more infrequently. Northern stations were sampled 2x times.
