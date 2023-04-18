@@ -109,141 +109,454 @@ ggplot(data = world) +
     coord_sf(xlim = c(-127, -117), ylim = c(31, 50), expand = FALSE) +theme_bw() +xlab("Longitude") +ylab("Latitude") +scale_color_manual(values=c(pal,pal2,pal3,pal4)) +
   geom_text(data = summed_station, aes(x = Longitude, y = Latitude, label=Line_ID)) 
 ```
+
+
   
 The biological stations are visible here as they are sampled far more frequently.
-
 
 ```{r}
 
 combined %>% 
-  filter(., Line_ID %in% c("5","6","7","8","9","12","15")) %>% 
+    filter(., Line_ID %in% c("0","2","3","4","5","6","7","8","9","11","12","13","14","15","16","17")) %>% 
+  filter(., `Depth (m)` < 100) %>% 
   dplyr::summarise(n_distinct(`FINAL Sample NAME`), n_distinct(Sample_ID), n_distinct(`Sequential G3 Sample No.`))
 
 combined %>% 
-  filter(., Line_ID %in% c("5","6","7","8","9","12","15")) %>% 
-  group_by(Line_ID, Station_ID) %>% 
+    filter(., Line_ID %in% c("0","2","3","4","5","6","7","8","9","11","12","13","14","15","16","17")) %>% 
+  filter(., `Depth (m)` < 100) %>% 
   dplyr::summarise(n_distinct(Niskin_ID))
 
 combined %>% 
-  filter(., Line_ID %in% c("5","6","7","8","9","12","15")) %>% 
-  group_by(Line_ID, Station_ID) %>% 
-  dplyr::summarise(n_distinct(`Depth (m)`))
+    filter(., Line_ID %in% c("0","2","3","4","5","6","7","8","9","11","12","13","14","15","16","17")) %>% 
+  filter(., `Depth (m)` < 100) %>% 
+    group_by(Line_ID) %>% 
+  dplyr::summarise(n_distinct(Station_ID))
 
 combined %>% 
-  filter(., Line_ID %in% c("5","6","7","8","9","12","15")) %>% 
-  group_by(Line_ID) %>% 
-  dplyr::summarise(unique_stations = n_distinct(Station_ID)) %>% 
-  mutate(., tot_bottles=3*unique_stations) %>% 
-  dplyr::summarise(sum(tot_bottles))
+  filter(., Line_ID %in% c("2","5","12","15","17")) %>% 
+  filter(., `Depth (m)` < 100) %>% 
+      group_by(Line_ID,Station_ID) %>% 
+  dplyr::summarise(n_distinct(`FINAL Sample NAME`), n_distinct(Sample_ID), n_distinct(`Sequential G3 Sample No.`))
 ```
 
+# Which of Line 0 to keep
+```{r}
 
-## Lines
+combined %>% 
+  filter(., Line_ID %in% c("0")) %>% 
+  filter(., Station_ID %in% c("22","23"))%>% 
+  dplyr::select(Station_ID) %>% distinct()  -> line_0_to_keep
 
-```{r,echo=FALSE,warning=FALSE}
+combined %>% 
+    filter(., Line_ID %in% c("0")) %>% 
+    filter(., `Depth (m)` < 100) %>% 
+  group_by(Longitude,Latitude,Line_ID,Station_ID) %>% 
+  dplyr::summarise(n_depths = n_distinct(`Depth (m)`)) %>% 
+  arrange(Line_ID) -> summed_station_line_0
 
-combined %>%  
-  group_by(`Line_ID`,`Section_ID`) %>% 
-  count() -> sum_station2
-
-combined %>%  
-  group_by(`Line_ID`,`Section_ID`) %>% 
-  count() %>%  ungroup() %>% 
-  dplyr::summarise(mean (n))
-
-
-combined %>%  
-  group_by(Line_ID) %>% 
-  count() %>% 
-  ggplot(., aes(x=`n`))+
-  geom_histogram(binwidth = my_binwidth, colour= "black", fill = pal[3]) +theme_bw()
-
-combined %>%  
-  group_by(Line_ID) %>% 
-  count() %>% 
-  ungroup() %>% 
-  dplyr::summarise(mean (n))
-```
-
-```{r,echo=FALSE,warning=FALSE}
-
-combined %>%  
-  filter(., `Depth (m)` <200) %>% 
-  group_by(`Line_ID`,`Section_ID`) %>% 
-  count() -> sum_station3
-
-combined %>%  
-    filter(., `Depth (m)` <200) %>% 
-  group_by(`Line_ID`,`Section_ID`) %>% 
-  count() %>%  ungroup() %>% 
-  dplyr::summarise(mean (n))
-
-
-combined %>%  
-    filter(., `Depth (m)` <200) %>% 
-  group_by(Line_ID) %>% 
-  count() %>% 
-  ggplot(., aes(x=`n`))+
-  geom_histogram(binwidth = my_binwidth, colour= "black", fill = pal[3]) +theme_bw()
-
-combined %>%  
-    filter(., `Depth (m)` <200) %>% 
-  group_by(Line_ID) %>% 
-  count() %>% 
-  ungroup() %>% 
-  dplyr::summarise(mean (n))
-```
-  
-  The vast majority of stations south of Point. Conception have multiple depths and multiple cruises.
-  
-
-## "Deep" Bottle Map (>200m)
-```{r,echo=FALSE,warning=FALSE}
-
- sample_data %>% 
-    filter(., Depthm > 200) %>% 
-    group_by(Sta_ID) %>% 
-    dplyr::summarise(mean_Lon_Dec=mean(Lon_Dec),mean_Lat_Dec=mean(Lat_Dec), Sample_count=n_distinct(Sample.Name
-))-> station_sample_deep
-  
-  
 ggplot(data = world) +
     geom_sf() +
-    geom_point(data = station_sample_deep, aes(x = mean_Lon_Dec, y = mean_Lat_Dec,color = Sample_count,size = Sample_count)) +
-      scale_colour_viridis_c(alpha = .8) +
-    coord_sf(xlim = c(-126, -116), ylim = c(29, 38), expand = FALSE) +theme_bw() +xlab("Longitude") +ylab("Lattitude") +labs(size="Unique Samples",colour="Unique Samples") 
+    geom_point(data = summed_station_line_0, aes(x = Longitude, y = Latitude,size=n_depths, colour=Line_ID)) +
+    coord_sf(xlim = c(-127, -117), ylim = c(46, 50), expand = FALSE) +theme_bw() +xlab("Longitude") +ylab("Latitude") +scale_color_manual(values=c(pal,pal2,pal3,pal4)) +
+  geom_text(data = summed_station_line_0, aes(x = Longitude, y = Latitude, label=Station_ID)) 
 
 ```
-  
-Very few samples taken at depth.
 
-## Max Depth Map
-```{r,echo=FALSE,warning=FALSE}
+# Which of Line 2 to keep
+```{r}
 
- sample_data %>% 
-    group_by(Sta_ID) %>% 
-    dplyr::summarise(mean_Lon_Dec=mean(Lon_Dec),mean_Lat_Dec=mean(Lat_Dec), Sample_count=n_distinct(Sample.Name),max_depth=max(Depthm)) -> station_sample_depth
-  
-  
+combined %>% 
+  filter(., Line_ID %in% c("2")) %>% 
+  group_by(Longitude,Latitude,Line_ID,Station_ID) %>% 
+  dplyr::summarise(n_depths = n_distinct(`Depth (m)`)) %>% 
+  arrange(Line_ID) -> summed_station_line_2
+
 ggplot(data = world) +
     geom_sf() +
-    geom_point(data = station_sample_depth, aes(x = mean_Lon_Dec, y = mean_Lat_Dec,color = max_depth,size = Sample_count)) +
-      scale_colour_viridis_c(alpha = .8,option = "plasma") +
-    coord_sf(xlim = c(-126, -116), ylim = c(29, 38), expand = FALSE) +theme_bw() +xlab("Longitude") +ylab("Lattitude") +labs(size="Unique Samples",colour="Mean Depth (m)") 
+    geom_point(data = summed_station_line_2, aes(x = Longitude, y = Latitude, colour=Line_ID)) +
+    coord_sf(xlim = c(-127, -124), ylim = c(48, 50), expand = FALSE) +theme_bw() +xlab("Longitude") +ylab("Latitude") +scale_color_manual(values=c(pal,pal2,pal3,pal4)) +
+  geom_text(data = summed_station_line_2, aes(x = Longitude, y = Latitude, label=Station_ID)) 
+
+
+combined %>% 
+  filter(., Line_ID %in% c("2")) %>% 
+  filter(., Station_ID %in% c("16","14","12","10","8")) %>% 
+  dplyr::select(Station_ID) %>% distinct() -> line_2_to_keep
 
 ```
-  
-Another way of visualizing the depth distributions of the samples. One of the sets of samples is taken at the Chla max which explains the nearshore-offshore depth distribution. Cardinal stations have deeper samples taken.
 
-# Tile Plot
-```{r, fig.height=12,echo=FALSE,warning=FALSE}
-sample_data %>% 
-  group_by(Cruise, Sta_ID) %>% 
-  mutate(., bottle_count = n_distinct(Bottle)) %>% 
-  mutate(., Cruise_name = as.character(Cruise)) %>% 
-  ggplot(., aes(x=Cruise_name, y=Sta_ID, fill=bottle_count)) +geom_tile() +theme_bw() +
-  ylab("Station ID") +xlab("Cruise Name") +theme(axis.text.x=element_text(angle = -45, hjust = 0.5)) +labs(fill="Unique Bottles") +xlab("Cruise") +ylab("Station")
+# Which of Line 3 to keep
+```{r}
+
+combined %>% 
+  filter(., Line_ID %in% c("3")) %>% 
+  group_by(Longitude,Latitude,Line_ID,Station_ID) %>% 
+  dplyr::summarise(n_depths = n_distinct(`Depth (m)`)) %>% 
+  arrange(Line_ID) -> summed_station_line_3
+
+ggplot(data = world) +
+    geom_sf() +
+    geom_point(data = summed_station_line_3, aes(x = Longitude, y = Latitude, colour=Line_ID)) +
+    coord_sf(xlim = c(-127, -124), ylim = c(46, 50), expand = FALSE) +theme_bw() +xlab("Longitude") +ylab("Latitude") +scale_color_manual(values=c(pal,pal2,pal3,pal4)) +
+  geom_text(data = summed_station_line_3, aes(x = Longitude, y = Latitude, label=Station_ID)) 
+
+
+combined %>% 
+  filter(., Line_ID %in% c("3")) %>% 
+  dplyr::select(Station_ID) %>% distinct() -> line_3_to_keep
 
 ```
+
+# Which of Line 4 to keep
+```{r}
+
+combined %>% 
+  filter(., Line_ID %in% c("4")) %>% 
+  group_by(Longitude,Latitude,Line_ID,Station_ID) %>% 
+  dplyr::summarise(n_depths = n_distinct(`Depth (m)`)) %>% 
+  arrange(Line_ID) -> summed_station_line_4
+
+ggplot(data = world) +
+    geom_sf() +
+    geom_point(data = summed_station_line_4, aes(x = Longitude, y = Latitude, colour=Line_ID)) +
+    coord_sf(xlim = c(-127, -124), ylim = c(46, 48), expand = FALSE) +theme_bw() +xlab("Longitude") +ylab("Latitude") +scale_color_manual(values=c(pal,pal2,pal3,pal4)) +
+  geom_text(data = summed_station_line_4, aes(x = Longitude, y = Latitude, label=Station_ID)) 
+
+
+combined %>% 
+  filter(., Line_ID %in% c("4")) %>% 
+  filter(., Station_ID %in% c("37","40","41","42","43"))%>% 
+  dplyr::select(Station_ID) %>% distinct() -> line_4_to_keep
+
+```
+
+# Which of Line 5 to keep
+```{r}
+
+combined %>% 
+  filter(., Line_ID %in% c("5")) %>% 
+  group_by(Longitude,Latitude,Line_ID,Station_ID) %>% 
+  dplyr::summarise(n_depths = n_distinct(`Depth (m)`)) %>% 
+  arrange(Line_ID) -> summed_station_line_5
+
+ggplot(data = world) +
+    geom_sf() +
+    geom_point(data = summed_station_line_5, aes(x = Longitude, y = Latitude, colour=Line_ID)) +
+    coord_sf(xlim = c(-126, -123), ylim = c(45, 47), expand = FALSE) +theme_bw() +xlab("Longitude") +ylab("Latitude") +scale_color_manual(values=c(pal,pal2,pal3,pal4)) +
+  geom_text(data = summed_station_line_5, aes(x = Longitude, y = Latitude, label=Station_ID)) 
+
+
+combined %>% 
+  filter(., Line_ID %in% c("5")) %>% 
+  filter(., Station_ID %in% c("30","32","33","34","26"))%>% 
+  dplyr::select(Station_ID) %>% distinct() -> line_5_to_keep
+
+```
+
+# Which of Line 6 to keep
+```{r}
+
+combined %>% 
+  filter(., Line_ID %in% c("6")) %>% 
+  group_by(Longitude,Latitude,Line_ID,Station_ID) %>% 
+  dplyr::summarise(n_depths = n_distinct(`Depth (m)`)) %>% 
+  arrange(Line_ID) -> summed_station_line_6
+
+ggplot(data = world) +
+    geom_sf() +
+    geom_point(data = summed_station_line_6, aes(x = Longitude, y = Latitude, colour=Line_ID)) +
+    coord_sf(xlim = c(-125.5, -123.5), ylim = c(44, 45), expand = FALSE) +theme_bw() +xlab("Longitude") +ylab("Latitude") +scale_color_manual(values=c(pal,pal2,pal3,pal4)) +
+  geom_text(data = summed_station_line_6, aes(x = Longitude, y = Latitude, label=Station_ID)) 
+
+
+combined %>% 
+  filter(., Line_ID %in% c("6")) %>% 
+  filter(., Station_ID %in% c("47","48","49","50","52"))%>% 
+  dplyr::select(Station_ID) %>% distinct() -> line_6_to_keep
+
+```
+
+# Which of Line 7 to keep
+```{r}
+
+combined %>% 
+  filter(., Line_ID %in% c("7")) %>% 
+  group_by(Longitude,Latitude,Line_ID,Station_ID) %>% 
+  dplyr::summarise(n_depths = n_distinct(`Depth (m)`)) %>% 
+  arrange(Line_ID) -> summed_station_line_7
+
+ggplot(data = world) +
+    geom_sf() +
+    geom_point(data = summed_station_line_7, aes(x = Longitude, y = Latitude, colour=Line_ID)) +
+    coord_sf(xlim = c(-126, -123.5), ylim = c(43, 44.5), expand = FALSE) +theme_bw() +xlab("Longitude") +ylab("Latitude") +scale_color_manual(values=c(pal,pal2,pal3,pal4)) +
+  geom_text(data = summed_station_line_7, aes(x = Longitude, y = Latitude, label=Station_ID)) 
+
+
+combined %>% 
+  filter(., Line_ID %in% c("7")) %>% 
+    filter(., Station_ID %in% c("54","55","56","57","58"))%>% 
+  dplyr::select(Station_ID) %>% distinct() -> line_7_to_keep
+
+```
+
+# Which of Line 8 to keep
+```{r}
+
+combined %>% 
+  filter(., Line_ID %in% c("8")) %>% 
+  group_by(Longitude,Latitude,Line_ID,Station_ID) %>% 
+  dplyr::summarise(n_depths = n_distinct(`Depth (m)`)) %>% 
+  arrange(Line_ID) -> summed_station_line_8
+
+ggplot(data = world) +
+    geom_sf() +
+    geom_point(data = summed_station_line_8, aes(x = Longitude, y = Latitude, colour=Line_ID)) +
+    coord_sf(xlim = c(-125.5, -123.5), ylim = c(41.5, 42.5), expand = FALSE) +theme_bw() +xlab("Longitude") +ylab("Latitude") +scale_color_manual(values=c(pal,pal2,pal3,pal4)) +
+  geom_text(data = summed_station_line_8, aes(x = Longitude, y = Latitude, label=Station_ID)) 
+
+
+combined %>% 
+  filter(., Line_ID %in% c("8")) %>% 
+  filter(., Station_ID %in% c("62","63","65","66","67"))%>% 
+  dplyr::select(Station_ID) %>% distinct() -> line_8_to_keep
+
+```
+
+# Which of Line 9 to keep
+```{r}
+
+combined %>% 
+  filter(., Line_ID %in% c("9")) %>% 
+  group_by(Longitude,Latitude,Line_ID,Station_ID) %>% 
+  dplyr::summarise(n_depths = n_distinct(`Depth (m)`)) %>% 
+  arrange(Line_ID) -> summed_station_line_9
+
+ggplot(data = world) +
+    geom_sf() +
+    geom_point(data = summed_station_line_9, aes(x = Longitude, y = Latitude, colour=Line_ID)) +
+    coord_sf(xlim = c(-125.5, -123.5), ylim = c(39.5, 40.5), expand = FALSE) +theme_bw() +xlab("Longitude") +ylab("Latitude") +scale_color_manual(values=c(pal,pal2,pal3,pal4)) +
+  geom_text(data = summed_station_line_9, aes(x = Longitude, y = Latitude, label=Station_ID)) 
+
+
+combined %>% 
+  filter(., Line_ID %in% c("9")) %>% 
+  filter(., Station_ID %in% c("70","71","72","73","75"))%>% 
+  dplyr::select(Station_ID) %>% distinct() -> line_9_to_keep
+
+```
+
+# Which of Line 11 to keep
+```{r}
+
+combined %>% 
+  filter(., Line_ID %in% c("11")) %>% 
+  group_by(Longitude,Latitude,Line_ID,Station_ID) %>% 
+  dplyr::summarise(n_depths = n_distinct(`Depth (m)`)) %>% 
+  arrange(Line_ID) -> summed_station_line_11
+
+ggplot(data = world) +
+    geom_sf() +
+    geom_point(data = summed_station_line_11, aes(x = Longitude, y = Latitude, colour=Line_ID)) +
+    coord_sf(xlim = c(-124, -122), ylim = c(37, 39), expand = FALSE) +theme_bw() +xlab("Longitude") +ylab("Latitude") +scale_color_manual(values=c(pal,pal2,pal3,pal4)) +
+  geom_text(data = summed_station_line_11, aes(x = Longitude, y = Latitude, label=Station_ID)) 
+
+
+combined %>% 
+  filter(., Line_ID %in% c("11")) %>% 
+  filter(., Station_ID %in% c("79","81","82","83","84"))%>% 
+  dplyr::select(Station_ID) %>% distinct() -> line_11_to_keep
+
+```
+
+
+# Which of Line 13 to keep
+```{r}
+
+combined %>% 
+  filter(., Line_ID %in% c("13")) %>% 
+  group_by(Longitude,Latitude,Line_ID,Station_ID) %>% 
+  dplyr::summarise(n_depths = n_distinct(`Depth (m)`)) %>% 
+  arrange(Line_ID) -> summed_station_line_13
+
+ggplot(data = world) +
+    geom_sf() +
+    geom_point(data = summed_station_line_13, aes(x = Longitude, y = Latitude, colour=Line_ID)) +
+    coord_sf(xlim = c(-124, -121), ylim = c(35.8, 37), expand = FALSE) +theme_bw() +xlab("Longitude") +ylab("Latitude") +scale_color_manual(values=c(pal,pal2,pal3,pal4)) +
+  geom_text(data = summed_station_line_13, aes(x = Longitude, y = Latitude, label=Station_ID)) 
+
+
+combined %>% 
+  filter(., Line_ID %in% c("13")) %>% 
+  filter(., Station_ID %in% c("97","98","101","103"))%>% 
+  dplyr::select(Station_ID) %>% distinct() -> line_13_to_keep
+
+```
+
+# Which of Line 14 to keep
+```{r}
+
+combined %>% 
+  filter(., Line_ID %in% c("14")) %>% 
+  group_by(Longitude,Latitude,Line_ID,Station_ID) %>% 
+  dplyr::summarise(n_depths = n_distinct(`Depth (m)`)) %>% 
+  arrange(Line_ID) -> summed_station_line_14
+
+ggplot(data = world) +
+    geom_sf() +
+    geom_point(data = summed_station_line_14, aes(x = Longitude, y = Latitude, colour=Line_ID)) +
+    coord_sf(xlim = c(-124, -121), ylim = c(34, 36), expand = FALSE) +theme_bw() +xlab("Longitude") +ylab("Latitude") +scale_color_manual(values=c(pal,pal2,pal3,pal4)) +
+  geom_text(data = summed_station_line_14, aes(x = Longitude, y = Latitude, label=Station_ID)) 
+
+
+combined %>% 
+  filter(., Line_ID %in% c("14"))%>% 
+    filter(., Station_ID %in% c("107","106","105","104"))%>% 
+  dplyr::select(Station_ID) %>% distinct() -> line_14_to_keep
+
+```
+
+# Which of Line 15 to keep
+```{r}
+
+combined %>% 
+  filter(., Line_ID %in% c("15")) %>% 
+  group_by(Longitude,Latitude,Line_ID,Station_ID) %>% 
+  dplyr::summarise(n_depths = n_distinct(`Depth (m)`)) %>% 
+  arrange(Line_ID) -> summed_station_line_15
+
+ggplot(data = world) +
+    geom_sf() +
+    geom_point(data = summed_station_line_15, aes(x = Longitude, y = Latitude, colour=Line_ID)) +
+    coord_sf(xlim = c(-124, -120), ylim = c(32, 35), expand = FALSE) +theme_bw() +xlab("Longitude") +ylab("Latitude") +scale_color_manual(values=c(pal,pal2,pal3,pal4)) +
+  geom_text(data = summed_station_line_15, aes(x = Longitude, y = Latitude, label=Station_ID)) 
+
+
+combined %>% 
+  filter(., Line_ID %in% c("15")) %>% 
+  filter(., Station_ID %in% c("110","111","113","114","117"))%>% 
+  dplyr::select(Station_ID) %>% distinct() -> line_15_to_keep
+
+```
+
+# Which of Line 16 to keep
+```{r}
+
+combined %>% 
+  filter(., Line_ID %in% c("16")) %>% 
+  group_by(Longitude,Latitude,Line_ID,Station_ID) %>% 
+  dplyr::summarise(n_depths = n_distinct(`Depth (m)`)) %>% 
+  arrange(Line_ID) -> summed_station_line_16
+
+ggplot(data = world) +
+    geom_sf() +
+    geom_point(data = summed_station_line_16, aes(x = Longitude, y = Latitude, colour=Line_ID)) +
+    coord_sf(xlim = c(-121, -118), ylim = c(33.5, 35), expand = FALSE) +theme_bw() +xlab("Longitude") +ylab("Latitude") +scale_color_manual(values=c(pal,pal2,pal3,pal4)) +
+  geom_text(data = summed_station_line_16, aes(x = Longitude, y = Latitude, label=Station_ID)) 
+
+
+combined %>% 
+  filter(., Line_ID %in% c("16")) %>% 
+    filter(., Station_ID %in% c("118","120","121","122","123"))%>% 
+  dplyr::select(Station_ID) %>% distinct() -> line_16_to_keep
+
+```
+
+# Which of Line 17 to keep
+```{r}
+
+combined %>% 
+  filter(., Line_ID %in% c("17")) %>% 
+  group_by(Longitude,Latitude,Line_ID,Station_ID) %>% 
+  dplyr::summarise(n_depths = n_distinct(`Depth (m)`)) %>% 
+  arrange(Line_ID) -> summed_station_line_17
+
+ggplot(data = world) +
+    geom_sf() +
+    geom_point(data = summed_station_line_17, aes(x = Longitude, y = Latitude, colour=Line_ID)) +
+    coord_sf(xlim = c(-121, -117), ylim = c(31, 34), expand = FALSE) +theme_bw() +xlab("Longitude") +ylab("Latitude") +scale_color_manual(values=c(pal,pal2,pal3,pal4)) +
+  geom_text(data = summed_station_line_17, aes(x = Longitude, y = Latitude, label=Station_ID)) 
+
+
+combined %>% 
+  filter(., Line_ID %in% c("17")) %>% 
+  filter(., Station_ID %in% c("124","126","127","129","131")) %>% 
+  dplyr::select(Station_ID) %>% distinct() -> line_17_to_keep
+
+```
+
+
+```{R}
+
+
+combined %>% 
+    filter(., Station_ID %in% c(line_0_to_keep$Station_ID,line_2_to_keep$Station_ID,line_3_to_keep$Station_ID,line_4_to_keep$Station_ID,line_5_to_keep$Station_ID,line_6_to_keep$Station_ID,line_7_to_keep$Station_ID,line_8_to_keep$Station_ID,line_9_to_keep$Station_ID,line_11_to_keep$Station_ID,line_13_to_keep$Station_ID,line_14_to_keep$Station_ID,line_15_to_keep$Station_ID,line_16_to_keep$Station_ID,line_17_to_keep$Station_ID)) -> combined_station_to_keep
+
+combined_station_to_keep %>% 
+  filter(., Line_ID %in% c("6","7")) %>% 
+    filter(., `Depth (m)` > 100) %>% 
+  filter(., Longitude > -125) %>% 
+  group_by(Station_ID,Line_ID) %>% 
+  dplyr::summarise(max_depth = max(`Depth (m)`)) %>% 
+  unite(., "station_line", Station_ID:Line_ID, sep=":", remove=F) -> max_depths_6_7
+
+combined_station_to_keep %>% 
+  filter(., Line_ID %in% c("6","7")) %>%
+ unite(., "station_line", c("Station_ID","Line_ID"), sep=":", remove=F) %>% 
+  filter(., station_line %in% max_depths_6_7$station_line) -> max_depth_to_keep_6_7
   
-Only a handful of stations have been continously sampled on nearly every cruise since 2014. The vast majority of stations have been sampled more infrequently. Northern stations were sampled 2x times.
+combined_station_to_keep %>% 
+  filter(., Line_ID %in% c("6","7")) %>% 
+  ggplot(., aes(x=Longitude, y=-`Depth (m)`))+geom_point() +facet_grid(Station_ID~Line_ID)
+  
+```
+
+```{r}
+
+combined_station_to_keep %>% 
+  mutate(., to_keep = case_when(Sample_ID %in% max_depth_to_keep_6_7$Sample_ID ~ "keep",
+                                `Depth (m)` < 100 ~ "keep",
+                                TRUE ~"drop")) %>% 
+filter(., to_keep =="keep") -> samples_to_keep
+
+samples_to_keep %>% 
+dplyr::summarise(n_distinct(`FINAL Sample NAME`), n_distinct(Sample_ID), n_distinct(`Sequential G3 Sample No.`))
+
+
+```
+
+```{R}
+
+ggplot(data = world) +
+    geom_sf() +
+    geom_point(data = samples_to_keep, aes(x = Longitude, y = Latitude, colour=Line_ID)) +
+    coord_sf(xlim = c(-127, -117), ylim = c(31, 50), expand = FALSE) +theme_bw() +xlab("Longitude") +ylab("Latitude") +scale_color_manual(values=c(pal,pal2,pal3,pal4)) +
+  geom_text(data = samples_to_keep, aes(x = Longitude, y = Latitude, label=Station_ID)) 
+
+
+```
+
+## Histogram of Depth
+```{r,echo=FALSE,warning=FALSE}
+my_binwidth <- 1
+
+samples_to_keep %>%  
+  group_by(`Depth (m)`) %>% 
+  ggplot(., aes(x=`Depth (m)`))+
+  geom_histogram(binwidth = my_binwidth, colour= "black", fill = pal[3]) +
+  geom_density(aes(y = ..density.. * (nrow(sample_data) * my_binwidth)), fill=pal[5], alpha = .4) +theme_bw() + scale_x_sqrt(breaks=c(0,10,50,100,200,400,600)) +xlab("Depth (m)") + ylab("Count")
+```
+
+```{R}
+
+
+samples_to_keep %>% 
+  ggplot(aes(x=CTDTEMP_ITS90, y=CTDOXY, colour=`Line_ID`)) +geom_count() +scale_color_manual(values=c(pal,pal2,pal3,pal4))
+```
+
+```{R}
+
+samples_to_keep %>% 
+  mutate(., pH_T_measured = as.numeric(pH_T_measured)) %>% 
+  ggplot(aes(x=CTDTEMP_ITS90, y=CTDOXY, colour=log(`Depth (m)`))) +geom_count() 
+```
+
