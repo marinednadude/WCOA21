@@ -1,0 +1,866 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<oads_metadata xmlns="http://ncei.noaa.gov/oads/v_a0_2_2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="a0.2.2" xsi:schemaLocation="http://ncei.noaa.gov/oads/v_a0_2_2 https://www.pmel.noaa.gov/sdig/oap/a0.2.2/oads_metadata_a0.2.2.xsd">
+    <investigators>
+        <investigator>
+            <name>
+                <first>Richard A.</first>
+                <last>Feely</last>
+            </name>
+            <organization>NOAA Pacific Marine Environmental Laboratory</organization>
+            <contactInfo>
+                <address>
+                    <deliveryPoint index="1">7600 Sand Point Way NE, Building 3</deliveryPoint>
+                    <deliveryPoint index="2"/>
+                    <city>Seattle</city>
+                    <administrativeArea>WA</administrativeArea>
+                    <postalCode>98115</postalCode>
+                    <country>United States of America</country>
+                </address>
+                <phone>206-526-6214</phone>
+                <email>Richard.A.Feely@noaa.gov</email>
+            </contactInfo>
+            <identifier type="orcid">0000-0003-3245-3568</identifier>
+        </investigator>
+        <investigator>
+            <name>
+                <first>Brendan</first>
+                <last>Carter</last>
+            </name>
+            <organization>University of Washington - CICOES</organization>
+            <contactInfo>
+                <address>
+                    <deliveryPoint index="1">3737 Brooklyn Ave NE, Box 355672</deliveryPoint>
+                    <deliveryPoint index="2"/>
+                    <city>Seattle</city>
+                    <administrativeArea>WA</administrativeArea>
+                    <postalCode>98195</postalCode>
+                    <country>United States of America</country>
+                </address>
+                <phone>206-526-6870</phone>
+                <email>brendan.carter@noaa.gov</email>
+            </contactInfo>
+            <identifier type="orcid">0000-0003-2445-0711</identifier>
+        </investigator>
+        <investigator>
+            <name>
+                <first>Ryan M.</first>
+                <last>McCabe</last>
+            </name>
+            <organization>NOAA Pacific Marine Environmental Laboratory</organization>
+            <contactInfo>
+                <address>
+                    <deliveryPoint index="1">7600 Sand Point Way NE, Building 3</deliveryPoint>
+                    <deliveryPoint index="2"/>
+                    <city>Seattle</city>
+                    <administrativeArea>WA</administrativeArea>
+                    <postalCode>98115</postalCode>
+                    <country>United States of America</country>
+                </address>
+                <phone>206-526-6038</phone>
+                <email>ryan.mccabe@noaa.gov</email>
+            </contactInfo>
+        </investigator>
+        <investigator>
+            <name>
+                <first>Robert H.</first>
+                <last>Byrne</last>
+            </name>
+            <organization>University of South Florida, College of Marine Science</organization>
+            <contactInfo>
+                <address>
+                    <deliveryPoint index="1">140 7th Ave S</deliveryPoint>
+                    <deliveryPoint index="2"/>
+                    <city>St. Petersburg</city>
+                    <administrativeArea>FL</administrativeArea>
+                    <postalCode>33701</postalCode>
+                    <country>United States of America</country>
+                </address>
+                <phone>727-553-1508</phone>
+                <email>rhbyrne@usf.edu</email>
+            </contactInfo>
+        </investigator>
+        <investigator>
+            <name>
+                <first>Calvin W.</first>
+                <last>Mordy</last>
+            </name>
+            <organization>University of Washington - CICOES</organization>
+            <contactInfo>
+                <address>
+                    <deliveryPoint index="1">3737 Brooklyn Ave NE, Box 355672</deliveryPoint>
+                    <deliveryPoint index="2"/>
+                    <city>Seattle</city>
+                    <administrativeArea>WA</administrativeArea>
+                    <postalCode>98195</postalCode>
+                    <country>United States of America</country>
+                </address>
+                <phone>206-526-6870</phone>
+                <email>mordy@uw.edu</email>
+            </contactInfo>
+        </investigator>
+        <investigator>
+            <name>
+                <first>Linda D.</first>
+                <last>Rhodes</last>
+            </name>
+            <organization>NOAA Fisheries, Northwest Fisheries Science Center</organization>
+            <contactInfo>
+                <address>
+                    <deliveryPoint index="1">2725 Montlake Blvd. East</deliveryPoint>
+                    <deliveryPoint index="2"/>
+                    <city>Seattle</city>
+                    <administrativeArea>WA</administrativeArea>
+                    <postalCode>98112</postalCode>
+                    <country>United States of America</country>
+                </address>
+                <phone>1-206-860-3279</phone>
+                <email>linda.rhodes@noaa.gov</email>
+            </contactInfo>
+            <identifier type="orcid">0000-0003-4995-9426</identifier>
+        </investigator>
+        <investigator>
+            <name>
+                <first>Jan</first>
+                <last>Newton</last>
+            </name>
+            <organization>University of Washington, Applied Physics Lab</organization>
+            <contactInfo>
+                <address>
+                    <deliveryPoint index="1">1013 N.E. 40th Street</deliveryPoint>
+                    <deliveryPoint index="2"/>
+                    <city>Seattle</city>
+                    <administrativeArea>WA</administrativeArea>
+                    <postalCode>98105</postalCode>
+                    <country>United States of America</country>
+                </address>
+                <phone>206-543-9152</phone>
+                <email>janewton@uw.edu</email>
+            </contactInfo>
+            <identifier type="orcid">0000-0002-2551-1830</identifier>
+        </investigator>
+        <investigator>
+            <name>
+                <first>David</first>
+                <last>Butterfield</last>
+            </name>
+            <organization>University of Washington - CICOES</organization>
+            <contactInfo>
+                <address>
+                    <deliveryPoint index="1">3737 Brooklyn Ave NE, Box 355672</deliveryPoint>
+                    <deliveryPoint index="2"/>
+                    <city>Seattle</city>
+                    <administrativeArea>WA</administrativeArea>
+                    <postalCode>98195</postalCode>
+                    <country>United States of America</country>
+                </address>
+                <phone>206-685-0599</phone>
+                <email>david.a.butterfield@noaa.gov</email>
+            </contactInfo>
+            <identifier type="orcid">0000-0002-1595-9279</identifier>
+        </investigator>
+    </investigators>
+    <dataSubmitter>
+        <name>
+            <first>Dana</first>
+            <last>Greeley</last>
+        </name>
+        <organization>NOAA Pacific Marine Environmental Laboratory</organization>
+        <contactInfo>
+            <address>
+                <deliveryPoint index="1">7600 Sand Point Way NE, Building 3, Seattle, WA 98115</deliveryPoint>
+                <deliveryPoint index="2"/>
+                <city>Seattle</city>
+                <administrativeArea>WA</administrativeArea>
+                <postalCode>98115</postalCode>
+                <country>United States of America</country>
+            </address>
+            <phone>206-526-6693</phone>
+            <email>dana.greeley@noaa.gov</email>
+        </contactInfo>
+        <identifier type="orcid">0000-0003-4356-5899</identifier>
+    </dataSubmitter>
+    <title>Dissolved inorganic carbon (DIC), total alkalinity (TA), pH, temperature, salinity, oxygen, and nutrient data collected from discrete profile measurements during the National Oceanic and Atmospheric Administration Ocean Acidification Program (OAP) program cruise WCOA2021 (EXPOCODE 33RO20210613) in northeast Pacific marine waters on the NOAA Ship Ronald H. Brown from 2021-06-13 to 2021-07-26 (NCEI Accession XXXXXXX)</title>
+    <abstract>This NCEI Accession contains data collected from the National Oceanic and Atmospheric Administration Ocean Acidification Program cruise on the NOAA Ship Ronald H. Brown from 2021-06-13 to 2021-07-26. 133 stations were occupied on 17 transect lines from Queen Charlotte Sound, Canada to southern California USA.  The cruise was designed to obtain a synoptic snapshot of key carbon, physical, and other biogeochemical parameters as they relate to ocean acidification (OA) in coastal waters and large estuaries of the northeast Pacific. At all sampling stations, CTD casts were conducted to measure temperature, conductivity, pressure, and oxygen concentrations using CTD and oxygen sensors. Discrete water samples were collected throughout the water column at all stations in Niskin  bottles. Laboratory analyses were run to measure dissolved inorganic carbon (DIC), pH, oxygen, nutrient concentrations, total alkalinity (TA), chlorophyll and other biological measurements. This effort was conducted in support of the estuarine and coastal monitoring and research objectives of the NOAA Ocean Acidification Program and conforms to monitoring guidelines of the Global Ocean Acidification Observing Network (goa-on.org) and the U.S. National Oceanic and Atmospheric Administration's Ocean Acidification Program. 
+
+Fair Use Data Statement for Cruise Data: Ocean acidification data from the 2021 NOAA Ocean Acidification Program West Coast cruise are made freely available to the public and the scientific community in the belief that their wide dissemination will lead to greater understanding and new scientific and policy insights. The investigators sharing these data rely on the ethics and integrity of the user to ensure that the institutions and investigators involved in producing West Coast cruise data sets receive fair credit for their work, which in turn helps ensure the continuity of the observational time-series. If the data are obtained for potential use in a publication or presentation, we urge the end user to inform the investigators at the outset of this work so that we can help ensure that the quality and limitations of the data are accurately represented. If these data are essential to the work, or if an important result or conclusion depends on these data, co-authorship may be appropriate. This should be discussed at an early stage in the work. We request that manuscripts using these data be shared before they are submitted for publication. Please direct all queries about this data set to Drs. Richard Feely (e-mail: Richard.A.Feely@noaa.gov) and Brendan Carter (e-mail: Brendan.Carter@noaa.gov).</abstract>
+    <purpose>The major objectives of the cruise were:
+1) To characterize ocean acidification (OA) conditions on the North American Pacific Coast;
+2) To conduct inter-calibration measurements near other OA observing assets, including moorings, in the study area, allowing inter-calibration of these autonomous assets with high-quality, ship-based measurements;
+3) To provide calibration data needed to develop predictive models for aragonite saturation state, pH, and other important OA indicators in the California Current Ecosystem, based on widely measured parameters such as salinity, temperature, and oxygen concentration;
+4) To examine relationships between processes leading to OA and hypoxia in coastal ecosystems;
+5) To conduct biological measurements in conjunction with physical and chemical OA measurements; and
+6) To provide scientific information on OA conditions and trends for resource management and decision support.</purpose>
+    <temporalExtents>
+        <startDate>2021-06-13</startDate>
+        <endDate>2021-07-26</endDate>
+    </temporalExtents>
+    <spatialExtents>
+        <westernBounds>-130.847</westernBounds>
+        <easternBounds>-117.751</easternBounds>
+        <northernBounds>52.399</northernBounds>
+        <southernBounds>31.775</southernBounds>
+    </spatialExtents>
+    <spatialReference>WGS 84</spatialReference>
+    <sampleCollectionRegions>
+        <region>U.S. West Coast</region>
+        <region>   California Current Ecosystem</region>
+        <region>   British Columbia</region>
+        <region>   Canada</region>
+        <region>  North American Pacific Coast</region>
+        <region>   Southern California Bight</region>
+        <region>   Olympic Coast National Marine Sanctuary</region>
+    </sampleCollectionRegions>
+    <fundingInfo>
+        <source>
+            <agency>NOAA's Ocean Acidification Program</agency>
+            <title>PMEL Sustained Ocean Acidification Biogeochemical and Ecological Survey Observations (PLS)</title>
+            <identifier/>
+        </source>
+        <source>
+            <title>PMEL Sustained Ocean Acidification Large-Scale Survey Observations</title>
+            <identifier/>
+        </source>
+    </fundingInfo>
+    <researchProjects>
+        <project>PMEL Sustained Ocean Acidification Large-Scale Survey Observations; NOAA Ocean Acidification Observing Network</project>
+    </researchProjects>
+    <platforms>
+        <platform>
+            <name>Ronald H. Brown</name>
+            <identifier>33RO</identifier>
+            <type>Research vessel</type>
+            <owner>NOAA SHIP</owner>
+            <country>USA</country>
+        </platform>
+    </platforms>
+    <expocodes>
+        <expocode>33RO20210613</expocode>
+    </expocodes>
+    <cruiseIds>
+        <cruiseId>WCOA2021</cruiseId>
+    </cruiseIds>
+    <sections>
+        <section>17</section>
+        <section>separate</section>
+        <section>transects</section>
+        <section>each</section>
+        <section>with</section>
+        <section>unique</section>
+        <section>section</section>
+        <section>identifiers</section>
+    </sections>
+    <authors>
+        <author>Feely, Richard A.</author>
+        <author>Carter, Brendan</author>
+        <author>Greeley, Dana</author>
+        <author>McCabe, Ryan</author>
+        <author>Herndon, Julian</author>
+    </authors>
+    <supplementalInfo>https://www.pmel.noaa.gov/co2/story/2021+West+Coast+Ocean+Acidification+Cruise</supplementalInfo>
+    <variables>
+        <variable xsi:type="dic_variable_type" name="disolved_inorganic_carbon">
+            <fullName>Dissolved Inorganic Carbon</fullName>
+            <datasetVarName>DIC_UMOL_KG</datasetVarName>
+            <variableType>in-situ observation</variableType>
+            <measuredOrCalculated>Measured</measuredOrCalculated>
+            <observationType>Discrete measurements from samples collected on CTD casts</observationType>
+            <units>micromoles/kg</units>
+            <uncertainty>±0.1%</uncertainty>
+            <qcFlag>
+                <description>DIC_FLAG, WOCE quality control flags are used: 2 = good value, 3 = questionable value, 4 = bad value, 5 = value not reported, 6 = mean of replicate measurements, 9 = sample not drawn.</description>
+            </qcFlag>
+            <researcher>
+                <name>Dana Greeley, Jonathan Sharp, Andrew Collins</name>
+                <organization>Pacific Marine Environmental Laboratory, National Oceanic and Atmospheric Administration; PI: Richard A. Feely; Brendan Carter</organization>
+            </researcher>
+            <methodReference>∙ Dickson, A.G., Sabine, C.L. and Christian, J.R. (Eds.), (2007): Guide to Best Practices for Ocean CO2 Measurements. PICES Special Publication 3, 191pp.∙ Dickson, A.G., (2010): Standards for Ocean Measurements. Oceanography, v.23, 2010, 34.∙∙ Feely, R.A., C.L. Sabine, D. Greeley, R.H. Byrne, J.C. Orr, and F. Millero (2009): Changes in the carbonate system of the global oceans. Global Change Newsletter, 73, 25, April 2009.∙ Johnson, K.M., A.E. King, and J. McN. Sieburth (1985): Coulometric DIC analyses for marine studies: An introduction. Mar. Chem., 16, 61-82.∙ Johnson, K.M., P.J. Williams, L. Brandstrom, and J. McN. Sieburth (1987): Coulometric total carbon analysis for marine studies: Automation and calibration. Mar. Chem., 21, 117-133.∙ Johnson, K.M. (1992): Operator's manual: Single operator multiparameter metabolic analyzer (SOMMA) for total carbon dioxide (CT) with coulometric detection. Brookhaven National Laboratory, Brookhaven, N.Y., 70 pp.∙ Johnson, K.M., K.D. Wills, D.B. Butler, W.K. Johnson, and C.S. Wong (1993): Coulometric total carbon dioxide analysis for marine studies: Maximizing the performance of an automated continuous gas extraction system and coulometric detector. Mar. Chem., 44, 167-189.∙ Lewis, E. and D. W. R. Wallace (1998) Program developed for CO2 system calculations. Oak Ridge, Oak Ridge National Laboratory. https://www.ncei.noaa.gov/access/ocean-carbon-acidification-data-system/oceans/CO2SYS/co2rprt.html∙ Sabine, C.L., R.A. Feely, and R. Wanninkhof (2008): The global ocean carbon cycle. In State of the Climate in 2007, 3. Global Oceans. Bull. Am. Meteorol. Soc., 89(7), S52–S56, doi: 10.1175/1520-0477-89.7 S10.∙ Wilke, R.J., D.W.R. Wallace, and K.M. Johnson (1993): Water-based gravimetric method for the determination of gas loop volume. Anal. Chem. 65, 2403-2406.</methodReference>
+            <samplingInstrument>Niskin bottle</samplingInstrument>
+            <analyzingInstrument>Two systems consisting of a coulometer (UIC Inc.) coupled with a Dissolved Inorganic Carbon Extractor (DICE) inlet system. DICE was developed by Esa Peltola and Denis Pierrot of NOAA/AOML and Dana Greeley of  NOAA/PMEL to modernize a carbon extractor called SOMMA (Johnson et al. 1985, 1987, 1993, and 1999; Johnson 1992).</analyzingInstrument>
+            <detailedInfo>PLEASE NOTE: DIC may also be referred to as TCO2, TCARBN, or C(sub)T in other data sets.  All of these abbreviations refer to the total amount content of dissolved inorganic carbon (i.e., the combined amount content of dissolved CO2, carbonic acid, bicarbonate ion, and carbonate ion).
+Samples for DIC measurements were drawn according to procedures outlined in the 2007 PICES Special Publication, Guide to Best Practices for Ocean CO2 Measurements, from Niskin bottles into 310 ml borosilicate glass flasks using silicone tubing. The flasks were rinsed once and filled from the bottom with care not to entrain any bubbles, overflowing by at least one-half volume. The sample tube was pinched off and withdrawn, creating a ~7.5 ml headspace, and 0.12 ml of saturated HgCl2 solution was added as a preservative. The sample bottles were then sealed with glass stoppers lightly covered with Apiezon-L grease. DIC samples were collected from variety of depths with approximately 10% of these samples taken as duplicates.
+The accuracy of the DICE measurement is determined with the use of standards (Certified Reference Materials (CRMs), consisting of filtered and UV irradiated seawater) supplied by Dr. Andrew Dickson of Scripps Institution of Oceanography (SIO). The CRM accuracy is determined manometrically on land in San Diego and the DIC data reported to the Ocean Carbon and Acidification Data Portal have been corrected based on offsets between CRM measurements and the certified batch 188 CRM value.  The CRM certified value for this batch is 2099.26 umol/kg. System 1 averaged 2100.10 and system 2 averaged 2095.03. The overall performance of the analytical equipment was quite good.  Water from 1914 niskin bottles were analyzed for dissolved inorganic carbon.</detailedInfo>
+            <fieldReplicateHandling>Duplicate samples were collected from approximately 10% of the Niskins sampled, as a check of our precision.  These replicate samples were interspersed throughout the station analysis for quality assurance and integrity of the coulometer cell solutions. The average absolute difference from the mean of these replicates is 0.73 umol/kg.  No systematic differences between the replicates were observed.</fieldReplicateHandling>
+            <standardization>
+                <description>Each coulometer was calibrated by injecting aliquots of pure CO2 (99.999%) by means of an 8-port valve (Wilke et al. 1993) outfitted with two calibrated sample loops of different sizes (~1 mL and ~2 mL). The instruments were each separately calibrated at the beginning of each cell with a minimum of two sets of these gas loop injections.</description>
+                <frequency>1) Gas loops were run near the beginning of each cell; 2) CRM’s supplied by Dr. A. Dickson of SIO, were also measured near the beginning; and 3) Duplicate samples were typically run throughout the life of the cell solution.</frequency>
+                <crm>
+                    <manufacturer>Dr. Andrew Dickson (Scripps Institution of Oceanography)</manufacturer>
+                    <batch>188</batch>
+                </crm>
+            </standardization>
+            <poison>
+                <name>Saturated mercuric chloride solution</name>
+                <description>The DIC values were corrected for dilution by 0.12 ml of saturated HgCl2 used for sample preservation. The total water volume of the sample bottles was 302.55 ml. The correction factor used for dilution was 1.000397.</description>
+                <volume>0.12 mL of saturated solution</volume>
+            </poison>
+        </variable>
+        <variable xsi:type="ta_variable_type" name="total_alkalinity">
+            <fullName>Total Alkalinity</fullName>
+            <datasetVarName>TA_UMOL_KG</datasetVarName>
+            <variableType>in-situ observation</variableType>
+            <measuredOrCalculated>Measured</measuredOrCalculated>
+            <observationType>Discrete measurements from samples collected on CTD casts.</observationType>
+            <units>micromoles per kilogram of seawater (umol/kg-SW)</units>
+            <uncertainty>±0.1%</uncertainty>
+            <qcFlag>
+                <description>TA_FLAG, WOCE quality control flags are used:  2 = good value, 3 = questionable value, 4 = bad value, 5 = value not reported, 6 = mean of replicate measurements, 9 = sample not drawn.</description>
+            </qcFlag>
+            <researcher>
+                <name>Samantha Mundorff, Chris Ikeda, Mariana Cupul Cortes and Julian Herndon</name>
+                <organization>Pacific Marine Environmental Laboratory, National Oceanic and Atmospheric Administration; PI: Richard A. Feely; Brendan Carter</organization>
+            </researcher>
+            <methodReference>Dickson, A.G, Sabine, C.L. and Christian, J.R. (Eds.) 2007.  "Guide to Best Practices for Ocean CO2 Measurements." PICES Special Publication 3, 191 pp.</methodReference>
+            <samplingInstrument>Niskin bottle</samplingInstrument>
+            <analyzingInstrument>Custom instrument built by Dr. Andrew Dickson's laboratory at Scripps-UCSD in 2016.</analyzingInstrument>
+            <detailedInfo>PLEASE NOTE: TA may be referred to as TALK, ALKALI, or A(sub)T in other data sets.  All of these abbreviations refer to the total alkalinity.
+Seawater samples for total alkalinity were drawn directly from Niskin bottles into 310 mL borosilicate glass (Corning Pyrex/Schott Duran) bottles as described in SOP1 of “The Guide to Best Practices for Ocean CO2 Measurements” (Dickson A.G., Sabine L.S. and Christian J.R, Eds., 2007 PICES Special Publication 3), using silicone tubing.   The sample bottles were rinsed one to three times and filled from the bottom up with care not to entrain any bubbles, overflowing by at least one half to a full volume. The sample tube was pinched off and withdrawn, creating a ~6.2 mL headspace and preserved with 0.12 mL of a saturated mercuric chloride solution and the final alkalinity concentration corrected for this addition.  The sample bottles were then sealed with glass stoppers lightly coated with Apiezon-L grease.
+The samples were subsequently analyzed according to SOP3b of “The Guide to Best Practices for Ocean CO2 Measurements” (as above), using an open cell titration system built by the Dickson Lab in 2016 at Scripps Institution of Oceanography, University of California San Diego.  Sample and analysis cell temperatures were controlled and sample size was measured volumetrically and subsequently corrected to mass.  The instrument was controlled and alkalinity determined by LabVIEW software written by the Dickson Lab.  Instrument accuracy was monitored at regular intervals using Certified Reference Materials (CRMs), consisting of filtered and UV irradiated seawater supplied by the Dickson Lab (SIO-UCSD).  Precision was monitored by analyzing replicate samples drawn from approximately 10% of the Niskins sampled.  Samples were analyzed within 12 to 24 hours from being collected.</detailedInfo>
+            <fieldReplicateHandling>We collected and analyzed replicate samples from approximately 10% of the Niskins sampled.</fieldReplicateHandling>
+            <standardization>
+                <description>Analytical accuracy was assessed by periodic analysis of Certified Reference Materials (CRMs).  CRMs were analyzed approximately every 10 to 20 samples as needed.  For both legs of this cruise, the CRMs used were from Batch 188 (certified = 2264.96).  The average for the 139 measured CRMs accepted was 2263.12 with a standard deviation of 1.78.  No correction of the sample data to the certified CRM value was made as long as the difference between certified and measured value of the CRM was not more than 2.0.  In the event that a systematic offset was found for a station or a analysts' shift, that average offset was added or subtracted to the measured TA values for that data set.  Samples were not analyzed if the average meassured CRM value was not within 2.0 or, in the event of an offset, if the offset was not consistent (high precision offset).  Precision was monitored by analyzing replicates samples drawn from approximately 10% of the Niskins sampled.</description>
+                <frequency>Every 10 to 20 samples as needed.</frequency>
+                <crm>
+                    <manufacturer>Dr. Andrew Dickson (Scripps Institution of Oceanography)</manufacturer>
+                    <batch>188</batch>
+                </crm>
+            </standardization>
+            <poison>
+                <name>Saturated mercuric chloride solution</name>
+                <description>The TA values were corrected for the resulting dilution of the added 0.12 ml of saturated HgCl2 used for sample preservation.</description>
+                <volume>0.12 ml</volume>
+            </poison>
+            <titrationType>Two-stage, potentiometric, open-cell titration using coulometrically analyzed hydrochloric acid.</titrationType>
+            <cellType>open</cellType>
+            <curveFitting>Non-linear least squares</curveFitting>
+            <blankCorrection>NA</blankCorrection>
+        </variable>
+        <variable xsi:type="ph_variable_type" name="ph_total">
+            <fullName>pH total</fullName>
+            <datasetVarName>PH_TOT_MEA</datasetVarName>
+            <variableType>in-situ observation</variableType>
+            <measuredOrCalculated>Measured</measuredOrCalculated>
+            <observationType>Discrete measurements from samples collected on CTD casts</observationType>
+            <uncertainty>Precision was equal to +- 0.0010</uncertainty>
+            <qcFlag>
+                <description>PH_FLAG, WOCE quality control flags are used: 2 = good value, 3 = questionable value, 4 = bad value, 5 = value not reported, 6 = mean of replicate measurements, 9 = sample not drawn.</description>
+            </qcFlag>
+            <researcher>
+                <name>Katelyn Schockman, Kalla Fleger, and Macarena Martin Mayor</name>
+                <organization>University of South Florida; PI: Robert Byrne</organization>
+            </researcher>
+            <methodReference>Liu, X.; Patsavas, M.C.; &amp; Byrne, R. H. (2011). Purification and characterization of meta-cresol purple for spectrophotometric seawater pH measurements. Environmental Science &amp; Technology, 45(11), 4862-4868. doi: 10.1021/es200665d</methodReference>
+            <samplingInstrument>Niskin bottle</samplingInstrument>
+            <analyzingInstrument>The pH of each sample was determined on the total pH scale on an Agilent 8453 spectrometer set up with a custom-made temperature-controlled cell holder.</analyzingInstrument>
+            <detailedInfo>Samples were collected for pH analysis immediately following O2 in the Niskin/Rosette sampling sequence. Seawater samples were collected from the Niskin bottles directly in 10-cm cylindrical optical cells (~30 mL volume) using a section of silicone tubing (about 15 cm long). One end of the silicone tubing was attached to the optical cell and the other end was attached to the nipple of the Niskin bottle. The Niskin bottle nipple was pushed in to initiate flow and the silicone tubing was squeezed to eliminate air bubbles. The optical cell was agitated to eliminate bubbles and, after 15 seconds of sample flow, the cell was capped at one end. The silicone tubing was then detached from the optical cell and, with the water still flowing, the cap was rinsed and used to seal the optical cell. Samples collected this way were not exposed to the atmosphere, and each cell was flushed with approximately three cell volumes of seawater. The samples were collected, taken into the lab, and rinsed with tap water to get rid of salt outside of the cells. The cells were dried and the optical windows were cleaned with Kimwipes. Samples were thermostatted at 25 (±0.05)°C in a custom made 36-position cell warmer. A custom macro program running on Agilent ChemStation was used to guide the measurements and data processing. The macro automated the procedures of sample input, blank and sample scans, quality control, and data archiving. The quality control steps included checking the baseline shift after dye injection and monitoring the standard deviation of multiple scans. Absorbance blanks were taken for each sample and 10 microliters of purified m-cresol purple (10 mmol/kg) were added for the analysis. pHT (total scale) for shipboard conditions (25 °C at atmospheric pressure) was calculated according to Muller and Rehder (2018).</detailedInfo>
+            <fieldReplicateHandling>Duplicate pH samples were collected from discrete samples taken from the Niskin bottles (N = 206) with a precision of +-0.0010</fieldReplicateHandling>
+            <standardization>
+                <description>calibration-free</description>
+                <frequency>NA</frequency>
+                <temperature>NA</temperature>
+                <phOfStandards>NA</phOfStandards>
+            </standardization>
+            <phScale>Total scale (T)</phScale>
+            <measurementTemperature>25°C</measurementTemperature>
+            <temperatureCorrectionMethod>NA</temperatureCorrectionMethod>
+            <phReportTemperature>25°C</phReportTemperature>
+        </variable>
+        <variable name="CTDPRESSURE_DBAR">
+            <fullName>CTD pressure</fullName>
+            <datasetVarName>CTDPRESSURE_DBAR</datasetVarName>
+            <variableType>in-situ observation</variableType>
+            <measuredOrCalculated>Measured</measuredOrCalculated>
+            <observationType>profile</observationType>
+            <units>decibars</units>
+            <uncertainty>On deck pressure readings after casts were within 1 dbar of calibration.</uncertainty>
+            <qcFlag/>
+            <researcher>
+                <name>Ryan M. McCabe</name>
+                <organization>NOAA Pacific Marine Environmental Laboratory</organization>
+            </researcher>
+            <samplingInstrument>Sea-Bird 9plus CTD</samplingInstrument>
+            <detailedInfo>The Sea-Bird 9plus CTD uses a Paroscientific Digiquartz pressure sensor. This high pressure transducer uses a quartz crystal resonator whose frequency of oscillation varies with pressure-induced stress measuring changes in pressure as small as 0.01 parts per million with an absolute range of 0 to 10,000 psia (0 to 6885 decibars).  Also, a quartz crystal temperature signal is used to compensate for a wide range of temperature changes.  Repeatability, hysteresis, and pressure conformance are 0.005% FS.  The nominal pressure frequency (0 to full scale) is 34 to 38 kHz.  The nominal temperature frequency is 172 kHz + 50 ppm/°C.  Data are acquired at 24 Hz.  Discrete pressure data were averaged over an 8-second interval, ±4 seconds of the sample confirm bit.  Periodic pressure sensor calibrations are performed at Sea-Bird Electronics, Inc.  No additional adjustments were applied.</detailedInfo>
+        </variable>
+        <variable name="CTDTMP_ITS90_DEG_C">
+            <fullName>CTD temperature, ITS-90 scale</fullName>
+            <datasetVarName>CTDTMP_ITS90_DEG_C</datasetVarName>
+            <variableType>in-situ observation</variableType>
+            <measuredOrCalculated>Measured</measuredOrCalculated>
+            <observationType>profile</observationType>
+            <units>°C</units>
+            <uncertainty>Calibrations and checks with duplicate sensors suggest uncertainty on the order of ±0.001°C. The viscous heating correction results in errors of no more than ±0.00015°C for the full range of oceanographic temperature and salinity.</uncertainty>
+            <qcFlag/>
+            <researcher>
+                <name>Ryan M. McCabe</name>
+                <organization>NOAA Pacific Marine Environmental Laboratory</organization>
+            </researcher>
+            <samplingInstrument>Sea-Bird 3 temperature sensor</samplingInstrument>
+            <detailedInfo>The Sea-Bird temperature sensing element is a glass-coated thermistor bead, pressure-protected inside an 0.8 mm diameter thin-walled stainless steel tube. Exponentially related to temperature, the thermistor resistance is the controlling element in an optimized Wien Bridge oscillator circuit. The resulting sensor frequency is inversely proportional to the square root of the thermistor resistance and ranges from approximately 2 to 6 kHz, corresponding to temperatures from -5 to 35°C.  The 3plus temperature sensor has a typical accuracy/stability of 0.0002°C per month; and resolution of 0.0002°C at 24 Hz.  Discrete temperature data were averaged over an 8-second interval, ±4 seconds of the sample confirm bit.  Only a uniform viscous heating correction of -0.0006°C was applied.</detailedInfo>
+        </variable>
+        <variable name="CTDSAL_PSS78">
+            <fullName>CTD salinity</fullName>
+            <datasetVarName>CTDSAL_PSS78</datasetVarName>
+            <variableType>in-situ observation</variableType>
+            <measuredOrCalculated>Measured</measuredOrCalculated>
+            <observationType>profile</observationType>
+            <units>1978 Practical Salinity Scale</units>
+            <uncertainty>Although the primary conductivity sensor was used for most casts, a number of casts utilized the secondary sensor. We therefore report the larger of the two residual standard deviations here. At least 61.8% of the points were used in the fit of stations 001-032 with a residual standard deviation of 0.0054 mS/cm; at least 71.3% of the points were used in the fit of stations 033-107 with a residual standard deviation of 0.0055 mS/cm; at least 66.7% of the points were used in the fit of stations 108-131 with a residual standard deviation of 0.0019 mS/cm; and 87.5% of the points were used in the fit of stations 132-133 with a residual standard deviation of 0.0058 mS/cm. An overall residual standard deviation is therefore no larger than 0.0058 mS/cm.</uncertainty>
+            <qcFlag>
+                <description>CTDSAL_flag, WOCE quality control flags are used: 2 = good value, 3 = questionable value, 4 = bad value, 5 = value not reported, 6 = mean of replicate measurements, 9 = sample not drawn.</description>
+            </qcFlag>
+            <researcher>
+                <name>Ryan M. McCabe</name>
+                <organization>NOAA Pacific Marine Environmental Laboratory</organization>
+            </researcher>
+            <samplingInstrument>Sea-Bird 4 conductivity sensor</samplingInstrument>
+            <detailedInfo>The Sea-Bird conductivity sensing element is a cylindrical, flow-through, borosilicate glass cell with three internal platinum electrodes. Because the outer electrodes are connected together, electric fields are confined inside the cell.  The cell resistance controls the output frequency of a Wien Bridge oscillator circuit.  The sensor has a frequency output of approximately 3 to 12 kHz corresponding to conductivities from 0 to 7 Siemens/meter (0 to 70 mmho/cm).  The conductivity sensor has a typical accuracy/stability of 0.0003 S/m per month, and resolution of 0.00004 S/m at 24 Hz.  Discrete conductivity data were averaged over an 8-second interval, ±4 seconds of the sample confirm bit.  An overall linear fit of CTD and bottle data, including a station-dependent slope, single conductivity bias, and a linear pressure term (modified beta; with a coefficient multiplied by CTD pressure), produced the best results for stations 1-107. A station-dependent slope coefficient best modeled the gradual shift in the conductivity sensor within this station group over time. A similar equation with the addition of a squared conductivity term was used for stations 108-131, and squared conductivity and pressure terms were used in the fits for stations 132-133. Larger-than-expected discrepancies existed between bottle samples and the electronic sensor data. One hypothesis to explain the poor comparisons pointed to older salinity bottle caps that were used (as a result of COVID-19 supply chain issues). As a result, mulitple attempts to fit the data were tried with differing parameters/cutoffs. Ultimately the choice was made to lower the standard cutoff for residual standard deviation from 2.8 to 2.2. This somewhat more stringent cutoff was chosen after ensuring that roughly 2/3rds of the bottle samples were retained in most of the fitting procedures. The fitting routine thus recursively throws out data greater than 2.2 standard deviations and returns the appropriate coefficients for each station. The order of the polynomial was chosen to keep the standard deviation of each grouping to a minimum while avoiding fitting to fluctuations due to noise in standardizations of salinity sample runs.  Discrete salinity values were derived from calibrated conductivity, temperature, and pressure measurements.</detailedInfo>
+        </variable>
+        <variable name="SALINITY_PSS78">
+            <fullName>Bottle salinity</fullName>
+            <datasetVarName>SALINITY_PSS78</datasetVarName>
+            <variableType>in-situ observation</variableType>
+            <measuredOrCalculated>Measured</measuredOrCalculated>
+            <observationType>profile</observationType>
+            <units>1978 Practical Salinity Scale</units>
+            <qcFlag>
+                <description>SALINITY_FLAG, WOCE quality control flags are used: 2 = good value, 3 = questionable value, 4 = bad value, 5 = value not reported, 6 = mean of replicate measurements, 9 = sample not drawn.</description>
+            </qcFlag>
+            <researcher>
+                <name>Aaron Morello</name>
+                <organization>University of Washington</organization>
+            </researcher>
+            <samplingInstrument>4 oz amber boston round bottles</samplingInstrument>
+            <analyzingInstrument>Guildline Autosal, model 8400B salinometer (S/N 68981)</analyzingInstrument>
+            <detailedInfo>Niskin sample salinity measurements were made using Guildline 8400B Autosal salinometer s/n 68981 located in a temperature-controlled room in the Marine Chemistry Laboratory at the University of Washington (manager K.A. Krogslund).  A minimum of two salinity samples were collected from almost every station.  Samples were collected in 4 oz amber boston round flasks, sealed with custom clear plastic inserts and caps.  Salinity samples were stored during the cruise and analyzed post cruise. The Autosal bath temperature was set to 24°C. After initiating the software program, a bottle of standard seawater (batch P163) was used to determine an offset correction to be applied to the following measurements.  275 discrete salinity samples were run to validate CTD observations.</detailedInfo>
+        </variable>
+        <variable name="CTDOXYGEN_UMOL_KG">
+            <fullName>CTD Oxygen</fullName>
+            <datasetVarName>CTDOXYGEN_UMOL_KG</datasetVarName>
+            <variableType>in-situ observation</variableType>
+            <measuredOrCalculated>Measured</measuredOrCalculated>
+            <observationType>profile</observationType>
+            <units>micromoles/kg</units>
+            <uncertainty>Appropriate choice of sensors gives residual standard deviations as follows.  Casts 001-005: 2.5890 umol/kg; casts 006-036: 2.8923 umol/kg, casts 037-079: 2.7836 umol/kg; casts 080-131: 2.1038 umol/kg; casts 132-133: 1.0086 umol/kg.  An overall residual standard deviation is therefore better than 2.90 umol/kg.</uncertainty>
+            <qcFlag>
+                <description>CTDOXY_flag, WOCE quality control flags are used: 2 = good value, 3 = questionable value, 4 = bad value, 5 = value not reported, 6 = mean of replicate measurements, 9 = sample not drawn.</description>
+            </qcFlag>
+            <researcher>
+                <name>Ryan M. McCabe</name>
+                <organization>NOAA Pacific Marine Environmental Laboratory</organization>
+            </researcher>
+            <samplingInstrument>Sea-Bird 43 oxygen sensor</samplingInstrument>
+            <detailedInfo>The Sea-Bird oxygen sensor uses an electrochemical cell that is constantly polarized. The sensor is temperature compensated using special temperature sensing and an internal microcomputer. The interface electronics reports voltages for oxygen current only. A linear equation of the form I=mV+b, where m=1.0e-6 and b=0.0, yields sensor current as a function of sensor output voltage. The sensor has a thermal time constant of approximately 2.5 seconds; and an oxygen response time constant that is temperature dependent, increasing with cooler temperatures, ranging from 2 to 12 seconds. Hysteresis between the down and up oxygen profiles at deep stations warranted using the downcast oxygen data for calibration, matched by potential density anomalies referenced to the closest 1000-m interval. An overall least squares fit was determined for each of the two oxygen sensors used during this cruise. Multiple different groups of casts were used in constructing calibration fits for each oxygen sensor. The groups were chosen based on changes encountered at stations near the Columbia River and San Francisco Bay, and also by sensor swaps. Primary sensor cast groupings, the percentage of bottle data used in the fits, and the residual standard deviation for each chosen group were:  Casts 001-005, 91.9% used, 2.5890 umol/kg; casts 006-036, 83.7% used, 3.3500 umol/kg, casts 037-079, 85.6% used, 2.7836 umol/kg, casts 080-131, 82.6% used, 2.1038 umol/kg; casts 132-133, 97.6% used, 4.1473 umol/kg.  Secondary sensor cast groupings, the percentage of bottle data used in the fits, and the residual standard deviation for each chosen group were:  Casts 001-005, 93.5% used, 2.8923 umol/kg; casts 006-079, 85.4% used, 3.2032 umol/kg; casts 080-113, 87.4% used, 2.4063 umol/kg; casts 114-131, 88% used, 2.1881 umol/kg; casts 132-133, 92.9% used, 1.0086 umol/kg.</detailedInfo>
+        </variable>
+        <variable name="OXYGEN_MG_L">
+            <fullName>bottle dissolved oxygen</fullName>
+            <datasetVarName>OXYGEN_MG_L</datasetVarName>
+            <variableType>in-situ observation</variableType>
+            <measuredOrCalculated>Measured</measuredOrCalculated>
+            <observationType>Discrete measurements from samples collected on CTD casts</observationType>
+            <units>miligrams/litre</units>
+            <qcFlag>
+                <description>OXYGEN_FLAG, WOCE quality control flags are used: 2 = good value, 3 = questionable value, 4 = bad value, 5 = value not reported, 6 = mean of replicate measurements, 9 = sample not drawn.</description>
+            </qcFlag>
+            <researcher>
+                <name>Juhi LaFuente</name>
+                <organization>University of Washington, Applied Physics Laboratory; PI: Dr. Jan Newton</organization>
+            </researcher>
+            <methodReference>Carpenter, J.H. 1965a. The accuracy of the Winkler method for dissolved oxygen. Limnology and Oceanography 10: 135-140.Carpenter, J.H. 1965b. The Chesapeake Bay Institute technique for the Winkler dissolved oxygen method. Limnology and Oceanography 10: 141-143.Codispoti, L. (1988). One Man's Advice on the Determination of Dissolved Oxygen in Seawater. University of Washington, 1-11.Winkler, L.S. 1888. The determination of dissolved oxygen. Ber. Dtsche. Chem. Ges. 21: 2843-2855.</methodReference>
+            <samplingInstrument>Niskin bottle</samplingInstrument>
+            <analyzingInstrument>Metrohm 776 Dosimat</analyzingInstrument>
+            <detailedInfo>Dissolved oxygen analyses were performed with a Metrohm 776 Dosimat using visual endpoint detection. Samples were collected using protocol of Codispoti 1988 and titrated following the Carpenter modification of the Winkler method (Carpenter, 1965; Winkler, 1888).
+      Prior to each sampling event the reagent dispensers were primed to expel air bubbles in order to avoid the introduction of air into the sample via the dispensers. Dissolved oxygen samples were drawn from Niskin-type bottles into calibrated 125-150 ml iodine titration flasks using silicon tubing. Air bubbles from the tubing were removed before the tube was placed at the base of the sample flask and inverted to rinse the sides. Once upright, the flask was allowed to fill and overflow by two flask volumes and the glass stopper was rinsed with water from the bottle. The tubing was pinched slowly and was carefully removed from the flask to avoid any turbulence.
+     Samples were immediately fixed with 1 ml of MnCl2 and 1 ml of NaOH/NaI using two calibrated Optifix dispensers. The flasks were then stoppered and shaken well. DIW was added to the neck of each flask to create a water seal. Each sample was subsequently shaken again after it had settled (a period greater than 20 minutes or more) and DIW was added to the neck of each flask again. Once collected, samples were stored in wooden boxes each containing 24 flasks. 10 boxes of flasks were rented from pooled equipment through the University of Washington’s School of Oceanography. Once they were full boxes of samples were stored in the main lab where they came to room temperature before being analyzed.
+     Samples were titrated with a Metrohm 776 Dosimat using Carpenter strength Sodium Thiosulfate. Standards and Blanks were run at a minimum of twice a day. Three standards (Std) were run with the results from 2 of the 3 falling withing .001 ml of each other. Two blanks (Blk) were run with acceptable values within a range of -.001-.001. Standards and blanks were re-run and reagents were checked if they did not fall into the acceptable range. The burette reading for each sample was recorded on a data sheet which also included the station name and flask number. Data was then entered into excel. Oxygen (mg/l) was calculated in excel using the equations below.  2ml Optifix Dispensers were used for dispensing 1 ml of each MnCl2, NaOH-NaI and H2SO4 and a 10ml Optifix dispenser was used for the KIO3 Standard solution. Dispensers for reagents were calibrated prior to the cruise and the dispensed volumes were routinely checked with a graduated cylinder to ensure the proper volume of reagent was being dispensed.
+                                                             Rblk= Blk1- Blk2
+                                   O2 (mg/L) = 16*([Bottle factor*(Buret-Rblk)]-.0016)
+                            Bottle factor = 50/[(bottle volume -2)(Avg of stds - Rblk)]
+For the oxygen flasks, a spreadsheet with the calibration information for each case/flask was provided by Pooled Equipment at UW. This included information about each flasks dry, wet, and volumetric weight, room temperature when calibrated, temp correction factor and flask volume.</detailedInfo>
+            <fieldReplicateHandling>Duplicate samples were drawn at the near bottom and surface at most casts. At some casts only one duplicate was taken due to constraints with the water budget. A total of 207 sets of duplicates were collected.</fieldReplicateHandling>
+        </variable>
+        <variable name="CARBONATE_UMOL_KG">
+            <fullName>Carbonate ion (CO3-2) amount content</fullName>
+            <datasetVarName>CARBONATE_UMOL_KG</datasetVarName>
+            <variableType>in-situ observation</variableType>
+            <measuredOrCalculated>Measured</measuredOrCalculated>
+            <observationType>Discrete measurements from samples collected on CTD casts</observationType>
+            <units>micromoles/kg</units>
+            <uncertainty>1.2 micromol/kg</uncertainty>
+            <qcFlag>
+                <description>CARBONATE_FLAG, WOCE quality control flags are used: 2 = good value, 3 = questionable value, 4 = bad value, 5 = value not reported, 6 = mean of replicate measurements, 9 = sample not drawn.</description>
+            </qcFlag>
+            <researcher>
+                <name>Katelyn Schockman, Kalla Fleger, and Macarena Martin Mayor</name>
+                <organization>University of South Florida, PI: Robert Byrne</organization>
+            </researcher>
+            <methodReference>Sharp, J.D.; Byrne, R.H.; Liu, X; Feely, R.A.; Cuyler, E.E.; Wanninkhof, R.; Alin, S.R. (2017). Spectrophotometric Determination of Carbonate Ion Concentrations: Elimination of Instrument-Dependent Offsets and Calculation of In Situ Saturation States. Environmental Science &amp; Technology 51, 9127-9136.</methodReference>
+            <samplingInstrument>Niskin bottle</samplingInstrument>
+            <analyzingInstrument>The total carbonate ion amount content of each sample was determined on an Agilent 8453 spectrometer set up with a custom-made temperature-controlled cell holder.</analyzingInstrument>
+            <detailedInfo>Samples were collected for carbonate (CO3) analysis immediately following pH in the Niskin/Rosette sampling sequence, following the same sampling and thermostatting procedure as the pH samples. A custom macro program running on Agilent ChemStation was used to guide the measurements and data processing. The macro automated the procedures of sample input, blank and sample scans, quality control, and data archiving. The quality control steps included checking the baseline shift after dye injection and monitoring the standard deviation of multiple scans. Absorbance blanks were taken for each sample and 20 microliters of Pb(ClO4)2 (22 mmol/kg) were added for the analysis. Total carbonate ion content ([CO3-2]T) at shipboard conditions (25 °C and atmospheric pressure) was calculated according to the equations of Sharp et al. (2017) and the modified –log[CO32-]T model of Byrne and Yao (2008) (Eq. 8 of Sharp et al., 2017).</detailedInfo>
+            <fieldReplicateHandling>Duplicate [CO32-]T samples were collected from discrete samples taken from the Niskin bottles (N = 147) with a precision equal to 1.2 micromol/kg.</fieldReplicateHandling>
+        </variable>
+        <variable name="SILICATE_UMOL_KG">
+            <fullName>Orthosilicic acid</fullName>
+            <datasetVarName>SILICATE_UMOL_KG</datasetVarName>
+            <variableType>in-situ observation</variableType>
+            <measuredOrCalculated>Measured</measuredOrCalculated>
+            <observationType>Discrete measurements from samples collected on CTD casts</observationType>
+            <units>micromoles/kg</units>
+            <uncertainty>1.0 micromol per kilogram</uncertainty>
+            <qcFlag>
+                <description>NUTRIENTS_FLAG, WOCE quality control flags are used: 2 = good value, 3 = questionable value, 4 = bad value, 5 = value not reported, 6 = mean of replicate measurements, 9 = sample not drawn.</description>
+            </qcFlag>
+            <researcher>
+                <name>Eric Wisegarver</name>
+                <organization>University of Washington Cooperative Institute for Climate, Ocean, and Ecosystem Studies (CICOES) / PMEL; PI: Calvin Mordy</organization>
+            </researcher>
+            <methodReference>Becker, Susan, et al. "GO-SHIP repeat hydrography nutrient manual: the precise and accurate determination of dissolved inorganic nutrients in seawater, using continuous flow analysis methods." Frontiers in Marine Science 7 (2020): 581790.</methodReference>
+            <samplingInstrument>Niskin bottle</samplingInstrument>
+            <analyzingInstrument>Seal AA3</analyzingInstrument>
+            <detailedInfo>Dissolved silicic acid was measured using a Seal Analytical AA3 HR automated continuous flow analytical system with segmented flow and colorimetric detection as described in Becker et al., 2020. Nutrient samples were collected in 60 ml HDPE bottles. Samples were unfiltered except for samples collected in San Francisco Bay which were filtered through 45 µm cellulose acetate membranes due to the high concentration of particulate matter. Determination of silicic acid following the basic method of Armstrong et al., 1967 and Grasshoff et al., 1983. An acidic solution of ammonium molybdate was added to a seawater sample to produce silicomolybic acid. Oxalic acid was then added to inhibit a secondary reaction with phosphate. Finally, a reaction with ascorbic acid formed the blue compound silicomolybdous acid. The color formation was detected at 660 nm.</detailedInfo>
+        </variable>
+        <variable name="AMMONIUM_UMOL_KG">
+            <fullName>Ammonium</fullName>
+            <datasetVarName>AMMONIUM_UMOL_KG</datasetVarName>
+            <variableType>in-situ observation</variableType>
+            <measuredOrCalculated>Measured</measuredOrCalculated>
+            <observationType>Discrete measurements from samples collected on CTD casts</observationType>
+            <units>micromoles/kg</units>
+            <uncertainty>0.06 micromoles per kilogram</uncertainty>
+            <qcFlag>
+                <description>NUTRIENTS_FLAG, WOCE quality control flags are used: 2 = good value, 3 = questionable value, 4 = bad value, 5 = value not reported, 6 = mean of replicate measurements, 9 = sample not drawn.</description>
+            </qcFlag>
+            <researcher>
+                <name>Eric Wisegarver</name>
+                <organization>University of Washington Cooperative Institute for Climate, Ocean, and Ecosystem Studies (CICOES) / PMEL; PI: Calvin Mordy</organization>
+            </researcher>
+            <methodReference>Becker, Susan, et al. "GO-SHIP repeat hydrography nutrient manual: the precise and accurate determination of dissolved inorganic nutrients in seawater, using continuous flow analysis methods." Frontiers in Marine Science 7 (2020): 581790.</methodReference>
+            <samplingInstrument>Niskin bottle</samplingInstrument>
+            <analyzingInstrument>Seal AA3</analyzingInstrument>
+            <detailedInfo>A Seal AA3 was used to measure dissolved ammonium following the fluorometric OPA method described in Becker et al., 2020. Nutrient samples were collected in 60 ml HDPE bottles. Samples were unfiltered except for samples collected in San Francisco Bay which were filtered through 45 µm cellulose acetate membranes due to the high concentration of particulate matter. Ammonium analysis was based on a technique by Kerouel and Aminot (1997). An o-phthaldialdehyde reagent containing sulfite is added to the sample. The reagent reacts with ammonium and the resulting fluorescence is detected using a fluorometer with a 370 nm excitation fliter and 418-700 nm emission filter.</detailedInfo>
+        </variable>
+        <variable name="NITRATE_UMOL_KG">
+            <fullName>Nitrate</fullName>
+            <datasetVarName>NITRATE_UMOL_KG</datasetVarName>
+            <variableType>in-situ observation</variableType>
+            <measuredOrCalculated>Measured</measuredOrCalculated>
+            <observationType>Discrete measurements from samples collected on CTD casts</observationType>
+            <units>micromoles/kg</units>
+            <uncertainty>0.2 micromol per kilogram</uncertainty>
+            <qcFlag>
+                <description>NUTRIENTS_FLAG, WOCE quality control flags are used: 2 = good value, 3 = questionable value, 4 = bad value, 5 = value not reported, 6 = mean of replicate measurements, 9 = sample not drawn.</description>
+            </qcFlag>
+            <researcher>
+                <name>Eric Wisegarver</name>
+                <organization>University of Washington Cooperative Institute for Climate, Ocean, and Ecosystem Studies (CICOES) / PMEL; PI: Calvin Mordy</organization>
+            </researcher>
+            <methodReference>Becker, Susan, et al. "GO-SHIP repeat hydrography nutrient manual: the precise and accurate determination of dissolved inorganic nutrients in seawater, using continuous flow analysis methods." Frontiers in Marine Science 7 (2020): 581790.</methodReference>
+            <samplingInstrument>Niskin bottle</samplingInstrument>
+            <analyzingInstrument>Seal AA3</analyzingInstrument>
+            <detailedInfo>Dissolved nitrate was measured using a Seal Analytical AA3 HR automated continuous flow analytical system with segmented flow and colorimetric detection as described in Becker et al., 2020. Nutrient samples were collected in 60 ml HDPE bottles. Samples were unfiltered except for samples collected in San Francisco Bay which were filtered through 45 µm cellulose acetate membranes due to the high concentration of particulate matter. Determination of dissolved nitrate followed the basic method of Armstrong et al., 1967. Nitrate was reduced to nitrite via a copperized cadmium column to form a red azo dye by complexing nitrite with sulfanilamide and N-1-naphthylethylenediamine (NED). Color formation of nitrate + nitrite was detected at 540 nm. The same technique was used to measure nitrite, (excluding the reduction step), and nitrate concentrations were determined by the difference of these two analyses.</detailedInfo>
+        </variable>
+        <variable name="NITRITE_UMOL_KG">
+            <fullName>Nitrite</fullName>
+            <datasetVarName>NITRITE_UMOL_KG</datasetVarName>
+            <variableType>in-situ observation</variableType>
+            <measuredOrCalculated>Measured</measuredOrCalculated>
+            <observationType>Discrete measurements from samples collected on CTD casts</observationType>
+            <units>micromoles/kg</units>
+            <uncertainty>0.03 micromol per kilogram</uncertainty>
+            <qcFlag>
+                <description>NUTRIENTS_FLAG, WOCE quality control flags are used: 2 = good value, 3 = questionable value, 4 = bad value, 5 = value not reported, 6 = mean of replicate measurements, 9 = sample not drawn.</description>
+            </qcFlag>
+            <researcher>
+                <name>Eric Wisegarver</name>
+                <organization>University of Washington Cooperative Institute for Climate, Ocean, and Ecosystem Studies (CICOES) / PMEL; PI: Calvin Mordy</organization>
+            </researcher>
+            <methodReference>Becker, Susan, et al. "GO-SHIP repeat hydrography nutrient manual: the precise and accurate determination of dissolved inorganic nutrients in seawater, using continuous flow analysis methods." Frontiers in Marine Science 7 (2020): 581790.</methodReference>
+            <samplingInstrument>Niskin bottle</samplingInstrument>
+            <analyzingInstrument>Seal AA3</analyzingInstrument>
+            <detailedInfo>Dissolved nitrite was measured using a Seal Analytical AA3 HR automated continuous flow analytical system with segmented flow and colorimetric detection as described in Becker et al., 2020. Nutrient samples were collected in 60 ml HDPE bottles. Samples were unfiltered except for samples collected in San Francisco Bay which were filtered through 45 µm cellulose acetate membranes due to the high concentration of particulate matter. Determination of nitrite followed the basic method of Armstrong et al. A red azo dye was formed by complexing nitrite with sulfanilamide and N-1-naphthylethylenediamine (NED). Color formation of nitrite was detected at 540 nm.</detailedInfo>
+        </variable>
+        <variable name="PHOSPHATE_UMOL_KG">
+            <fullName>Phosphate</fullName>
+            <datasetVarName>PHOSPHATE_UMOL_KG</datasetVarName>
+            <variableType>in-situ observation</variableType>
+            <measuredOrCalculated>Measured</measuredOrCalculated>
+            <observationType>Discrete measurements from samples collected on CTD casts</observationType>
+            <units>micromoles/kg</units>
+            <uncertainty>0.02 micromol per kilogram</uncertainty>
+            <qcFlag>
+                <description>NUTRIENTS_FLAG, WOCE quality control flags are used: 2 = good value, 3 = questionable value, 4 = bad value, 5 = value not reported, 6 = mean of replicate measurements, 9 = sample not drawn.</description>
+            </qcFlag>
+            <researcher>
+                <name>Eric Wisegarver</name>
+                <organization>University of Washington Cooperative Institute for Climate, Ocean, and Ecosystem Studies (CICOES) / PMEL; PI: Calvin Mordy</organization>
+            </researcher>
+            <methodReference>Becker, Susan, et al. "GO-SHIP repeat hydrography nutrient manual: the precise and accurate determination of dissolved inorganic nutrients in seawater, using continuous flow analysis methods." Frontiers in Marine Science 7 (2020): 581790.</methodReference>
+            <samplingInstrument>Niskin bottle</samplingInstrument>
+            <analyzingInstrument>Seal AA3</analyzingInstrument>
+            <detailedInfo>Dissolved phosphate was measured using a Seal Analytical AA3 HR automated continuous flow analytical system with segmented flow and colorimetric detection as described in Becker et al., 2020. Nutrient samples were collected in 60 ml HDPE bottles. Samples were unfiltered except for samples collected in San Francisco Bay which were filtered through 45 µm cellulose acetate membranes due to the high concentration of particulate matter. Determination of phosphate followed the basic method of Bernhardt and Wilhelms, 1967. An acidic solution of ammonium molybdate was added to the sample to produce phosphomolybdate acid. This was reduced to the blue compound phosphomolybdous acid following the addition of hydrazine sulfate. The color formation was detected at 820 nm.</detailedInfo>
+        </variable>
+        <variable name="CHL_A_UG_L_GFF">
+            <fullName>Total extracted chlorophyll a</fullName>
+            <datasetVarName>CHL_A_UG_L_GFF</datasetVarName>
+            <variableType>in-situ observation</variableType>
+            <measuredOrCalculated>Measured</measuredOrCalculated>
+            <observationType>Discrete measurements from samples collected on CTD casts</observationType>
+            <units>micrograms per liter</units>
+            <qcFlag>
+                <description>CHL_FLAG, WOCE quality control flags are used: 2 = good value, 3 = questionable value, 4 = bad value, 5 = value not reported, 6 = mean of replicate measurements, 9 = sample not drawn</description>
+            </qcFlag>
+            <researcher>
+                <name>Christopher Ikeda, Tanner Waters, Bryce Dewees, Sophia Tigges and Julian Herndon</name>
+                <organization>NOAA Pacific Marine Environmental Laboratory; PI: Simone Alin  University of California Los Angeles for TW.  NOAA ship Ron Brown for BC and ST.</organization>
+            </researcher>
+            <methodReference>Welschmeyer, N.A. 1994. Fluorometric analysis of chlorophyll a in the presence of chlorophyll b and pheopigments. Limnology and Oceanography 39: 1985-1992.</methodReference>
+            <samplingInstrument>Niskin bottle</samplingInstrument>
+            <analyzingInstrument>Turner Designs Trilogy</analyzingInstrument>
+            <detailedInfo>Samples were collected in amber 250 mL HDPE bottles and filtered onto Whatman GF/F filters (25-mm diameter) within 30 minutes of collection. The volume filtered was generally between 50 and 100 milliliters measured with a volumetric cylinder.   Each filter was then placed inside a borosilicate glass tube and stored frozen (-20 deg C) until analysis. Chlorophyll was extracted in the dark at -20 deg C using 90% (v/v) acetone over a period of ~24 hours (+/- 2 hrs), and subsequently allowed to come to room temperature in the dark and  analyzed by fluorometry using the non-acidification method of Welschmeyer (1994). Concentrations of chlorophyll estimated from samples collected with these glass fiber filters (nominal pore size of 0.7 micrometers) represent the chlorophyll from the total phytoplankton community.  The fluorometer was calibrated using certified chlorophyll a standards from Turner Designs (cat# 10-850)  A linear regression was generated using dilutions of the Turner standards covering a range of chlorophyll concentration from 0.5 to 240 micrograms of chlorophyll a per liter with a r2 value of 0.9998.</detailedInfo>
+            <fieldReplicateHandling>None collected</fieldReplicateHandling>
+        </variable>
+        <variable name="Section_ID">
+            <fullName>17 separate sections each with a unique identifier</fullName>
+            <datasetVarName>Section_ID</datasetVarName>
+            <qcFlag/>
+            <researcher/>
+        </variable>
+        <variable name="STATION_ID">
+            <fullName>CTD Station number</fullName>
+            <datasetVarName>STATION_ID</datasetVarName>
+            <qcFlag/>
+            <researcher/>
+        </variable>
+        <variable name="CAST_Number">
+            <fullName>CTD Cast number</fullName>
+            <datasetVarName>CAST_Number</datasetVarName>
+            <qcFlag/>
+            <researcher/>
+        </variable>
+        <variable name="Rosette_Position">
+            <fullName>Position of the Rosette where the niskin was 'tripped'</fullName>
+            <datasetVarName>Rosette_Position</datasetVarName>
+            <qcFlag/>
+            <researcher/>
+        </variable>
+        <variable name="NISKIN_ID">
+            <fullName>Niskin bottle position</fullName>
+            <datasetVarName>NISKIN_ID</datasetVarName>
+            <qcFlag/>
+            <researcher/>
+        </variable>
+        <variable name="SAMPLE_ID">
+            <fullName>Identifier, (STATION_NO*10000)+(CAST_NO*100)+NISKIN_NO</fullName>
+            <datasetVarName>SAMPLE_ID</datasetVarName>
+            <qcFlag/>
+            <researcher/>
+        </variable>
+        <variable name="Line_ID">
+            <fullName>Numerical identification of the lines, aka transects.</fullName>
+            <datasetVarName>Line_ID</datasetVarName>
+            <qcFlag/>
+            <researcher/>
+        </variable>
+        <variable name="YEAR_UTC">
+            <fullName>year (yyyy - UTC)</fullName>
+            <datasetVarName>YEAR_UTC</datasetVarName>
+            <qcFlag/>
+            <researcher/>
+        </variable>
+        <variable name="MONTH_UTC">
+            <fullName>month (mm - UTC)</fullName>
+            <datasetVarName>MONTH_UTC</datasetVarName>
+            <qcFlag/>
+            <researcher/>
+        </variable>
+        <variable name="DAY_UTC">
+            <fullName>day (dd - UTC)</fullName>
+            <datasetVarName>DAY_UTC</datasetVarName>
+            <qcFlag/>
+            <researcher/>
+        </variable>
+        <variable name="TIME_UTC">
+            <fullName>time (hh:mm:ss - UTC)</fullName>
+            <datasetVarName>TIME_UTC</datasetVarName>
+            <qcFlag/>
+            <researcher/>
+        </variable>
+        <variable name="LATITUDE_DECIMAL">
+            <fullName>Latitude (positive is north) Decimal Degrees</fullName>
+            <datasetVarName>LATITUDE_DECIMAL</datasetVarName>
+            <qcFlag/>
+            <researcher/>
+        </variable>
+        <variable name="LONGITUDE_DECIMAL">
+            <fullName>Longitude (negative is West) Decimal Degrees</fullName>
+            <datasetVarName>LONGITUDE_DECIMAL</datasetVarName>
+            <qcFlag/>
+            <researcher/>
+        </variable>
+        <variable name="DEPTH_BOTTOM_METER">
+            <fullName>depth of bottom at the CTD location (meters)</fullName>
+            <datasetVarName>DEPTH_BOTTOM_METER</datasetVarName>
+            <qcFlag/>
+            <researcher/>
+        </variable>
+        <variable name="Methane_CH4">
+            <fullName>Dissolved Methane</fullName>
+            <datasetVarName>Methane_CH4</datasetVarName>
+            <variableType>in-situ observation</variableType>
+            <measuredOrCalculated>Measured</measuredOrCalculated>
+            <observationType>Discrete measurement from samples collected from CTD rosette casts</observationType>
+            <units>nanomol/liter</units>
+            <uncertainty>5%</uncertainty>
+            <qcFlag>
+                <description>Methane_CHL_FLAG, WOCE quality control flags are used: 2 = good value, 3 = questionable value, 4 = bad value, 5 = value not reported, 6 = mean of replicate measurements, 9 = sample not drawn.</description>
+            </qcFlag>
+            <researcher>
+                <name>David A. Butterfield</name>
+                <organization>University of Washington and NOAA-PMEL, Cooperative Institute for Climate and Ocean Ecosystem Studies</organization>
+            </researcher>
+            <samplingInstrument>Niskin bottle</samplingInstrument>
+            <analyzingInstrument>SRI 8610C Gas Chromatograph</analyzingInstrument>
+            <detailedInfo>Methane samples were collected into 140ml plastic syringes with stopcocks inserted directly into Niskin bottle; syringes were rinsed twice with 50ml of sample to flush out any air or entrained bubbles; syringe filled to 100ml and closed. 40ml of helium headspace was added to the syringe and shaken vigorously for 30 seconds. Samples were equilibrated until reaching lab temperature (average 24C), shaken vigorously again. Gas headspace was pushed through a glass tube filled with drierite and ascarite to fill a fixed volume injection loop and injected into the SRI gas chromatograph equipped with a flame ionization detector and a 30-meter x 0.53mm ID MXT MSieve 5A PLOT capillary column held at 50C, using helium carrier gas. Instrument response is calibrated using standards (0, 2, 5, 10, 25 ppm) prepared from dilutions of Scott Specialty Gas 100 ppm CH4. The headspace extraction efficiency was determined by multiple extraction experiments conducted on board (92%) and dissolved concentration was calculated from the analyzed headspace gas concentration using the extraction efficiency, volume of liquid, and volume of gas headspace.</detailedInfo>
+            <fieldReplicateHandling>Duplicates were collected at every station. Relative standard deviation of all duplicate analyses was calculated and the average of all RSDs determined the overall uncertainty of the method, incorporating sampling and analysis.</fieldReplicateHandling>
+        </variable>
+        <variable name="SYNECHOCOCCUS">
+            <fullName>Synechococcus spp.</fullName>
+            <datasetVarName>SYNECHOCOCCUS</datasetVarName>
+            <variableType>in-situ observation</variableType>
+            <measuredOrCalculated>Measured</measuredOrCalculated>
+            <observationType>Discrete measurement from samples collected from CTD rosette casts</observationType>
+            <units>cells per ml</units>
+            <qcFlag>
+                <description>SYNECHOCOCCUS_CELLS_FLAG, One flag used for all Synechococcus samples, WOCE quality control flags are used: 2 = good value, 3 = questionable value, 4 = bad value, 5 = value not reported, 6 = mean of replicate measurements, 9 = sample not drawn.</description>
+            </qcFlag>
+            <researcher>
+                <name>Linda Rhodes</name>
+                <organization>NOAA Fisheries, Northwest Fisheries Science Center, Seattle WA</organization>
+            </researcher>
+            <methodReference>Sherr et al. 2005. Distribution of coccoid cyanobacteria and small eukaryotic phytoplankton in the upwelling ecosystem off the Oregon coast during 2001 &amp; 2002. Deep-Sea Research II 52, 317–330; Sherr et al. 2006. Distribution of bacterial abundance &amp; cell-specific nucleic acid content in the Northeast Pacific Ocean. Deep-Sea Research Part I 53:713-725</methodReference>
+            <samplingInstrument>Niskin bottle</samplingInstrument>
+            <analyzingInstrument>Becton-Dickinson FACSCaliber flow cytometer</analyzingInstrument>
+            <detailedInfo>Sample collected from Niskin bottle into a 2L polycarbonate bottle.  A 15 ml aliquot immediately collected, &amp; placed on ice in the dark until fixation, ideally within 15 min after collection.  Duplicate three (3) ml subsamples from the aliquot added to 60 µl of 10% paraformaldehyde, inverted three times, replaced on ice in the dark for 10 min, inverted three times, &amp; flash-frozen in liquid nitrogen.  Samples stored at -80°C until analysis.  Coccoid cyanobacteria identified by orange fluorescence &amp; size, &amp; each sample spiked with 3.0 µm fluorescent yellow-green beads for cacluating the volume of sample processed.</detailedInfo>
+            <fieldReplicateHandling>Not collected</fieldReplicateHandling>
+        </variable>
+        <variable name="EUK_PHYTOPLANKTON">
+            <fullName>Eukaryotic phyoplankton</fullName>
+            <datasetVarName>EUK_PHYTOPLANKTON</datasetVarName>
+            <variableType>in-situ observation</variableType>
+            <measuredOrCalculated>Measured</measuredOrCalculated>
+            <observationType>Discrete measurement from samples collected from CTD rosette casts</observationType>
+            <units>cells per ml</units>
+            <qcFlag>
+                <description>EUK_PHYTOPLANKTON_FLAG, One flag used for all eukaryotic phytoplankton samples, WOCE quality control flags are used: 2 = good value, 3 = questionable value, 4 = bad value, 5 = value not reported, 6 = mean of replicate measurements, 9 = sample not drawn.</description>
+            </qcFlag>
+            <researcher>
+                <name>Linda Rhodes</name>
+                <organization>NOAA Fisheries, Northwest Fisheries Science Center, Seattle WA</organization>
+            </researcher>
+            <methodReference>Sherr et al. 2005. Distribution of coccoid cyanobacteria and small eukaryotic phytoplankton in the upwelling ecosystem off the Oregon coast during 2001 &amp; 2002. Deep-Sea Research II 52, 317–330; Sherr et al. 2006. Distribution of bacterial abundance &amp; cell-specific nucleic acid content in the Northeast Pacific Ocean. Deep-Sea Research Part I 53:713-725</methodReference>
+            <samplingInstrument>Niskin bottle</samplingInstrument>
+            <analyzingInstrument>Becton-Dickinson FACSCaliber flow cytometer</analyzingInstrument>
+            <detailedInfo>Sample collected from Niskin bottle into a 2L polycarbonate bottle.  A 15 ml aliquot immediately collected, &amp; placed on ice in the dark until fixation, ideally within 15 min after collection.  Duplicate three (3) ml subsamples from the aliquot added to 60 µl of 10% paraformaldehyde, inverted three times, replaced on ice in the dark for 10 min, inverted three times, &amp; flash-frozen in liquid nitrogen.  Samples stored at -80°C until analysis.  Photosynthetic eukaryotes identified by red fluorescence &amp; size, &amp; each sample spiked with 3.0 µm fluorescent yellow-green beads for cacluating the volume of sample processed.</detailedInfo>
+            <fieldReplicateHandling>Not collected</fieldReplicateHandling>
+        </variable>
+        <variable name="LARGE_DIATOM">
+            <fullName>Individual (non-chain-forming) phytoplankton ~5 - 20 µm in size</fullName>
+            <datasetVarName>LARGE_DIATOM</datasetVarName>
+            <variableType>in-situ observation</variableType>
+            <measuredOrCalculated>Measured</measuredOrCalculated>
+            <observationType>Discrete measurement from samples collected from CTD rosette casts</observationType>
+            <units>cells per ml</units>
+            <qcFlag>
+                <description>LARGE_DIATOM_FLAG, One flag used for all large diatom samples, WOCE quality control flags are used: 2 = good value, 3 = questionable value, 4 = bad value, 5 = value not reported, 6 = mean of replicate measurements, 9 = sample not drawn.</description>
+            </qcFlag>
+            <researcher>
+                <name>Linda Rhodes</name>
+                <organization>NOAA Fisheries, Northwest Fisheries Science Center, Seattle WA</organization>
+            </researcher>
+            <methodReference>Sherr et al. 2005. Distribution of coccoid cyanobacteria and small eukaryotic phytoplankton in the upwelling ecosystem off the Oregon coast during 2001 &amp; 2002. Deep-Sea Research II 52, 317–330; Sherr et al. 2006. Distribution of bacterial abundance &amp; cell-specific nucleic acid content in the Northeast Pacific Ocean. Deep-Sea Research Part I 53:713-725</methodReference>
+            <samplingInstrument>Niskin bottle</samplingInstrument>
+            <analyzingInstrument>Becton-Dickinson FACSCaliber flow cytometer</analyzingInstrument>
+            <detailedInfo>Sample collected from Niskin bottle into a 2L polycarbonate bottle.  A 15 ml aliquot immediately collected, &amp; placed on ice in the dark until fixation, ideally within 15 min after collection.  Duplicate three (3) ml subsamples from the aliquot added to 60 µl of 10% paraformaldehyde, inverted three times, replaced on ice in the dark for 10 min, inverted three times, &amp; flash-frozen in liquid nitrogen.  Samples stored at -80°C until analysis.  Photosynthetic eukaryotes identified by red fluorescence &amp; size, &amp; each sample spiked with 3.0 µm fluorescent yellow-green beads for cacluating the volume of sample processed.</detailedInfo>
+            <fieldReplicateHandling>Not collected</fieldReplicateHandling>
+        </variable>
+        <variable name="CRYPTOPHYTE">
+            <fullName>Cryptophytes</fullName>
+            <datasetVarName>CRYPTOPHYTE</datasetVarName>
+            <variableType>in-situ observation</variableType>
+            <measuredOrCalculated>Measured</measuredOrCalculated>
+            <observationType>Discrete measurement from samples collected from CTD rosette casts</observationType>
+            <units>cells per ml</units>
+            <qcFlag>
+                <description>CRYPTOPHYTE_CELLS_FLAG, One flag used for all cryptophyte samples, WOCE quality control flags are used: 2 = good value, 3 = questionable value, 4 = bad value, 5 = value not reported, 6 = mean of replicate measurements, 9 = sample not drawn.</description>
+            </qcFlag>
+            <researcher>
+                <name>Linda Rhodes</name>
+                <organization>NOAA Fisheries, Northwest Fisheries Science Center, Seattle WA</organization>
+            </researcher>
+            <methodReference>Sherr et al. 2005. Distribution of coccoid cyanobacteria and small eukaryotic phytoplankton in the upwelling ecosystem off the Oregon coast during 2001 &amp; 2002. Deep-Sea Research II 52, 317–330; Sherr et al. 2006. Distribution of bacterial abundance &amp; cell-specific nucleic acid content in the Northeast Pacific Ocean. Deep-Sea Research Part I 53:713-725</methodReference>
+            <samplingInstrument>Niskin bottle</samplingInstrument>
+            <analyzingInstrument>Becton-Dickinson FACSCaliber flow cytometer</analyzingInstrument>
+            <detailedInfo>Sample collected from Niskin bottle into a 2L polycarbonate bottle.  A 15 ml aliquot immediately collected, &amp; placed on ice in the dark until fixation, ideally within 15 min after collection.  Duplicate three (3) ml subsamples from the aliquot added to 60 µl of 10% paraformaldehyde, inverted three times, replaced on ice in the dark for 10 min, inverted three times, &amp; flash-frozen in liquid nitrogen.  Samples stored at -80°C until analysis.  Photosynthetic eukaryotes identified by red &amp; orange fluorescence &amp; size, &amp; each sample spiked with 3.0 µm fluorescent yellow-green beads for cacluating the volume of sample processed.</detailedInfo>
+            <fieldReplicateHandling>Not collected</fieldReplicateHandling>
+        </variable>
+        <variable name="BACTERIA">
+            <fullName>Bacterial &amp; archaeal cells</fullName>
+            <datasetVarName>BACTERIA</datasetVarName>
+            <variableType>in-situ observation</variableType>
+            <measuredOrCalculated>Measured</measuredOrCalculated>
+            <observationType>Discrete measurement from samples collected from CTD rosette casts</observationType>
+            <units>cells per ml</units>
+            <qcFlag>
+                <description>BACTERIA_FLAG, One flag used for all bacteria samples, WOCE quality control flags are used: 2 = good value, 3 = questionable value, 4 = bad value, 5 = value not reported, 6 = mean of replicate measurements, 9 = sample not drawn.</description>
+            </qcFlag>
+            <researcher>
+                <name>Linda Rhodes</name>
+                <organization>NOAA Fisheries, Northwest Fisheries Science Center, Seattle WA</organization>
+            </researcher>
+            <methodReference>Sherr et al. 2005. Distribution of coccoid cyanobacteria and small eukaryotic phytoplankton in the upwelling ecosystem off the Oregon coast during 2001 &amp; 2002. Deep-Sea Research II 52, 317–330; Sherr et al. 2006. Distribution of bacterial abundance &amp; cell-specific nucleic acid content in the Northeast Pacific Ocean. Deep-Sea Research Part I 53:713-725</methodReference>
+            <samplingInstrument>Niskin bottle</samplingInstrument>
+            <analyzingInstrument>Becton-Dickinson FACSCaliber flow cytometer</analyzingInstrument>
+            <detailedInfo>Sample collected from Niskin bottle into a 2L polycarbonate bottle.  A 15 ml aliquot immediately collected, &amp; placed on ice in the dark until fixation, ideally within 15 min after collection.  Duplicate three (3) ml subsamples from the aliquot added to 60 µl of 10% paraformaldehyde, inverted three times, replaced on ice in the dark for 10 min, inverted three times, &amp; flash-frozen in liquid nitrogen.  Samples stored at -80°C until analysis.  Cells stained with nucleic acid-binding dye (SYBR Green I), then identified by fluorescence &amp; size.  Each sample spiked with 1.0 µm fluorescent yellow-green beads fo calculating the volume of sample processed.</detailedInfo>
+            <fieldReplicateHandling>Not collected</fieldReplicateHandling>
+        </variable>
+        <variable name="BACTERIA_HNA">
+            <fullName>Bacterial &amp; archaeal cells with high nucleic acid content</fullName>
+            <datasetVarName>BACTERIA_HNA</datasetVarName>
+            <variableType>in-situ observation</variableType>
+            <measuredOrCalculated>Measured</measuredOrCalculated>
+            <observationType>Discrete measurement from samples collected from CTD rosette casts</observationType>
+            <units>cells per ml</units>
+            <qcFlag>
+                <description>BACTERIA_HNA_FLAG, One flag used for all high nucleic acid bacteria samples, WOCE quality control flags are used: 2 = good value, 3 = questionable value, 4 = bad value, 5 = value not reported, 6 = mean of replicate measurements, 9 = sample not drawn.</description>
+            </qcFlag>
+            <researcher>
+                <name>Linda Rhodes</name>
+                <organization>NOAA Fisheries, Northwest Fisheries Science Center, Seattle WA</organization>
+            </researcher>
+            <methodReference>Sherr et al. 2005. Distribution of coccoid cyanobacteria and small eukaryotic phytoplankton in the upwelling ecosystem off the Oregon coast during 2001 &amp; 2002. Deep-Sea Research II 52, 317–330; Sherr et al. 2006. Distribution of bacterial abundance &amp; cell-specific nucleic acid content in the Northeast Pacific Ocean. Deep-Sea Research Part I 53:713-725</methodReference>
+            <samplingInstrument>Niskin bottle</samplingInstrument>
+            <analyzingInstrument>Becton-Dickinson FACSCaliber flow cytometer</analyzingInstrument>
+            <detailedInfo>Sample collected from Niskin bottle into a 2L polycarbonate bottle.  A 15 ml aliquot immediately collected, &amp; placed on ice in the dark until fixation, ideally within 15 min after collection.  Duplicate three (3) ml subsamples from the aliquot added to 60 µl of 10% paraformaldehyde, inverted three times, replaced on ice in the dark for 10 min, inverted three times, &amp; flash-frozen in liquid nitrogen.  Samples stored at -80°C until analysis.  Cells stained with nucleic acid-binding dye (SYBR Green I), then identified by fluorescence &amp; size.  Each sample spiked with 1.0 µm fluorescent yellow-green beads fo calculating the volume of sample processed.</detailedInfo>
+            <fieldReplicateHandling>Not collected</fieldReplicateHandling>
+        </variable>
+        <variable name="BACTERIA_LNA">
+            <fullName>Bacterial &amp; archaeal cells with low nucleic acid content</fullName>
+            <datasetVarName>BACTERIA_LNA</datasetVarName>
+            <variableType>in-situ observation</variableType>
+            <measuredOrCalculated>Measured</measuredOrCalculated>
+            <observationType>Discrete measurement from samples collected from CTD rosette casts</observationType>
+            <units>cells per ml</units>
+            <qcFlag>
+                <description>BACTERIA_LNA_FLAG, One flag used for all low nucleic acid bacteria samples, WOCE quality control flags are used: 2 = good value, 3 = questionable value, 4 = bad value, 5 = value not reported, 6 = mean of replicate measurements, 9 = sample not drawn.</description>
+            </qcFlag>
+            <researcher>
+                <name>Linda Rhodes</name>
+                <organization>NOAA Fisheries, Northwest Fisheries Science Center, Seattle WA</organization>
+            </researcher>
+            <methodReference>Sherr et al. 2005. Distribution of coccoid cyanobacteria and small eukaryotic phytoplankton in the upwelling ecosystem off the Oregon coast during 2001 &amp; 2002. Deep-Sea Research II 52, 317–330; Sherr et al. 2006. Distribution of bacterial abundance &amp; cell-specific nucleic acid content in the Northeast Pacific Ocean. Deep-Sea Research Part I 53:713-725</methodReference>
+            <samplingInstrument>Niskin bottle</samplingInstrument>
+            <analyzingInstrument>Becton-Dickinson FACSCaliber flow cytometer</analyzingInstrument>
+            <detailedInfo>Sample collected from Niskin bottle into a 2L polycarbonate bottle.  A 15 ml aliquot immediately collected, &amp; placed on ice in the dark until fixation, ideally within 15 min after collection.  Duplicate three (3) ml subsamples from the aliquot added to 60 µl of 10% paraformaldehyde, inverted three times, replaced on ice in the dark for 10 min, inverted three times, &amp; flash-frozen in liquid nitrogen.  Samples stored at -80°C until analysis.  Cells stained with nucleic acid-binding dye (SYBR Green I), then identified by fluorescence &amp; size.  Each sample spiked with 1.0 µm fluorescent yellow-green beads fo calculating the volume of sample processed.</detailedInfo>
+            <fieldReplicateHandling>Not collected</fieldReplicateHandling>
+        </variable>
+    </variables>
+</oads_metadata>

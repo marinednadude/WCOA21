@@ -1,0 +1,215 @@
+---
+title: "WCOA 2021 Merge CTD + Sample Data"
+author: "Zack Gold"
+date: "2025-05-20"
+output: html_document
+---
+# Load Data
+
+```{r}
+library(tidyverse)
+library(here)
+library(lubridate)
+library(measurements)
+library(sp)
+library(readr)
+library(sf)
+library("rnaturalearth")
+library("rnaturalearthdata")
+library(cmocean)
+
+```
+
+# Machine Readible QAQC
+
+```{r}
+ # EA <- read.csv(file = here("ElectronicArchive_CruiseSampleMetadata_WCOA21.csv"), header=T,fileEncoding="UTF-8")
+ # EA %>% 
+ #   filter(., Biological_Replicate != "DELETe") -> EA
+ # readr::write_excel_csv(EA, file="ElectronicArchive_CruiseSampleMetadata_WCOA21.csv")
+ # 
+ # MR <- read.csv(file = here("MachineReadable_CruiseSampleMetadata_WCOA21.csv"), header=T,fileEncoding="UTF-8")
+ # MR %>% 
+ #   filter(., Biological_Replicate != "DELETe") -> MR
+ # readr::write_excel_csv(MR, file="MachineReadable_CruiseSampleMetadata_WCOA21.csv")
+
+
+sample_Data <- read.csv(file = here("MachineReadable_CruiseSampleMetadata_WCOA21.csv"), header=T,fileEncoding="UTF-8")
+
+sample_Data %>% 
+  mutate(., Combined_date = str_c(Collection_Date_UTC, " ",Collection_Time_UTC),
+            Combined_date_local = str_c(Collection_Date_UTC, " ",Collection_Time_local))%>% # No Collection_Date_local so used UTC
+  mutate(.,  Date_UTC = as.POSIXct(Combined_date, format="%m/%d/%Y %H:%M", tz="UTC"),
+                           Date_UTC = if_else(is.na(Date_UTC), as.POSIXct(Collection_Date_local, format="%m/%d/%Y", tz="UTC"), Date_UTC ), 
+         Date_local_check = as.POSIXct(Combined_date_local, format="%m/%d/%Y %H:%M", tz="America/Los_Angeles"),
+         Date_local_check = if_else(is.na(Date_local_check), as.POSIXct(Combined_date_local, format="%m/%d/%Y", tz="UTC"), Date_local_check ), 
+         Date_local_int= as.POSIXct(format(Date_UTC,tz="America/Los_Angeles")),
+         Date_UTC_int= as.POSIXct(format(Date_local_check,tz="UTC"))) %>% 
+  mutate(., Date_local = if_else(is.na(Date_local_int), Date_local_check, Date_local_int ),
+         Date_UTC = if_else(is.na(Date_UTC), Date_UTC_int, Date_UTC )) %>% 
+  mutate(., Lat_dec=Lat) %>% 
+  mutate(., , Lon_dec = Lon) %>% 
+  mutate(., Cast=as.character(Cast_No.),
+         Bottle=as.character(Rosette_position))  -> QAQCMRE_CruiseSampleMetadata_WCOA21
+
+
+c("Sample_Name","Biological_Replicate","Technical_Replicate","Negative_control",    "Cruise_ID_short",     "Cruise_ID_long",     "Collection_Date_UTC", "Collection_Date_local","Collection_Time_UTC","Collection_Time_local"                   ,"Field_Sample_Name",   "Cast_No.",  "Rosette_position",    "Field_collection_method"       ,"Preservation",       "Area.within.region",  "Station",    "Depth_m",   
+"Lat",        "Lon",        "Sample_volume_ml",   
+"Personnel_responsible_for_Collecting_Sample", "Field_Notes","Combined_date",      "Combined_date_local", "Date_UTC",   "Date_local_check",   
+"Date_local",     "Lat_dec",   
+    "Lon_dec",    "Cast",      
+"Bottle"   ) -> WCOA21_colnames
+
+colnames(QAQCMRE_CruiseSampleMetadata_WCOA21)
+setdiff(WCOA21_colnames,colnames(QAQCMRE_CruiseSampleMetadata_WCOA21) )
+setdiff(colnames(QAQCMRE_CruiseSampleMetadata_WCOA21),WCOA21_colnames )
+
+QAQCMRE_CruiseSampleMetadata_WCOA21 <- QAQCMRE_CruiseSampleMetadata_WCOA21[, WCOA21_colnames]
+
+readr::write_excel_csv(QAQCMRE_CruiseSampleMetadata_WCOA21, file="QAQCMRE_CruiseSampleMetadata_WCOA21.csv")
+
+```
+
+
+```{r}
+
+min_lat <- min(QAQCMRE_CruiseSampleMetadata_WCOA21$Lat_dec, na.rm = T)
+max_lat <- max(QAQCMRE_CruiseSampleMetadata_WCOA21$Lat_dec, na.rm = T)
+
+min_lon <- min(QAQCMRE_CruiseSampleMetadata_WCOA21$Lon_dec, na.rm = T)
+max_lon <- max(QAQCMRE_CruiseSampleMetadata_WCOA21$Lon_dec, na.rm = T)
+
+world <- ne_countries(scale = "medium", returnclass = "sf")
+QAQCMRE_CruiseSampleMetadata_WCOA21$Date_UTC %>% as.Date() -> dates
+
+
+ggplot(data = world) +
+    geom_sf() +
+    geom_point(data = QAQCMRE_CruiseSampleMetadata_WCOA21, aes(x = Lon_dec, y = Lat_dec, colour=as.Date(Date_UTC)), size=2) +
+    coord_sf(xlim = c(min_lon-1, max_lon+1), ylim = c(min_lat-1, max_lat+1), expand = FALSE) +theme_bw() +xlab("Longitude") +ylab("Latitude") +
+  geom_text(data = QAQCMRE_CruiseSampleMetadata_WCOA21, aes(x = Lon_dec, y = Lat_dec, label=Station),size = 2, colour="black") + scale_color_cmocean(labels=dates, breaks=dates, name ="tempo", start = 0.1, end=0.5) +labs(colour="Date")
+
+
+```
+
+```{r}
+QAQCMRE_CruiseSampleMetadata_WCOA21 %>% 
+  filter(., is.na(Lat_dec))
+```
+
+```{r}
+QAQCMRE_CruiseSampleMetadata_WCOA21 %>% 
+  ggplot() +
+  geom_point(aes(y = Lat_dec, x =as.Date(Date_UTC), colour=as.Date(Date_UTC)), size=2) + scale_color_cmocean(labels=dates, breaks=dates, name ="tempo", start = 0.1, end=0.5) +labs(colour="Date") +scale_x_date(date_labels = "%b %d %Y")
+
+```
+# Read Bottle Data
+
+
+```{r}
+
+bottle_Data <- readxl::read_xlsx(here("01_CRUISE_METADATA/00_OCADS_data/WCOA2021_Data_forSDIS_2022_09-28.xlsx"))
+
+bottle_Data %>% 
+  slice(1) -> bottle_Date_units
+
+bottle_Data %>% 
+  slice(-1) %>% 
+  mutate(.,Cast = Niskin_ID) %>% 
+           mutate(., Cast = as.numeric(Cast),
+                  bottle = Rosette_Position) %>% 
+   rename_with(.fn = ~ paste0("btl_", .x))-> bottle_Data
+
+bottle_Data$Cast <- as.character(bottle_Data$btl_Cast)
+bottle_Data$bottle <- as.character(bottle_Data$btl_bottle)
+```
+
+# Read  CO2Sys_v2.1.xls Processed Data
+Note that one day we should replace this janky macro with R or Python code. Likely someone already has in 2025, but I have not found it yet.
+
+```{r}
+
+aragonite <- read.csv(here("01_CRUISE_METADATA/zzMergeMetadata/aragonite/MarchineReadable_aragonite_CO2Sys_v2.1_WCOA2021.csv"), header=T)
+
+aragonite %>% 
+  slice(-2) %>% 
+   rename_with(.fn = ~ paste0("CO2sys_", .x)) %>% 
+  dplyr::rename(btl_EXPOCODE=CO2sys_EXPOCODE,btl_Cruise_ID      =CO2sys_Cruise_ID,btl_Section_ID   =CO2sys_Section_ID,btl_Station_ID=   CO2sys_Station_ID,btl_Cast_number=CO2sys_Cast_number,btl_Rosette_Position=CO2sys_Rosette_Position,btl_Niskin_ID= CO2sys_Niskin_ID,btl_Niskin_flag=CO2sys_Niskin_flag,btl_Sample_ID= CO2sys_Sample_ID  ) -> aragonite_Data
+
+colnames(aragonite)
+aragonite %>% 
+  slice(2) -> aragonite_units
+
+
+bottle_Data %>% 
+  left_join(aragonite_Data) -> bottle_Data_w_arag
+```
+# Read CTD Downcast Data
+
+```{r}
+
+ctd_Data <- read.csv(file =here("CTD_dy2209_final_merged_62b5_4b35_a001.csv"), header=T)
+
+
+ctd_Data %>% 
+  dplyr::group_by(profile_id,pressure)  %>% 
+  filter(n()>1) -> duplicate_bottles
+
+
+duplicate_bottles %>% 
+     filter(., `SI..uM.l.` !="NaN") -> bottles_avg
+
+ctd_Data %>% 
+   filter(., !profile_id %in% bottles_avg$profile_id) %>% 
+  bind_rows(bottles_avg) %>% 
+  mutate(., holder1 = str_remove(profile_id,"dy2209c"),
+          Cast = as.numeric(holder1)) %>% 
+   rename_with(.fn = ~ paste0("ctd_", .x)) -> ctd_Data
+
+
+ctd_Data$Cast <- as.character(ctd_Data$ctd_Cast)
+ctd_Data$pressure <- as.numeric(ctd_Data$ctd_pressure)
+
+
+```
+
+# Merge Sample, Bottle, and CTD Data
+
+```{r}
+ QAQCMRE_CruiseSampleMetadata_DY22_09 %>% 
+    mutate(pressure= round(Depth_m,0)) %>% 
+    left_join(ctd_Data, by = c("Cast" = "Cast", "pressure" = "pressure")) %>% 
+  left_join(bottle_Data, by = c("Cast" = "Cast", "Bottle" = "bottle")) %>%   mutate(., Date_UTC_btl = as.POSIXct(`btl_time..UTC.`, format="%Y-%m-%dT%H:%M:%SZ", tz="UTC") )-> EcoFOCI_Fall_2022_sample_data
+
+
+#colnames(ctd_Data)[2:13] -> cols_2_keep
+library(rlang)
+
+EcoFOCI_Fall_2022_sample_data %>% 
+  select(Sample_Name, 
+         Biological_Replicate,
+         Technical_Replicate,
+         Negative_control, 
+         Cruise_ID_short, 
+         Cruise_ID_long,
+         Cast_No.,
+         Rosette_position,
+         Field_collection_method,
+         Preservation,
+         Station,
+                  Depth_m_notes=Depth_m,
+         Sample_volume_ml,
+         Personnel_responsible_for_Collecting_Sample,
+         Field_Notes,
+         Date_UTC_notes=Date_UTC,
+         Lat_notes = Lat_dec,
+         Lon_notes=Lon_dec,
+          Date_UTC_btl,
+         #!!!syms(cols_2_keep),
+            starts_with("ctd"),
+        starts_with("btl")) -> EcoFOCI_Fall_2022_sample_data
+
+readr::write_excel_csv(EcoFOCI_Fall_2022_sample_data, file="FinalOME_Merge_DY22-09.csv")
+```
+
+

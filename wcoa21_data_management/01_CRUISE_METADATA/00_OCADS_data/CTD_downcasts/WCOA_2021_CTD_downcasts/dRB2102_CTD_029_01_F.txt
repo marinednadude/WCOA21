@@ -1,0 +1,38 @@
+* Sea-Bird SBE 9 Data:
+* Software Version Seasave V 7.26.7.107
+* Vessel: NOAA Ship Ronald H. Brown
+* Cruise: RB2102, West Coast Ocean Acidification (WCOA) 2021
+* Dates: 20210622 to 20210723
+* Region: NE Pacific, USA West Coast
+* Ports: San Diego, CA to Port Angeles, WA to San Diego, CA
+* Chief Scientists: R. Feely, NOAA PMEL; D. Greeley, NOAA PMEL; B. Carter, NOAA PMEL / UW CICOES
+* Contacts: R. Feely, richard.a.feely@noaa.gov; D. Greeley, dana.greeley@noaa.gov; B. Carter, brendan.carter@noaa.gov
+* Station: 029
+* Cast: 1
+* Cast Date-Time [GMT]: 30-Jun-2021 22:16:53
+* Longitude: -123.9138 W
+* Latitude: 46.1933 N
+* Water Depth [m]: 14.7
+**********
+* Column  1: Pressure [decibar]
+* Column  2: Depth [m]
+* Column  3: Temperature ITS-90 [degree C]
+* Column  4: Salinity PSS-78 [psu]
+* Column  5: Sigma-theta EOS-80 [kg/m^3 - 1000]
+* Column  6: Oxygen [ml/L]
+* Column  7: Oxygen [umol/kg]
+* Column  8: Fluorescence [volts]
+* Column  9: Oxygen Reduction Potential [mV]
+* Column 10: Altimeter [m]
+**********
+*END*
+   2.00	   1.98	21.0513	 2.3342	-0.2429	 7.96	355.53	0.079	  122.16	 13.23
+   3.00	   2.98	21.0513	 2.3342	-0.2429	 7.83	349.75	0.107	  127.49	 11.98
+   4.00	   3.97	20.9717	 2.6348	 0.0026	 6.89	307.63	0.105	  131.17	 11.03
+   5.00	   4.96	20.9240	 2.6795	 0.0470	 6.13	273.83	0.104	  136.35	  9.85
+   6.00	   5.95	20.7557	 3.1793	 0.4628	 5.83	260.04	0.098	  141.27	  8.60
+   7.00	   6.94	20.6483	 3.4873	 0.7198	 5.89	262.78	0.095	  142.06	  7.56
+   8.00	   7.93	20.5944	 3.5644	 0.7901	 5.99	267.10	0.094	  142.11	  6.57
+   9.00	   8.93	20.4409	 3.9925	 1.1479	 6.05	269.89	0.100	  142.48	  5.60
+  10.00	   9.92	20.1863	 4.8747	 1.8717	 6.08	271.03	0.101	  143.54	  4.67
+  11.00	  10.91	20.0324	 5.4985	 2.3776	 6.11	272.13	0.098	  143.57	  3.75

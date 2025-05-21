@@ -1,0 +1,19 @@
+From: noaa.ocads@noaa.gov
+Subject: Data submission confirmation for SDIS Package BGB12Y91U/1
+To: dana.greeley@noaa.gov
+Cc: noaa.ocads@noaa.gov, NCEI-MD.Ingest@noaa.gov
+
+Dear Dana Greeley,
+
+Many thanks for submitting your dataset entitled "Dissolved inorganic carbon (DIC), total alkalinity (TA), pH, temperature, salinity, oxygen, and nutrient data collected from discrete profile measurements during the National Oceanic and Atmospheric Administration Ocean Acidification Program (OAP) program cruise WCOA2021 (EXPOCODE 33RO20210613) in northeast Pacific marine waters on the NOAA Ship Ronald H. Brown from 2021-06-13 to 2021-07-26 (NCEI Accession XXXXXXX)" to the NOAA National Centers for Environmental Information (NCEI)!
+
+NCEI received your submission on 2022-09-28. Your data will be reviewed by the NCEI data content management team, and if accepted for archival, an NCEI Accession number will be provided to you in an acceptance confirmation email. This number is a tracking number to use when corresponding with NCEI about these data.
+
+Before your data set is published, any change requests should be sent to noaa.ocads@noaa.gov. After your data set is published, you will receive an online publication confirmation email. From that point on, change requests should be made through the SDIS interface at https://data.pmel.noaa.gov/sdig/oap/Dashboard/.
+
+In the meantime, if you have any questions, please reach out to us by sending an email to noaa.ocads@noaa.gov.
+
+Regards,
+
+NCEI Ocean Carbon and Acidification Data System (OCADS) Team
+

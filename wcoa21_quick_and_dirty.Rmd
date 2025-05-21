@@ -1,0 +1,619 @@
+---
+title: "WCOA21 Quick and Dirty"
+author: "Zack Gold"
+date: "2024-02-20"
+output: html_document
+---
+
+```{r, echo=FALSE, hide=TRUE, warnings=FALSE,message=FALSE}
+library(tidyverse)
+library(here)
+library(sf)
+library(devtools)
+#devtools::install_github("katiejolly/nationalparkcolors")
+library(nationalparkcolors)
+library(knitr)
+library("rnaturalearth")
+library("rnaturalearthdata")
+library("readxl")
+library(phyloseq)
+library(ranacapa)
+library(vegan)
+world <- ne_countries(scale = "medium", returnclass = "sf")
+
+here()
+```
+
+
+```{r}
+co1_data_long <- read.table(here("WCOA","COI_longFormat_detections.tsv"), header=TRUE, sep="\t")
+
+
+```
+
+```{r}
+
+co1_data_long %>% 
+ filter(., ASV=="ASV_250630" ) -> ASV_250630
+
+ggplot(data = world) +
+    geom_sf() +
+    geom_point(data = ASV_250630, aes(x = long, y = lat,colour=eDNAindex)) +
+    coord_sf(xlim = c(-127, -117), ylim = c(31, 50), expand = FALSE) +theme_bw() +xlab("Longitude") +ylab("Latitude") +scale_color_viridis_c(direction=-1)
+
+
+ggsave(
+  file = here::here("analysis", "figures", "e_huxleyi_plot.jpeg"),
+  width = 8,
+  height = 16, limitsize = FALSE
+)
+
+
+```
+
+```{r}
+
+co1_data_long %>% 
+ filter(., ASV=="ASV_239221" ) -> ASV_239221
+
+ggplot(data = world) +
+    geom_sf() +
+    geom_point(data = ASV_250630, aes(x = long, y = lat,colour=eDNAindex), size=5, alpha=0.4) +
+    coord_sf(xlim = c(-127, -117), ylim = c(31, 50), expand = FALSE) +theme_bw() +xlab("Longitude") +ylab("Latitude") +scale_color_viridis_c(direction=-1)
+
+```
+
+
+
+####Build All Method Phyloseq Object
+
+##### ASV Reads
+```{r}
+co1_data_long %>% 
+  dplyr::select(-ASV, -Kingdom,-Phylum,-Class, -Order,-Family, -Genus, -Species, -eDNAindex) %>% 
+  distinct() -> co1_sample_data
+
+#Metadata
+co1_sample_data %>%  as.data.frame() -> sampledata
+rownames(sampledata) <- sampledata$Sample
+sample_data(sampledata) -> sampledata
+
+#ASV Reads
+
+co1_data_long %>% 
+  dplyr::select(ASV,Sample, eDNAindex) %>% 
+  pivot_wider(names_from = Sample, values_from = eDNAindex, values_fill  =0) -> wide_PA
+
+co1_data_long %>% 
+  dplyr::select(ASV, Kingdom,Phylum,Class, Order,Family, Genus, Species) %>% 
+  distinct() %>% as.matrix() -> taxonomy_table
+
+rownames(taxonomy_table) <- wide_PA$ASV
+
+TAX = tax_table(taxonomy_table)
+
+wide_PA %>% 
+  dplyr::select(-ASV) %>% as.matrix() -> otu_table
+rownames(otu_table) <- wide_PA$ASV
+
+OTU = otu_table(otu_table, taxa_are_rows = TRUE)
+physeq_obj._CO1 = phyloseq(OTU, TAX, sampledata)
+
+
+pelagic_co1 <- subset_samples(physeq_obj._CO1, group4 == "pelagic")
+benthic_co1 <- subset_samples(physeq_obj._CO1, group4 == "benthic")
+```
+
+```{r}
+
+#Betadiversity
+#Generate Vegan formatted data table
+method.sampledf <- data.frame(sample_data(pelagic_co1))
+method.rel_abun<- vegan_otu(pelagic_co1)
+
+#Jaccard dissimilarity matrix
+method.d_carn <- vegdist(method.rel_abun, method="bray", binary=TRUE)
+
+#PERMANOVA: Method+Site
+method.adonis_results <- adonis2(method.rel_abun~group3+degLat, data=method.sampledf)
+method.adonis_results
+```
+
+```{r}
+ord <- ordinate(pelagic_co1, method = "NMDS", distance = ("bray"))
+
+##Plot_Ordination
+plot_ordination(pelagic_co1, ord, "samples", color = "aragonite_sat") +
+  ggtitle("NMDS - Stress 0.215") + 
+  geom_point(size = 4) + 
+  theme_bw()+ 
+  theme(plot.title = element_text(hjust = 0.5,size = 20, face = "bold"),
+        plot.subtitle = element_text(hjust = 0.5,size = 18, face = "bold"),
+        panel.grid.major = element_blank(), 
+        panel.grid.minor = element_blank(),
+        panel.background = element_blank(), 
+        axis.text=element_text(size=16), 
+        axis.title=element_text(size=16,face="bold"),
+        legend.title = element_text( size=16, face="bold"),
+        legend.text = element_text(size=14)
+        ) + 
+  labs(color = "Aragonite Saturation") +scale_color_viridis_c(option="B")  -> co1_pelagic_plot
+
+co1_pelagic_plot
+
+ggsave(
+  file = here::here("analysis", "figures", "co1_pelagic_plot.jpeg"),
+  width = 12,
+  height = 8, limitsize = FALSE
+)
+
+
+```
+
+```{r}
+
+#Betadiversity
+#Generate Vegan formatted data table
+method.sampledf <- data.frame(sample_data(benthic_co1))
+method.rel_abun<- vegan_otu(benthic_co1)
+
+#Jaccard dissimilarity matrix
+method.d_carn <- vegdist(method.rel_abun, method="bray", binary=TRUE)
+
+#PERMANOVA: Method+Site
+method.adonis_results <- adonis2(method.rel_abun~group3+degLat, data=method.sampledf)
+method.adonis_results
+```
+
+```{r}
+ord <- ordinate(benthic_co1, method = "NMDS", distance = ("bray"))
+
+##Plot_Ordination
+plot_ordination(benthic_co1, ord, "samples", color = "aragonite_sat") +
+  ggtitle("NMDS - Stress 0.229") + 
+  geom_point(size = 4) + 
+  theme_bw()+ 
+  theme(plot.title = element_text(hjust = 0.5,size = 20, face = "bold"),
+        plot.subtitle = element_text(hjust = 0.5,size = 18, face = "bold"),
+        panel.grid.major = element_blank(), 
+        panel.grid.minor = element_blank(),
+        panel.background = element_blank(), 
+        axis.text=element_text(size=16), 
+        axis.title=element_text(size=16,face="bold"),
+        legend.title = element_text( size=16, face="bold"),
+        legend.text = element_text(size=14)
+        ) + 
+  labs(color = "Aragonite Saturation") +scale_color_viridis_c(option="B")  -> co1_benthic_plot
+
+co1_benthic_plot
+
+ggsave(
+  file = here::here("analysis", "figures", "co1_benthic_plot.jpeg"),
+  width = 12,
+  height = 8, limitsize = FALSE
+)
+
+
+```
+
+# 18Sv4
+
+```{r}
+x18sv4_data_long <- read.table(here("WCOA","18Sv4_longFormat_detections.tsv"), header=TRUE, sep="\t")
+
+
+
+x18sv4_data_long %>% 
+ filter(., ASV=="ASV_076945" )-> ASV_076945
+
+ggplot(data = world) +
+    geom_sf() +
+    geom_point(data = ASV_076945, aes(x = long, y = lat,colour=eDNAindex),size= 5, alpha=0.5) +
+    coord_sf(xlim = c(-127, -117), ylim = c(31, 50), expand = FALSE) +theme_bw() +xlab("Longitude") +ylab("Latitude") +scale_color_viridis_c(, direction = -1) -> ASV_076945_plot
+
+ASV_076945_plot
+
+ggsave(
+  file = here::here("analysis", "figures", "ASV_076945_plot.jpeg"),
+  width = 8,
+  height = 16, limitsize = FALSE
+  )
+
+```
+
+```{r}
+
+
+x18sv4_data_long %>% 
+ filter(., ASV=="ASV_078014" )-> ASV_078014
+
+ggplot(data = world) +
+    geom_sf() +
+    geom_point(data = ASV_076945, aes(x = long, y = lat,colour=eDNAindex),size= 5, alpha=0.5) +
+    coord_sf(xlim = c(-127, -117), ylim = c(31, 50), expand = FALSE) +theme_bw() +xlab("Longitude") +ylab("Latitude") +scale_color_viridis_c(, direction = -1) -> ASV_078014_plot
+
+ASV_078014_plot
+
+ggsave(
+  file = here::here("analysis", "figures", "ASV_076945_plot.jpeg"),
+  width = 16,
+  height = 8, limitsize = FALSE
+  )
+
+```
+
+####Build All Method Phyloseq Object
+
+##### ASV Reads
+```{r}
+x18sv4_data_long %>% 
+  dplyr::select(-ASV, -Kingdom,-Phylum,-Class, -Order,-Family, -Genus, -Species, -eDNAindex) %>% 
+  distinct() -> x18sv4_sample_data
+
+#Metadata
+x18sv4_sample_data %>%  as.data.frame() -> sampledata
+rownames(sampledata) <- sampledata$Sample
+sample_data(sampledata) -> sampledata
+
+#ASV Reads
+
+x18sv4_data_long %>% 
+  dplyr::select(ASV,Sample, eDNAindex) %>% 
+  pivot_wider(names_from = Sample, values_from = eDNAindex, values_fill  =0) -> wide_PA
+
+x18sv4_data_long %>% 
+  dplyr::select(ASV, Kingdom,Phylum,Class, Order,Family, Genus, Species) %>% 
+  distinct() %>% as.matrix() -> taxonomy_table
+
+rownames(taxonomy_table) <- wide_PA$ASV
+
+TAX = tax_table(taxonomy_table)
+
+wide_PA %>% 
+  dplyr::select(-ASV) %>% as.matrix() -> otu_table
+rownames(otu_table) <- wide_PA$ASV
+
+OTU = otu_table(otu_table, taxa_are_rows = TRUE)
+physeq_obj.18S_v4 = phyloseq(OTU, TAX, sampledata)
+
+
+physeq_obj.18S_v4 <- subset_samples(physeq_obj.18S_v4, group4 == "pelagic")
+```
+
+```{r}
+
+#Betadiversity
+#Generate Vegan formatted data table
+method.sampledf <- data.frame(sample_data(physeq_obj.18S_v4))
+method.rel_abun<- vegan_otu(physeq_obj.18S_v4)
+
+#Jaccard dissimilarity matrix
+method.d_carn <- vegdist(method.rel_abun, method="bray", binary=TRUE)
+
+#PERMANOVA: Method+Site
+method.adonis_results <- adonis2(method.rel_abun~group3+degLat, data=method.sampledf)
+method.adonis_results
+```
+
+```{r}
+ord <- ordinate(physeq_obj.18S_v4, method = "NMDS", distance = ("bray"))
+
+##Plot_Ordination
+plot_ordination(physeq_obj.18S_v4, ord, "samples", color = "aragonite_sat") +
+  ggtitle("NMDS - Stress 0.200") + 
+  geom_point(size = 4) + 
+  theme_bw()+ 
+  theme(plot.title = element_text(hjust = 0.5,size = 20, face = "bold"),
+        plot.subtitle = element_text(hjust = 0.5,size = 18, face = "bold"),
+        panel.grid.major = element_blank(), 
+        panel.grid.minor = element_blank(),
+        panel.background = element_blank(), 
+        axis.text=element_text(size=16), 
+        axis.title=element_text(size=16,face="bold"),
+        legend.title = element_text( size=16, face="bold"),
+        legend.text = element_text(size=14)
+        ) + 
+  labs(color = "Aragonite Saturation") +scale_color_viridis_c(option="B")  -> x18sv4_pelagic_plot
+
+x18sv4_pelagic_plot
+
+ggsave(
+  file = here::here("analysis", "figures", "18sv4_pelagic_plot.jpeg"),
+  width = 12,
+  height = 8, limitsize = FALSE
+)
+
+
+```
+
+# 16S Kelly
+
+```{r}
+K16S_data_long <- read.table(here("WCOA","Kelly16S_longFormat_detections.tsv"), header=TRUE, sep="\t")
+
+```
+
+##### ASV Reads
+```{r}
+K16S_data_long %>% 
+  dplyr::select(-ASV, -Kingdom,-Phylum,-Class, -Order,-Family, -Genus, -Species, -eDNAindex) %>% 
+  distinct() -> K16S_data_long_sample_data
+
+#Metadata
+K16S_data_long_sample_data %>%  as.data.frame() -> sampledata
+rownames(sampledata) <- sampledata$Sample
+sample_data(sampledata) -> sampledata
+
+#ASV Reads
+
+K16S_data_long %>% 
+  dplyr::select(ASV,Sample, eDNAindex) %>% 
+  pivot_wider(names_from = Sample, values_from = eDNAindex, values_fill  =0) -> wide_PA
+
+K16S_data_long %>% 
+  dplyr::select(ASV, Kingdom,Phylum,Class, Order,Family, Genus, Species) %>% 
+  distinct() %>% as.matrix() -> taxonomy_table
+
+rownames(taxonomy_table) <- wide_PA$ASV
+
+TAX = tax_table(taxonomy_table)
+
+wide_PA %>% 
+  dplyr::select(-ASV) %>% as.matrix() -> otu_table
+rownames(otu_table) <- wide_PA$ASV
+
+OTU = otu_table(otu_table, taxa_are_rows = TRUE)
+physeq_obj.K16S = phyloseq(OTU, TAX, sampledata)
+
+```
+
+```{r}
+
+#Betadiversity
+#Generate Vegan formatted data table
+method.sampledf <- data.frame(sample_data(physeq_obj.K16S))
+method.rel_abun<- vegan_otu(physeq_obj.K16S)
+
+#Jaccard dissimilarity matrix
+method.d_carn <- vegdist(method.rel_abun, method="bray", binary=TRUE)
+
+#PERMANOVA: Method+Site
+method.adonis_results <- adonis2(method.rel_abun~group3+degLat, data=method.sampledf)
+method.adonis_results
+```
+
+```{r}
+ord <- ordinate(physeq_obj.K16S, method = "NMDS", distance = ("bray"))
+
+##Plot_Ordination
+plot_ordination(physeq_obj.K16S, ord, "samples", color = "degLat") +
+  ggtitle("NMDS - Stress 0.25") + 
+  geom_point(size = 4) + 
+  theme_bw()+ 
+  theme(plot.title = element_text(hjust = 0.5,size = 20, face = "bold"),
+        plot.subtitle = element_text(hjust = 0.5,size = 18, face = "bold"),
+        panel.grid.major = element_blank(), 
+        panel.grid.minor = element_blank(),
+        panel.background = element_blank(), 
+        axis.text=element_text(size=16), 
+        axis.title=element_text(size=16,face="bold"),
+        legend.title = element_text( size=16, face="bold"),
+        legend.text = element_text(size=14)
+        ) + 
+  labs(color = "Lattitude") +scale_color_viridis_c(option="B")  -> K16S_benthic_plot
+
+K16S_benthic_plot
+
+ggsave(
+  file = here::here("analysis", "figures", "K16S_benthic_plot.jpeg"),
+  width = 12,
+  height = 8, limitsize = FALSE
+)
+
+
+```
+
+# MiFish
+
+```{r}
+MiFish_data_long <- read.table(here("WCOA","MiFish_longFormat_detections.tsv"), header=TRUE, sep="\t")
+
+```
+
+##### ASV Reads
+
+```{r}
+
+MiFish_data_long %>% 
+  ungroup() %>% 
+  group_by(Sample) %>% 
+  dplyr::summarise(n_distinct(Species)) %>% 
+  arrange(`n_distinct(Species)`) %>% 
+  filter(., `n_distinct(Species)` <3) -> species_1
+
+MiFish_data_long %>% 
+  filter(., !Sample %in% species_1$Sample) -> MiFish_data_long_cut
+
+```
+
+
+```{r}
+MiFish_data_long_cut %>% 
+  dplyr::select(-ASV, -Kingdom,-Phylum,-Class, -Order,-Family, -Genus, -Species, -eDNAindex) %>% 
+  distinct() -> MiFish_data_long_sample_data
+
+#Metadata
+MiFish_data_long_sample_data %>%  as.data.frame() -> sampledata
+rownames(sampledata) <- sampledata$Sample
+sample_data(sampledata) -> sampledata
+
+#ASV Reads
+
+MiFish_data_long_cut %>% 
+  dplyr::select(ASV,Sample, eDNAindex) %>% 
+  pivot_wider(names_from = Sample, values_from = eDNAindex, values_fill  =0) -> wide_PA
+
+MiFish_data_long_cut %>% 
+  dplyr::select(ASV, Kingdom,Phylum,Class, Order,Family, Genus, Species) %>% 
+  distinct() %>% as.matrix() -> taxonomy_table
+
+rownames(taxonomy_table) <- wide_PA$ASV
+
+TAX = tax_table(taxonomy_table)
+
+wide_PA %>% 
+  dplyr::select(-ASV) %>% as.matrix() -> otu_table
+rownames(otu_table) <- wide_PA$ASV
+
+OTU = otu_table(otu_table, taxa_are_rows = TRUE)
+physeq_obj.MiFish = phyloseq(OTU, TAX, sampledata)
+
+```
+
+```{r}
+
+#Betadiversity
+#Generate Vegan formatted data table
+method.sampledf <- data.frame(sample_data(physeq_obj.MiFish))
+method.rel_abun<- vegan_otu(physeq_obj.MiFish)
+
+#Jaccard dissimilarity matrix
+method.d_carn <- vegdist(method.rel_abun, method="bray", binary=TRUE)
+
+#PERMANOVA: Method+Site
+method.adonis_results <- adonis2(method.rel_abun~group3+degLat, data=method.sampledf)
+method.adonis_results
+```
+
+```{r}
+ord <- ordinate(physeq_obj.MiFish, method = "NMDS", distance = ("bray"))
+
+##Plot_Ordination
+plot_ordination(physeq_obj.MiFish, ord, "samples", color = "aragonite_sat") +
+  ggtitle("NMDS - Stress 0.233") + 
+  geom_point(size = 4) + 
+  theme_bw()+ 
+  theme(plot.title = element_text(hjust = 0.5,size = 20, face = "bold"),
+        plot.subtitle = element_text(hjust = 0.5,size = 18, face = "bold"),
+        panel.grid.major = element_blank(), 
+        panel.grid.minor = element_blank(),
+        panel.background = element_blank(), 
+        axis.text=element_text(size=16), 
+        axis.title=element_text(size=16,face="bold"),
+        legend.title = element_text( size=16, face="bold"),
+        legend.text = element_text(size=14)
+        ) + 
+  labs(color = "Aragonite Saturation") +scale_color_viridis_c(option="B")  -> MiFish_plot
+
+MiFish_plot
+
+ggsave(
+  file = here::here("analysis", "figures", "MiFish_plot.jpeg"),
+  width = 12,
+  height = 8, limitsize = FALSE
+)
+
+
+```
+
+```{r}
+##Plot_Ordination
+plot_ordination(physeq_obj.MiFish, ord, "samples", color = "degLat") +
+  ggtitle("NMDS - Stress 0.233") + 
+  geom_point(size = 4) + 
+  theme_bw()+ 
+  theme(plot.title = element_text(hjust = 0.5,size = 20, face = "bold"),
+        plot.subtitle = element_text(hjust = 0.5,size = 18, face = "bold"),
+        panel.grid.major = element_blank(), 
+        panel.grid.minor = element_blank(),
+        panel.background = element_blank(), 
+        axis.text=element_text(size=16), 
+        axis.title=element_text(size=16,face="bold"),
+        legend.title = element_text( size=16, face="bold"),
+        legend.text = element_text(size=14)
+        ) + 
+  labs(color = "Degree Lattitude") +scale_color_viridis_c(option="B")  -> MiFish_plot_lat
+
+MiFish_plot_lat
+
+ggsave(
+  file = here::here("analysis", "figures", "MiFish_plot_lat.jpeg"),
+  width = 12,
+  height = 8, limitsize = FALSE
+)
+
+
+
+
+```
+
+# Whale Map
+
+```{r}
+rbind(MiFish_data_long, co1_data_long, K16S_data_long) %>% 
+  group_by(Class, Family, Genus, Species, Sample, long, lat) %>% 
+  dplyr::summarise(eDNAindex= sum(eDNAindex)) %>% 
+  pivot_wider(names_from = Sample, values_from = eDNAindex, values_fill  =0) %>% 
+  pivot_longer(cols=`E394`:`E826`,names_to = "Sample", values_to = "eDNAindex") -> vert_comb
+```
+
+```{r}
+vert_comb %>%   filter(., Class=="Mammalia") %>% 
+  filter(., Genus != "Homo",
+         Species !="Canis lupus",
+         Species!="Sus scrofa",
+         Species!="Rhinolophus celebensis") %>% 
+  filter(., !is.na(Species)) %>% 
+  mutate(., PA = if_else(eDNAindex >0,1,0))-> marmam_mapping
+marmam_mapping$Species %>% unique()
+
+marmam_mapping %>% 
+  filter(., Species=="Megaptera novaeangliae") -> humpback
+
+ggplot(data = world) +
+    geom_sf() +
+    geom_point(data = humpback, aes(x = long, y = lat,colour=Species)) +
+    coord_sf(xlim = c(-127, -117), ylim = c(31, 50), expand = FALSE) +theme_bw() +xlab("Longitude") +ylab("Latitude")+facet_grid(.~Species)
+
+ggsave(
+  file = here::here("analysis", "figures", "humpback_plot.jpeg"),
+  width = 8,
+  height = 16, limitsize = FALSE
+)
+
+
+ggplot(data = world) +
+    geom_sf() +
+    geom_point(data = marmam_mapping, aes(x = long, y = lat,colour=Species)) +
+    coord_sf(xlim = c(-127, -117), ylim = c(31, 50), expand = FALSE) +theme_bw() +xlab("Longitude") +ylab("Latitude")+facet_grid(.~Species)
+
+ggsave(
+  file = here::here("analysis", "figures", "marmam_plot.jpeg"),
+  width = 16,
+  height = 8, limitsize = FALSE
+)
+
+```
+
+# Shark Map
+```{r}
+vert_comb %>%    filter(., Class=="Chondrichthyes") %>% 
+  filter(., !is.na(Species)) %>% 
+  mutate(., PA = if_else(eDNAindex >0,1,0))-> shark_mapping
+
+ggplot(data = world) +
+    geom_sf() +
+    geom_point(data = shark_mapping, aes(x = long, y = lat,colour=Species)) +
+    coord_sf(xlim = c(-127, -117), ylim = c(31, 50), expand = FALSE) +theme_bw() +xlab("Longitude") +ylab("Latitude")+facet_grid(.~Species)
+
+ggsave(
+  file = here::here("analysis", "figures", "shark_plot.jpeg"),
+  width = 16,
+  height = 8, limitsize = FALSE
+)
+
+```
+
+
+
+

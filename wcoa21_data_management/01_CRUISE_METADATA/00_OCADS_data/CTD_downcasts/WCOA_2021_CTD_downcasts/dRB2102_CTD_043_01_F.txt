@@ -1,0 +1,45 @@
+* Sea-Bird SBE 9 Data:
+* Software Version Seasave V 7.26.7.107
+* Vessel: NOAA Ship Ronald H. Brown
+* Cruise: RB2102, West Coast Ocean Acidification (WCOA) 2021
+* Dates: 20210622 to 20210723
+* Region: NE Pacific, USA West Coast
+* Ports: San Diego, CA to Port Angeles, WA to San Diego, CA
+* Chief Scientists: R. Feely, NOAA PMEL; D. Greeley, NOAA PMEL; B. Carter, NOAA PMEL / UW CICOES
+* Contacts: R. Feely, richard.a.feely@noaa.gov; D. Greeley, dana.greeley@noaa.gov; B. Carter, brendan.carter@noaa.gov
+* Station: 043
+* Cast: 1
+* Cast Date-Time [GMT]: 02-Jul-2021 20:48:07
+* Longitude: -124.2472 W
+* Latitude: 47.1145 N
+* Water Depth [m]: 22.5
+**********
+* Column  1: Pressure [decibar]
+* Column  2: Depth [m]
+* Column  3: Temperature ITS-90 [degree C]
+* Column  4: Salinity PSS-78 [psu]
+* Column  5: Sigma-theta EOS-80 [kg/m^3 - 1000]
+* Column  6: Oxygen [ml/L]
+* Column  7: Oxygen [umol/kg]
+* Column  8: Fluorescence [volts]
+* Column  9: Oxygen Reduction Potential [mV]
+* Column 10: Altimeter [m]
+**********
+*END*
+   2.00	   1.98	16.7706	28.7628	20.7857	 7.57	331.35	0.120	  159.20	 28.47
+   3.00	   2.98	16.7706	28.7625	20.7854	 7.35	321.65	0.235	  158.90	 19.49
+   4.00	   3.97	16.7607	28.0913	20.2738	 7.12	311.51	0.229	  158.91	 18.47
+   5.00	   4.96	16.7743	28.1121	20.2867	 7.13	312.21	0.237	  158.67	 17.53
+   6.00	   5.95	16.7770	28.1887	20.3448	 7.71	337.34	0.257	  157.75	 16.21
+   7.00	   6.94	16.7594	28.3794	20.4948	 7.69	336.75	0.258	  156.45	 15.17
+   8.00	   7.93	16.7486	28.4404	20.5439	 7.65	334.95	0.260	  156.28	 14.05
+   9.00	   8.93	16.7282	28.7347	20.7739	 7.47	326.64	0.238	  156.39	 13.63
+  10.00	   9.92	16.6981	29.2444	21.1711	 7.17	313.55	0.211	  156.50	 12.40
+  11.00	  10.91	16.6392	30.1288	21.8621	 6.78	296.35	0.175	  156.74	 11.25
+  12.00	  11.90	16.5622	30.3741	22.0675	 6.77	295.76	0.191	  156.87	 10.20
+  13.00	  12.89	16.4392	30.6262	22.2886	 6.76	295.47	0.187	  156.91	  9.24
+  14.00	  13.88	16.4470	30.7601	22.3896	 6.69	292.36	0.180	  156.96	  8.32
+  15.00	  14.87	16.3604	30.8838	22.5041	 6.59	287.95	0.156	  156.90	  7.33
+  16.00	  15.87	15.5414	31.1942	22.9238	 6.56	286.41	0.132	  157.19	  6.30
+  17.00	  16.86	14.9746	31.3521	23.1673	 6.49	283.10	0.133	  157.45	  5.31
+  18.00	  17.85	14.5875	31.4475	23.3225	 6.42	280.18	0.141	  156.94	  4.63

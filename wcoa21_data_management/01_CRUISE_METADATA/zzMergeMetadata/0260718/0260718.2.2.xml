@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<accession manifest_version="2">
+  <head>
+    <id>0260718</id>
+    <version>2.2</version>
+    <timestamp>2023-05-19 19:56:29+00</timestamp>
+    <host>master.ams.ncei.noaa.gov</host>
+    <directory>/nodc/archive/arc0208/0260718/2.2/</directory>
+    <file_count>12</file_count>
+    <byte_count>10755323</byte_count>
+  </head>
+  <body>
+    <files>
+      <file>
+        <path>NCEI-Readme.txt</path>
+        <digest algorithm="md5">e91932714ba31f21222c897c53a16b96</digest>
+        <digest algorithm="sha1">82edb6b02edde6773d1dbf60f0daa14dd0a2399a</digest>
+        <digest algorithm="sha256">8a28ff0cfd348380edf08df45dffd3af0f7b21e36693b33c2caacf099fc00e47</digest>
+        <digest algorithm="sha384">5f34016a6e2d1509b8a30b4831c1a216df54bb1e865cea0fb6a1ce6f94ac19c39f8abea4ce4fd1d2fc9dbbcc808a7158</digest>
+        <digest algorithm="sha512">3ef7e6ffc7c31d8f016ae4c3654e4476ffebdeef8984c1cca0da3cd3b8410e5b19b0d985d06ecd58609ddce2f39a6add62c08580e018351ab2827c4b06da39c2</digest>
+        <type_category>regular</type_category>
+        <type>text</type>
+        <permissions>-rw-rw-r--</permissions>
+        <linkcount>2</linkcount>
+        <user>root</user>
+        <group>root</group>
+        <size>1847</size>
+        <blksize>32768</blksize>
+        <blocks>8</blocks>
+        <modtime>2018-06-07 19:47:08+00</modtime>
+        <changetime>2023-05-19 19:56:27+00</changetime>
+        <acctime>2023-05-19 19:56:29+00</acctime>
+        <sumtime>2023-05-19 19:56:29+00</sumtime>
+        <inode>50594208</inode>
+      </file>
+      <file>
+        <path>about</path>
+        <digest algorithm="md5">d41d8cd98f00b204e9800998ecf8427e</digest>
+        <digest algorithm="sha1">da39a3ee5e6b4b0d3255bfef95601890afd80709</digest>
+        <digest algorithm="sha256">e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855</digest>
+        <digest algorithm="sha384">38b060a751ac96384cd9327eb1b1e36a21fdb71114be07434c0cc7bf63f6e1da274edebfe76f65fbd51ad2f14898b95b</digest>
+        <digest algorithm="sha512">cf83e1357eefb8bdf1542850d66d8007d620e4050b5715dc83f4a921d36ce9ce47d0d13c5d85f2b0ff8318d2877eec2f63b931bd47417a81a538327af927da3e</digest>
+        <type_category>irregular</type_category>
+        <type>directory</type>
+        <permissions>drwxrwxr-x</permissions>
+        <linkcount>2</linkcount>
+        <user>root</user>
+        <group>root</group>
+        <size>4096</size>
+        <blksize>32768</blksize>
+        <blocks>8</blocks>
+        <modtime>2023-05-18 15:27:16+00</modtime>
+        <changetime>2023-05-19 19:56:28+00</changetime>
+        <acctime>2023-05-19 19:56:29+00</acctime>
+        <sumtime>2023-05-19 19:56:29+00</sumtime>
+        <inode>50601986</inode>
+      </file>
+      <file>
+        <path>about/0-email.txt</path>
+        <digest algorithm="md5">99e2baa6dcf98a0df2faecd76bd8db8a</digest>
+        <digest algorithm="sha1">dda6eb4c67271320e370f387a6544ff094431e46</digest>
+        <digest algorithm="sha256">a1be7269fb090ca94630bc3dc23940f55c5dfae4394a2d9f296bbc38c23e682a</digest>
+        <digest algorithm="sha384">bed47ae40b6264d09a02e2462e4b5c28326716f627d42bfa415122b9dc76434ec2db62a61d90cde114b8e230caee85e2</digest>
+        <digest algorithm="sha512">c1a7ccdaec2592b5b61642445d4fdc956fdd4ce184ed32b96aa927959c9b8a3659c6dd3c911af5ac02b5a35c79842c9065a6d3624391a1b0f7a6624d2d30d61b</digest>
+        <type_category>regular</type_category>
+        <type>text</type>
+        <permissions>-rw-r--r--</permissions>
+        <linkcount>1</linkcount>
+        <user>root</user>
+        <group>root</group>
+        <size>819</size>
+        <blksize>32768</blksize>
+        <blocks>8</blocks>
+        <modtime>2023-05-18 15:27:16+00</modtime>
+        <changetime>2023-05-19 19:56:28+00</changetime>
+        <acctime>2023-05-19 19:56:29+00</acctime>
+        <sumtime>2023-05-19 19:56:29+00</sumtime>
+        <inode>50594687</inode>
+      </file>
+      <file>
+        <path>about/0260718_lonlat.txt</path>
+        <digest algorithm="md5">00b1dc463a728d18f1cd72661a000bab</digest>
+        <digest algorithm="sha1">93d142c33e8f3e0dfb676862078b04dba6255f18</digest>
+        <digest algorithm="sha256">1a77d52c14ce4cc5bdc066a8a1c1febf081cf0bff63f8d1c419392d6df11c525</digest>
+        <digest algorithm="sha384">d27fb65c9d87c9de4e3336bd7620834bf521c7b5b8ee04382a45e9cf2399a68f08194a89166e358a6e1c4e9d4b66ff94</digest>
+        <digest algorithm="sha512">e4459a3867814f763da79107f89105b28778938e1e8ebcc1dde16db5bac4452a597b0346dc45363aee463373d47538df18f6ce7afa4a6c46493215c28751535c</digest>
+        <type_category>regular</type_category>
+        <type>text</type>
+        <permissions>-rw-rw-r--</permissions>
+        <linkcount>2</linkcount>
+        <user>root</user>
+        <group>root</group>
+        <size>5886</size>
+        <blksize>32768</blksize>
+        <blocks>16</blocks>
+        <modtime>2022-09-29 19:35:09+00</modtime>
+        <changetime>2023-05-19 19:56:28+00</changetime>
+        <acctime>2023-05-19 19:56:29+00</acctime>
+        <sumtime>2023-05-19 19:56:29+00</sumtime>
+        <inode>50594210</inode>
+      </file>
+      <file>
+        <path>about/0260718_map.jpg</path>
+        <digest algorithm="md5">8549b7812c3e4bf957270899a87bf7f9</digest>
+        <digest algorithm="sha1">6bc5886995967b3b2517deaee02d52716075ddad</digest>
+        <digest algorithm="sha256">a0592194aa21f38eca8c09fc3e8c0db61d208054a8d2cd3e078d1e3780cf6430</digest>
+        <digest algorithm="sha384">2bed477ee0152c3a8ff2cf96652fc5566c191ec3765835177f68e94a59a169a24d341bbdd308eef9643f86d72441103b</digest>
+        <digest algorithm="sha512">1d3beec00a879efd414a68f002706a299ffd6cd92cbaba88b60724daa637d3cbc8a2682ad62be3b8fdc6622b39a557c937a8d545a74af4bde9f7be8b1090543c</digest>
+        <type_category>regular</type_category>
+        <type>binary</type>
+        <permissions>-rw-rw-r--</permissions>
+        <linkcount>2</linkcount>
+        <user>root</user>
+        <group>root</group>
+        <size>227786</size>
+        <blksize>32768</blksize>
+        <blocks>448</blocks>
+        <modtime>2022-09-29 19:35:53+00</modtime>
+        <changetime>2023-05-19 19:56:28+00</changetime>
+        <acctime>2023-05-19 19:56:29+00</acctime>
+        <sumtime>2023-05-19 19:56:29+00</sumtime>
+        <inode>50594211</inode>
+      </file>
+      <file>
+        <path>about/BGB12Y91U-confirmation_email.txt</path>
+        <digest algorithm="md5">162bf1c1dc8ff4eaae18b83f55bcd973</digest>
+        <digest algorithm="sha1">7aac024322afb2f120dc9f9e4ab252cc24ebd13e</digest>
+        <digest algorithm="sha256">c3d263b21e4f2c06eba7c6060918be960c07900b3d3380a001f12fa6635babb6</digest>
+        <digest algorithm="sha384">b990d530a8c5a95b23eeaf315c7a3309af9ba8f9c1c168d55b981032447e8423f3b9b06b60f5bbed4552f5a1a6be8442</digest>
+        <digest algorithm="sha512">ac5213e5c32affe8efbf454bf283882362ce993a40e88d6635653e0d9a899a323c7cfea64240c5e2539970e3f1806435bbe936d1ca6934dfde1cec9982fa93c7</digest>
+        <type_category>regular</type_category>
+        <type>text</type>
+        <permissions>-rw-rw-r--</permissions>
+        <linkcount>2</linkcount>
+        <user>root</user>
+        <group>root</group>
+        <size>1546</size>
+        <blksize>32768</blksize>
+        <blocks>8</blocks>
+        <modtime>2022-09-28 23:36:19+00</modtime>
+        <changetime>2023-05-19 19:56:28+00</changetime>
+        <acctime>2023-05-19 19:56:29+00</acctime>
+        <sumtime>2023-05-19 19:56:29+00</sumtime>
+        <inode>50594212</inode>
+      </file>
+      <file>
+        <path>about/journal.txt</path>
+        <digest algorithm="md5">44a5eb95ca04832c249de621eea0a376</digest>
+        <digest algorithm="sha1">24835e0da440b52e03c34fe52e65e64ad05514e4</digest>
+        <digest algorithm="sha256">ddf932b58c46cef65952394402a2ae17fb65200803d8c41081b4b8f3d5d56e86</digest>
+        <digest algorithm="sha384">9cd077076020b7fa1a4444a65dd2e7dfbcd0c78e0ba0226898cb933d65b79ab572774860b615f97c4ac493bc658df0d3</digest>
+        <digest algorithm="sha512">3e4240b82313992e58c920c86e4a2103924af8eec3c1cadc247389c32ed87e1782761566c22c5d2cb84babeca2e3604e72dbd43ec334fe4aee2748d2db1e7433</digest>
+        <type_category>regular</type_category>
+        <type>text</type>
+        <permissions>-rw-rw-r--</permissions>
+        <linkcount>1</linkcount>
+        <user>root</user>
+        <group>root</group>
+        <size>3021</size>
+        <blksize>32768</blksize>
+        <blocks>8</blocks>
+        <modtime>2023-05-18 15:27:16+00</modtime>
+        <changetime>2023-05-19 19:56:28+00</changetime>
+        <acctime>2023-05-19 19:56:29+00</acctime>
+        <sumtime>2023-05-19 19:56:29+00</sumtime>
+        <inode>50594688</inode>
+      </file>
+      <file>
+        <path>data</path>
+        <digest algorithm="md5">d41d8cd98f00b204e9800998ecf8427e</digest>
+        <digest algorithm="sha1">da39a3ee5e6b4b0d3255bfef95601890afd80709</digest>
+        <digest algorithm="sha256">e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855</digest>
+        <digest algorithm="sha384">38b060a751ac96384cd9327eb1b1e36a21fdb71114be07434c0cc7bf63f6e1da274edebfe76f65fbd51ad2f14898b95b</digest>
+        <digest algorithm="sha512">cf83e1357eefb8bdf1542850d66d8007d620e4050b5715dc83f4a921d36ce9ce47d0d13c5d85f2b0ff8318d2877eec2f63b931bd47417a81a538327af927da3e</digest>
+        <type_category>irregular</type_category>
+        <type>directory</type>
+        <permissions>drwxrwxr-x</permissions>
+        <linkcount>3</linkcount>
+        <user>root</user>
+        <group>root</group>
+        <size>4096</size>
+        <blksize>32768</blksize>
+        <blocks>8</blocks>
+        <modtime>2022-09-29 19:35:46+00</modtime>
+        <changetime>2023-05-19 19:56:28+00</changetime>
+        <acctime>2023-05-19 19:56:29+00</acctime>
+        <sumtime>2023-05-19 19:56:29+00</sumtime>
+        <inode>50601987</inode>
+      </file>
+      <file>
+        <path>data/0-data</path>
+        <digest algorithm="md5">d41d8cd98f00b204e9800998ecf8427e</digest>
+        <digest algorithm="sha1">da39a3ee5e6b4b0d3255bfef95601890afd80709</digest>
+        <digest algorithm="sha256">e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855</digest>
+        <digest algorithm="sha384">38b060a751ac96384cd9327eb1b1e36a21fdb71114be07434c0cc7bf63f6e1da274edebfe76f65fbd51ad2f14898b95b</digest>
+        <digest algorithm="sha512">cf83e1357eefb8bdf1542850d66d8007d620e4050b5715dc83f4a921d36ce9ce47d0d13c5d85f2b0ff8318d2877eec2f63b931bd47417a81a538327af927da3e</digest>
+        <type_category>irregular</type_category>
+        <type>directory</type>
+        <permissions>drwxrwxr-x</permissions>
+        <linkcount>2</linkcount>
+        <user>root</user>
+        <group>root</group>
+        <size>4096</size>
+        <blksize>32768</blksize>
+        <blocks>8</blocks>
+        <modtime>2023-05-18 15:28:22+00</modtime>
+        <changetime>2023-05-19 19:56:28+00</changetime>
+        <acctime>2023-05-19 19:56:29+00</acctime>
+        <sumtime>2023-05-19 19:56:29+00</sumtime>
+        <inode>50601988</inode>
+      </file>
+      <file>
+        <path>data/0-data/33RO20210613_BGB12Y91U.xml</path>
+        <digest algorithm="md5">c7be1bc00a3e0f371a7aa6c8aaa31bff</digest>
+        <digest algorithm="sha1">75abad12bc496c282b9b0cb17887b9db59a9b951</digest>
+        <digest algorithm="sha256">ac0b1682dc19a21b4534d9f0e68ee90b5468d5bab021ec74dc08cb9197964994</digest>
+        <digest algorithm="sha384">2cbdda7618e44639ff827029b7b92b5e626a987038ab1f406ecae2cc05c997884e21550999dd108dbd98ddd88d0e9388</digest>
+        <digest algorithm="sha512">e57b552bbf397662957eb076876468adbb373f0f192efa5ad2d202dc19e84ed11755d74365e4947e2e7acdda031e5dbf27fe6feb0ed24ab3b424aa4a44d26d96</digest>
+        <type_category>regular</type_category>
+        <type>text</type>
+        <permissions>-rw-rw-r--</permissions>
+        <linkcount>2</linkcount>
+        <user>root</user>
+        <group>root</group>
+        <size>88264</size>
+        <blksize>32768</blksize>
+        <blocks>176</blocks>
+        <modtime>2022-09-28 13:46:28+00</modtime>
+        <changetime>2023-05-19 19:56:28+00</changetime>
+        <acctime>2023-05-19 19:56:29+00</acctime>
+        <sumtime>2023-05-19 19:56:29+00</sumtime>
+        <inode>50594214</inode>
+      </file>
+      <file>
+        <path>data/0-data/WCOA2021_Data_forSDIS_2022_09-28.xlsx</path>
+        <digest algorithm="md5">34c8bb798c283db1294f2d85a43ddee7</digest>
+        <digest algorithm="sha1">3e3345351bf04205c55fa74f8eeb76c590ac3c22</digest>
+        <digest algorithm="sha256">c5ff01efcde5157fafc20c13186ddb8d25bbb1cf594c727352b3bef0651fcbe1</digest>
+        <digest algorithm="sha384">1f2aab858eea00ea9f22cc9e6c89a3fa3d28656008713761adc6f2c08a45407c5996c4daf02b929997b25ec5092f9f08</digest>
+        <digest algorithm="sha512">d1d1ec5a7b0dfd847fa25f00797278a05392e7beb617a34a836dd0b16bbf4532f20c67abb531eef416908bd26db21e044cf2b905792de12d7d1b01738bf1e74f</digest>
+        <type_category>regular</type_category>
+        <type>binary</type>
+        <permissions>-rw-rw-r--</permissions>
+        <linkcount>2</linkcount>
+        <user>root</user>
+        <group>root</group>
+        <size>938266</size>
+        <blksize>32768</blksize>
+        <blocks>1840</blocks>
+        <modtime>2022-09-28 13:46:28+00</modtime>
+        <changetime>2023-05-19 19:56:28+00</changetime>
+        <acctime>2023-05-19 19:56:29+00</acctime>
+        <sumtime>2023-05-19 19:56:29+00</sumtime>
+        <inode>50594215</inode>
+      </file>
+      <file>
+        <path>data/0-data/WCOA_2021_cruisereport_v6_2.pdf</path>
+        <digest algorithm="md5">ecc12281d5c3d6279bc8736ba8da7682</digest>
+        <digest algorithm="sha1">478dcdcf442852d831879802ef0b4f4d5590fd82</digest>
+        <digest algorithm="sha256">a01a0353ade4fb4d75453ce028fef91da4b2c94e2ff96c9da0d033882d14f417</digest>
+        <digest algorithm="sha384">18a452d52f7db8b5ef8015202afe5f046103d205a65bd9f8ab2c0722c27ee544cd38efeed51d5a218e71a49a5a51ce8c</digest>
+        <digest algorithm="sha512">e41509fc052f18782af5d4bddfde487424202f048c534bd2a6f2db42931cf46b07872410537a046f90775b1ada7ab453b53dcb4e28573a67c14452dd6f3acf0e</digest>
+        <type_category>regular</type_category>
+        <type>binary</type>
+        <permissions>-rw-r--r--</permissions>
+        <linkcount>1</linkcount>
+        <user>root</user>
+        <group>root</group>
+        <size>9475600</size>
+        <blksize>32768</blksize>
+        <blocks>18512</blocks>
+        <modtime>2023-05-18 15:28:30+00</modtime>
+        <changetime>2023-05-19 19:56:28+00</changetime>
+        <acctime>2023-05-19 19:56:29+00</acctime>
+        <sumtime>2023-05-19 19:56:30+00</sumtime>
+        <inode>50594689</inode>
+      </file>
+    </files>
+  </body>
+</accession>

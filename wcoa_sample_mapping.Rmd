@@ -25,8 +25,14 @@ here()
 sample_data <- read_excel(here("data","WCOA21_eDNA_samples.xlsx"))
 env_data <- read_excel(here("data","WCOA2021_Data_forSDIS_2022_09-28.xlsx"))
 
+co1_data_long <- read.table(here("WCOA","COI_longFormat_detections.tsv"), header=TRUE, sep="\t")
+
 sample_data <- sample_data %>% 
-  rename(., Sample_ID="Field Sample Name")
+  rename(., Sample_ID="Field Sample Name") %>% 
+  mutate(., `Sample` = str_sub(`FINAL Sample NAME`, 1, str_length(`FINAL Sample NAME`)-1),
+         Sample = str_replace(Sample, "\\.","_")) %>% 
+  mutate(., Sampled = if_else(Sample %in% co1_data_long$Sample, "Sequenced", "Sampled"))
+
 ```
 
 # General Observations of of the dataset
@@ -50,6 +56,32 @@ combined %>%
   ggplot(aes(x=CTDTEMP_ITS90, y=CTDOXY, colour=`Line_ID`)) +geom_count() +scale_color_manual(values=c(pal,pal2,pal3,pal4))
 
 
+```
+
+```{r}
+wcoa21_sampling
+
+wcoa21_sampling$Depth
+wcoa21_sampling %>% 
+  dplyr::select(CTDTEMP_ITS90,CTDSAL_PSS78,CTDOXY, Depth,`ΩCa out`, `ΩAr out`) %>% 
+  mutate_if(is.character, as.numeric) %>% 
+  filter(.,!is.na(`ΩCa out`))-> data_4_cor
+corr <- round(cor(data_4_cor), 1)
+library(ggcorrplot)
+ggcorrplot(corr, hc.order = TRUE, outline.color = "white", 
+           lab = TRUE)
+
+wcoa21_sampling %>% 
+  dplyr::select(CTDTEMP_ITS90,CTDSAL_PSS78,CTDOXY, Depth,`ΩCa out`, `ΩAr out`) %>%
+  mutate_if(is.character, as.numeric) %>% 
+  filter(., Depth<200) %>% 
+  ggplot(aes(x=`ΩAr out`, y=CTDTEMP_ITS90, color=Depth)) +geom_count() 
+
+wcoa21_sampling %>% 
+  dplyr::select(CTDTEMP_ITS90,CTDSAL_PSS78,CTDOXY, Depth,`ΩCa out`, `ΩAr out`) %>%
+  mutate_if(is.character, as.numeric) %>% 
+  filter(., Depth<200) %>% 
+  ggplot(aes(x=`CTDOXY`, y=CTDTEMP_ITS90, color=Depth)) +geom_count() 
 ```
 
 ## Plot by Line
@@ -101,6 +133,8 @@ ggplot(data = world) +
 
   
 The biological stations are visible here as they are sampled far more frequently.
+
+
 
 # Selection of Key Stations
 
@@ -456,7 +490,49 @@ combined %>%
 
 combined %>% 
     filter(., Station_ID %in% c(line_0_to_keep$Station_ID,line_2_to_keep$Station_ID,line_3_to_keep$Station_ID,line_4_to_keep$Station_ID,line_5_to_keep$Station_ID,line_6_to_keep$Station_ID,line_7_to_keep$Station_ID,line_8_to_keep$Station_ID,line_9_to_keep$Station_ID,line_11_to_keep$Station_ID,line_13_to_keep$Station_ID,line_14_to_keep$Station_ID,line_15_to_keep$Station_ID,line_16_to_keep$Station_ID,line_17_to_keep$Station_ID)) -> combined_station_to_keep
+
+sample_data <- sample_data %>% 
+  mutate(., `Processed`=if_else(`FINAL Sample NAME` %in% combined_station_to_keep$`FINAL Sample NAME`,"Processed","Sampled"))
+
 ```
+
+## Sampled Cruise Map
+
+```{r,echo=FALSE,warning=FALSE, fig.height= 20, fig.width= 8}
+sample_data %>% 
+  left_join(env_data) %>% 
+  filter(., !is.na(`Sampling method`)) %>% 
+  mutate(`Depth (m)`=as.numeric(`Depth`),
+         CTDTEMP_ITS90=as.numeric(CTDTEMP_ITS90),
+         CTDOXY=as.numeric(CTDOXY),
+         Longitude=as.numeric(Longitude),
+         Latitude=as.numeric(Latitude)) -> combined_2
+
+
+combined_2 %>% 
+  dplyr::select(Longitude,Latitude, Sampled) %>% 
+  distinct() %>% 
+  pivot_wider(names_from = Sampled, values_from  = Sampled) %>% 
+  mutate(., Processed = case_when(Sequenced=="Sequenced" ~"Sequenced",
+                                  TRUE ~"Sampled")) %>% 
+  dplyr::select(Longitude,Latitude, Processed) %>% 
+  distinct() -> summed_station_processed
+
+ggplot(data = world) +
+    geom_sf() +
+    geom_point(data = summed_station_processed, aes(x = Longitude, y = Latitude, colour=Processed),alpha=0.7) +
+    coord_sf(xlim = c(-134, -117), ylim = c(31, 55), expand = FALSE) +theme_bw() +xlab("Longitude") +ylab("Latitude") +scale_color_manual(values=c(pal[5],pal2[5]))  -> sampled_plot2
+
+sampled_plot2
+
+ggsave(
+  file = here::here("analysis", "figures", "sampled_plots.jpeg"),
+  width = 16,
+  height = 8, limitsize = FALSE
+  )
+```
+
+
 
 ### Select Newport and Heceta Head line for benthic samples
 ```{r, fig.height= 16, fig.width= 8}
