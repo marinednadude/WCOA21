@@ -146,6 +146,8 @@ colnames(aragonite)
 aragonite %>% 
   slice(2) -> aragonite_units
 
+bottle_Data <- bottle_Data %>%
+  mutate(across(c(btl_Station_ID, btl_Cast_number, btl_Rosette_Position, btl_Niskin_ID, btl_Niskin_flag, btl_Sample_ID), as.character))
 
 bottle_Data %>% 
   left_join(aragonite_Data) -> bottle_Data_w_arag
@@ -195,7 +197,7 @@ bottle_Data_w_arag %>%
 ```{r}
 QAQCMRE_CruiseSampleMetadata_WCOA21 %>% 
   mutate(pressure= round(Depth_m,0)) %>% 
-  left_join(bottle_Data_w_arag_ctd, by = c("Cast" = "Cast", "Bottle" = "bottle")) -> WCOA21_sample_data
+  left_join(bottle_Data_w_arag_ctd, by = c("Cast" = "btl_Sample_ID", "Bottle" = "btl_Rosette_Position")) -> WCOA21_sample_data
 
 
 
