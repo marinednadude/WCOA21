@@ -43,10 +43,10 @@ sample_Data %>%
   mutate(.,  Date_UTC = as.POSIXct(Combined_date, format="%m/%d/%Y %H:%M", tz="UTC"),
          Date_UTC = if_else(is.na(Date_UTC), as.POSIXct(Collection_Date_local, format="%m/%d/%Y", tz="UTC"), Date_UTC ), 
          Date_local_check = as.POSIXct(Combined_date_local, format="%m/%d/%Y %H:%M", tz="America/Los_Angeles"),
-         Date_local_check = if_else(is.na(Date_local_check), as.POSIXct(Combined_date_local, format="%m/%d/%Y", tz="UTC"), Date_local_check ), 
+         Date_local_check = if_else(is.na(Date_local_check), as.POSIXct(Combined_date_local, format="%m/%d/%Y", tz="America/Los_Angeles"), Date_local_check ), 
          Date_local_int= as.POSIXct(format(Date_UTC,tz="America/Los_Angeles")),
          Date_UTC_int= as.POSIXct(format(Date_local_check,tz="UTC"))) %>% 
-  mutate(., Date_local = if_else(is.na(Date_local_int), Date_local_check, Date_local_int ),
+  mutate(., Date_local = if_else(is.na(Date_local_int), Date_local_check,Date_local_int),
          Date_UTC = if_else(is.na(Date_UTC), Date_UTC_int, Date_UTC )) %>% 
   mutate(., Lat_dec=Lat) %>% 
   mutate(., , Lon_dec = Lon) %>% 
