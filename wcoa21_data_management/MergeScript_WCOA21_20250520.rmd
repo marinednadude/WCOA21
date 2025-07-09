@@ -18,6 +18,7 @@ library("rnaturalearth")
 library("rnaturalearthdata")
 library(cmocean)
 library(oce)
+library(hms)
 
 ```
 
@@ -105,26 +106,29 @@ QAQCMRE_CruiseSampleMetadata_WCOA21 %>%
 
 ```
 # Read Bottle Data
+Brynn: commented out Zack's old code. Because updated bottle file to include python's PyCO2Sys calculated values, and saved as a csv, need to adjust this part
 
 
 ```{r}
-bottle_Data_names <- array(readxl::read_xlsx(here("01_CRUISE_METADATA/00_OCADS_data/WCOA2021_Data_forSDIS_2022_09-28.xlsx"), n_max = 1, col_names = FALSE))
+# bottle_Data_names <- array(readxl::read_xlsx(here("01_CRUISE_METADATA/00_OCADS_data/WCOA2021_Data_forSDIS_2022_09-28.xlsx"), n_max = 1, col_names = FALSE))
+# 
+# bottle_Data_units <- array(readxl::read_xlsx(here("01_CRUISE_METADATA/00_OCADS_data/WCOA2021_Data_forSDIS_2022_09-28.xlsx"), n_max = 2))
+# 
+# bottle_Data <- readxl::read_xlsx(here("01_CRUISE_METADATA/00_OCADS_data/WCOA2021_Data_forSDIS_2022_09-28.xlsx"), skip=2, col_names =F)
+# 
+# colnames(bottle_Data) <- bottle_Data_names
+# library(hms)
 
-bottle_Data_units <- array(readxl::read_xlsx(here("01_CRUISE_METADATA/00_OCADS_data/WCOA2021_Data_forSDIS_2022_09-28.xlsx"), n_max = 2))
+bottle_Data <- read.csv(here("01_CRUISE_METADATA/00_OCADS_data/WCOA2021_Data_forSDIS_2022_09-23_with_pco2Sys_calcs.csv"))
 
-bottle_Data <- readxl::read_xlsx(here("01_CRUISE_METADATA/00_OCADS_data/WCOA2021_Data_forSDIS_2022_09-28.xlsx"), skip=2, col_names =F)
-
-colnames(bottle_Data) <- bottle_Data_names
-library(hms)
-
-bottle_Data %>% 
-  slice(-1) %>% 
-  mutate(.,Cast = Niskin_ID) %>% 
-  mutate(., Time_UTC=as_hms(Time_UTC)) %>% 
-  mutate(., Date_full_UTC=as.POSIXct(paste(Date_UTC, Time_UTC), format="%Y-%m-%d %H:%M:%S")) %>% 
+bottle_Data %>%
+  mutate(.,Cast = Niskin_ID) %>%
+  mutate(., Time_UTC=as_hms(Time_UTC.hh.mm.ss)) %>%
+  mutate(., Date_full_UTC=as.POSIXct(paste(Date_UTC.mm.dd.yy, Time_UTC.hh.mm.ss), format="%Y-%m-%d %H:%M:%S")) %>%
   mutate(., Cast = as.numeric(Cast),
-         bottle = Rosette_Position) %>% 
-  rename_with(.fn = ~ paste0("btl_", .x))-> bottle_Data
+         bottle = Rosette_Position) %>%
+  rename_with(~ paste0("btl_", .),
+              .cols = !starts_with("co2Sys_"))-> bottle_Data
 
 bottle_Data$Cast <- as.character(bottle_Data$btl_Cast)
 bottle_Data$bottle <- as.character(bottle_Data$btl_bottle)
@@ -132,25 +136,26 @@ bottle_Data$bottle <- as.character(bottle_Data$btl_bottle)
 
 # Read  CO2Sys_v2.1.xls Processed Data
 Note that one day we should replace this janky macro with R or Python code. Likely someone already has in 2025, but I have not found it yet.
+Brynn: commented out this part. Used PyCO2Sys library, as requested by Zack to calculate this info from the bottle file
 
 ```{r}
-
-aragonite <- read.csv(here("01_CRUISE_METADATA/zzMergeMetadata/aragonite/MarchineReadable_aragonite_CO2Sys_v2.1_WCOA2021.csv"), header=T)
-
-aragonite %>% 
-  slice(-2) %>% 
-  rename_with(.fn = ~ paste0("CO2sys_", .x)) %>% 
-  dplyr::rename(btl_EXPOCODE=CO2sys_EXPOCODE,btl_Cruise_ID      =CO2sys_Cruise_ID,btl_Section_ID   =CO2sys_Section_ID,btl_Station_ID=   CO2sys_Station_ID,btl_Cast_number=CO2sys_Cast_number,btl_Rosette_Position=CO2sys_Rosette_Position,btl_Niskin_ID= CO2sys_Niskin_ID,btl_Niskin_flag=CO2sys_Niskin_flag,btl_Sample_ID= CO2sys_Sample_ID  ) -> aragonite_Data
-
-colnames(aragonite)
-aragonite %>% 
-  slice(2) -> aragonite_units
-
-bottle_Data <- bottle_Data %>%
-  mutate(across(c(btl_Station_ID, btl_Cast_number, btl_Rosette_Position, btl_Niskin_ID, btl_Niskin_flag, btl_Sample_ID), as.character))
-
-bottle_Data %>% 
-  left_join(aragonite_Data) -> bottle_Data_w_arag
+# 
+# aragonite <- read.csv(here("01_CRUISE_METADATA/zzMergeMetadata/aragonite/MarchineReadable_aragonite_CO2Sys_v2.1_WCOA2021.csv"), header=T)
+# 
+# aragonite %>%
+#   slice(-2) %>%
+#   rename_with(.fn = ~ paste0("CO2sys_", .x)) %>%
+#   dplyr::rename(btl_EXPOCODE=CO2sys_EXPOCODE,btl_Cruise_ID      =CO2sys_Cruise_ID,btl_Section_ID   =CO2sys_Section_ID,btl_Station_ID=   CO2sys_Station_ID,btl_Cast_number=CO2sys_Cast_number,btl_Rosette_Position=CO2sys_Rosette_Position,btl_Niskin_ID= CO2sys_Niskin_ID,btl_Niskin_flag=CO2sys_Niskin_flag,btl_Sample_ID= CO2sys_Sample_ID  ) -> aragonite_Data
+# 
+# colnames(aragonite)
+# aragonite %>%
+#   slice(2) -> aragonite_units
+# 
+# bottle_Data <- bottle_Data %>%
+#   mutate(across(c(btl_Station_ID, btl_Cast_number, btl_Rosette_Position, btl_Niskin_ID, btl_Niskin_flag, btl_Sample_ID), as.character))
+# 
+# bottle_Data %>%
+#   left_join(aragonite_Data) -> bottle_Data_w_arag
 ```
 # Read CTD Downcast Data
 
@@ -187,9 +192,17 @@ data.frame(do.call(rbind,ctd))  %>%
 # Merge Environmental Data
 
 ```{r}
-bottle_Data_w_arag %>% 
-    mutate(btl_pressure= round(as.numeric(btl_Depth),0)) %>% 
-  left_join(ctd_Data, by =c("btl_Station_ID"="ctd_Station_ID", "btl_Cast_number"="ctd_Cast_number","btl_pressure"="ctd_Pressure")) -> bottle_Data_w_arag_ctd
+# bottle_Data_w_arag %>% 
+#     mutate(btl_pressure= round(as.numeric(btl_Depth),0)) %>% 
+#   left_join(ctd_Data, by =c("btl_Station_ID"="ctd_Station_ID", "btl_Cast_number"="ctd_Cast_number","btl_pressure"="ctd_Pressure")) -> bottle_Data_w_arag_ctd
+
+bottle_Data %>%
+  mutate(btl_Station_ID = as.character(btl_Station_ID), 
+         btl_Cast_number = as.character(btl_Cast_number),
+         btl_Sample_ID = as.character(btl_Sample_ID),
+         btl_Rosette_Position = as.character(btl_Rosette_Position),
+         btl_pressure= round(as.numeric(btl_Depth.m),0)) %>%
+  left_join(ctd_Data, by= c("btl_Station_ID"="ctd_Station_ID", "btl_Cast_number"="ctd_Cast_number", "btl_pressure"="ctd_Pressure")) -> bottle_Data_w_arag_ctd
 ```
 
 # Merge Sample, Bottle, and CTD Data
