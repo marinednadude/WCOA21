@@ -220,7 +220,11 @@ QAQCMRE_CruiseSampleMetadata_WCOA21 %>%
   left_join(bottle_Data_w_arag_ctd, by = c("Cast" = "btl_Sample_ID", "Bottle" = "btl_Rosette_Position")) %>%
   left_join(sean_selected, by = c("Sample_Name" = "Sample Name")) -> WCOA21_sample_data
 
-
+# Brynn - based on Convo with Sean - fill in btl chem data if samples share the same rep chem bottle
+WCOA21_sample_data <- WCOA21_sample_data %>%
+  group_by(`Rep Chem Bottle`) %>%
+  fill(starts_with("btl_"), .direction = "downup") %>%
+  ungroup()
 
 readr::write_excel_csv(WCOA21_sample_data, file="FinalOME_Merge_WCOA21_sample_data.csv")
 ```
