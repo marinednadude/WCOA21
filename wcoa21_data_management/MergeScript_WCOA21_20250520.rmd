@@ -19,6 +19,7 @@ library("rnaturalearthdata")
 library(cmocean)
 library(oce)
 library(hms)
+library(readxl)
 
 ```
 
@@ -189,6 +190,12 @@ data.frame(do.call(rbind,ctd))  %>%
 
 ```
 
+```{r}
+# Load Sean's metadata file so we can bring in Rep_Chem_Bottle
+sean_metadata <- read_excel(here("01_CRUISE_METADATA/Sean_onboard_sampleSpreadsheet/WCOA2021_SampleSpreadsheet.xlsx"))
+sean_selected <- sean_metadata[, c("Sample Name", "Rep Chem Bottle")]
+```
+
 # Merge Environmental Data
 
 ```{r}
@@ -210,7 +217,8 @@ bottle_Data %>%
 ```{r}
 QAQCMRE_CruiseSampleMetadata_WCOA21 %>% 
   mutate(pressure= round(Depth_m,0)) %>% 
-  left_join(bottle_Data_w_arag_ctd, by = c("Cast" = "btl_Sample_ID", "Bottle" = "btl_Rosette_Position")) -> WCOA21_sample_data
+  left_join(bottle_Data_w_arag_ctd, by = c("Cast" = "btl_Sample_ID", "Bottle" = "btl_Rosette_Position")) %>%
+  left_join(sean_selected, by = c("Sample_Name" = "Sample Name")) -> WCOA21_sample_data
 
 
 
