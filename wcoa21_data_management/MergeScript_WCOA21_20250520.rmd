@@ -194,6 +194,15 @@ data.frame(do.call(rbind,ctd))  %>%
 # Load Sean's metadata file so we can bring in Rep_Chem_Bottle
 sean_metadata <- read_excel(here("01_CRUISE_METADATA/Sean_onboard_sampleSpreadsheet/WCOA2021_SampleSpreadsheet.xlsx"))
 sean_selected <- sean_metadata[, c("Sample Name", "Rep Chem Bottle")]
+
+#PARSE the station, cast and bottle out of RepChem Bottle
+sean_selected <- sean_selected %>%
+  mutate(
+    # Use backticks for column names with spaces
+    rep_station = as.character(as.integer(substr(`Rep Chem Bottle`, 1, nchar(`Rep Chem Bottle`) - 4))),
+    rep_cast    = as.character(as.integer(substr(`Rep Chem Bottle`, nchar(`Rep Chem Bottle`) - 3, nchar(`Rep Chem Bottle`) - 2))),
+    rep_bottle  = as.character(as.integer(substr(`Rep Chem Bottle`, nchar(`Rep Chem Bottle`) - 1, nchar(`Rep Chem Bottle`))))
+  )
 ```
 
 # Merge Environmental Data
@@ -215,18 +224,102 @@ bottle_Data %>%
 # Merge Sample, Bottle, and CTD Data
 
 ```{r}
+# Step 1 join ctd/bottle file with Quag
 QAQCMRE_CruiseSampleMetadata_WCOA21 %>% 
   mutate(pressure= round(Depth_m,0)) %>% 
-  left_join(bottle_Data_w_arag_ctd, by = c("Cast" = "btl_Sample_ID", "Bottle" = "btl_Rosette_Position")) %>%
-  left_join(sean_selected, by = c("Sample_Name" = "Sample Name")) -> WCOA21_sample_data
+  left_join(bottle_Data_w_arag_ctd, by = c("Cast" = "btl_Sample_ID", "Bottle" = "btl_Rosette_Position")) -> WCOA21_sample_data
 
-# Brynn - based on Convo with Sean - fill in btl chem data if samples share the same rep chem bottle
-WCOA21_sample_data <- WCOA21_sample_data %>%
-  group_by(`Rep Chem Bottle`) %>%
-  fill(starts_with("btl_"), .direction = "downup") %>%
-  ungroup()
+# Step 2 Join rep chem bottle info from sean_selected
+WCOA21_sample_data_with_rep_chem_bottle_info <- WCOA21_sample_data %>%
+  left_join(
+    sean_selected %>% select(
+      `Sample Name`, rep_station, rep_cast, rep_bottle
+    ),
+    by = c("Sample_Name" = "Sample Name")
+  )
 
-readr::write_excel_csv(WCOA21_sample_data, file="FinalOME_Merge_WCOA21_sample_data.csv")
+# STep 3: Join the rep chem bottle data from bottle_Data
+WCOA21_sample_data_merged_with_bottle_rep <- WCOA21_sample_data_with_rep_chem_bottle_info %>%
+  left_join(
+    bottle_Data %>%
+      # Ensure join keys are characters to match WCOA21_sample_data
+      mutate(across(c(btl_Station_ID, btl_Cast_number, btl_Rosette_Position), as.character)) %>%
+      rename_with(~ paste0("rep_", .),
+                  -c(btl_Station_ID, btl_Cast_number, btl_Rosette_Position)),
+    by = c(
+      "rep_station" = "btl_Station_ID",
+      "rep_cast" = "btl_Cast_number",
+      "rep_bottle" = "btl_Rosette_Position"
+    )
+  )
+
+# Step 4: Identify the data columns (exclude join keys and metadata  cols)
+data_cols <- setdiff(
+  names(bottle_Data),
+  c("btl_Station_ID", "btl_Cast_number", "btl_Rosette_Position", "btl_Sample_ID")
+)
+print(data_cols)
+
+na_before <- WCOA21_sample_data_merged_with_bottle_rep %>%
+  summarise(across(all_of(data_cols), ~ sum(is.na(.))))
+
+# Step 5 For each data column, fill NAs using the rep chem data
+# also overwrite the corresponding flag column if it exists.
+final_join <- WCOA21_sample_data_merged_with_bottle_rep 
+
+for (col in data_cols) {
+  rep_col <- paste0("rep_", col)
+  flag_col <- paste0(col, "_flag")
+  rep_flag_col <- paste0("rep_", flag_col)
+  
+  if (rep_col %in% names(final_join)) {
+    # Update final_join using its OWN current state
+    final_join <- final_join %>%
+      mutate(
+        !!col := if_else(
+          is.na(.data[[col]]) & !is.na(.data[[rep_col]]),
+          .data[[rep_col]],
+          .data[[col]]
+        )
+      )
+    
+    # Do the same for the flag column
+    if (flag_col %in% names(final_join) &&
+        rep_flag_col %in% names(final_join)) {
+      final_join <- final_join %>%
+        mutate(
+          !!flag_col := if_else(
+            is.na(.data[[col]]) & !is.na(.data[[rep_col]]), # Logic: If we filled the data, fill the flag
+            .data[[rep_flag_col]],
+            .data[[flag_col]]
+          )
+        )
+    }
+  }
+}
+
+na_after <- final_join %>%
+  summarise(across(all_of(data_cols), ~ sum(is.na(.))))
+
+na_diff <- bind_rows(na_before, na_after) %>%
+  mutate(check = c("before", "after")) %>%
+  pivot_longer(-check) %>%
+  pivot_wider(names_from = check, values_from = value) %>%
+  mutate(filled = before - after) %>%
+  filter(filled > 0)
+
+print(na_diff)
+
+
+# # Brynn - based on Convo with Sean - fill in btl chem data if samples share the same rep chem bottle
+# WCOA21_sample_data <- WCOA21_sample_data %>%
+#   group_by(`Rep Chem Bottle`) %>%
+#   fill(starts_with("btl_"), .direction = "downup") %>%
+#   ungroup()
+
+readr::write_excel_csv(final_join, file="FinalOME_Merge_WCOA21_sample_data.csv")
+
+
 ```
 
 

@@ -8,7 +8,7 @@ date: "2023-04-18"
 library(tidyverse)
 library(here)
 library(sf)
-library(devtools)
+# library(devtools)
 #devtools::install_github("katiejolly/nationalparkcolors")
 library(nationalparkcolors)
 library(knitr)
