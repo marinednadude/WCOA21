@@ -233,7 +233,7 @@ QAQCMRE_CruiseSampleMetadata_WCOA21 %>%
 WCOA21_sample_data_with_rep_chem_bottle_info <- WCOA21_sample_data %>%
   left_join(
     sean_selected %>% select(
-      `Sample Name`, rep_station, rep_cast, rep_bottle
+      `Sample Name`, `Rep Chem Bottle`, rep_station, rep_cast, rep_bottle
     ),
     by = c("Sample_Name" = "Sample Name")
   )
